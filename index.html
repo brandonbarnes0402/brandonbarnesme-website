@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brandon Barnes - Sales pro bringing the creative energy of a 90s basketball court to tech sales. Austin-based, Full Court Press writer, and all-around fun person.">
+    <meta name="keywords" content="Brandon Barnes, sales, tech sales, account executive, Austin, Full Court Press">
+    <meta name="author" content="Brandon Barnes">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brandonbarnes.me/">
+    <meta property="og:title" content="Brandon Barnes - Sales Pro & Creative">
+    <meta property="og:description" content="Bringing 90s energy to modern sales. Austin-based AE and writer.">
+    <meta property="og:image" content="https://brandonbarnes.me/og-image.jpg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Brandon Barnes - Sales Pro & Creative">
+    
+    <title>Brandon Barnes - Sales Pro & Creative 🏀</title>
+    
+    <!-- Google Fonts - Bold 90s-inspired typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Racing+Sans+One&family=Bangers&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           90s SPORTS LOGO VIBES
+           Inspired by: Suns purple/orange, Expos blue/red,
+           Twins navy, Rangers blue, Teal era everything
+           ============================================ */
+        :root {
+            /* Primary 90s Colors */
+            --color-suns-purple: #1d1160;
+            --color-suns-orange: #e56020;
+            --color-teal: #00a6a6;
+            --color-expos-blue: #003087;
+            --color-electric-yellow: #ffd700;
+            --color-hot-pink: #ff006e;
+            --color-navy: #002147;
+            
+            /* Supporting Colors */
+            --color-white: #ffffff;
+            --color-cream: #fffef7;
+            --color-black: #0d0d0d;
+            --color-gray: #666666;
+            
+            /* Typography */
+            --font-display: 'Bangers', cursive;
+            --font-heading: 'Racing Sans One', cursive;
+            --font-body: 'Rubik', sans-serif;
+            
+            /* Effects */
+            --shadow-glow: 0 0 20px rgba(255, 215, 0, 0.6);
+            --shadow-deep: 4px 4px 0px rgba(0, 0, 0, 0.3);
+            --shadow-card: 8px 8px 0px rgba(29, 17, 96, 0.4);
+        }
+        
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--color-black);
+            background: linear-gradient(135deg, var(--color-cream) 0%, #f0f0e8 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Background pattern - 90s geometric vibes */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0, 166, 166, 0.03) 35px, rgba(0, 166, 166, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(229, 96, 32, 0.03) 35px, rgba(229, 96, 32, 0.03) 70px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        
+        h1 {
+            font-size: clamp(3rem, 12vw, 8rem);
+            color: var(--color-suns-purple);
+            text-shadow: 
+                4px 4px 0px var(--color-suns-orange),
+                8px 8px 0px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--color-suns-purple);
+            text-shadow: 3px 3px 0px var(--color-teal);
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--color-expos-blue);
+            margin-bottom: 0.75rem;
+        }
+        
+        h4 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--color-navy);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        a {
+            color: var(--color-hot-pink);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        a:hover {
+            color: var(--color-suns-orange);
+            transform: scale(1.05);
+        }
+        
+        /* ============================================
+           NAVIGATION - Retro scoreboard style
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-expos-blue) 100%);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 0 var(--color-suns-orange),
+                        0 8px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 4px solid var(--color-electric-yellow);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: var(--color-electric-yellow);
+            text-shadow: 
+                3px 3px 0px var(--color-suns-orange),
+                6px 6px 0px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-logo:hover {
+            transform: rotate(-2deg) scale(1.05);
+            color: var(--color-white);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-family: var(--font-heading);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--color-white);
+            padding: 0.5rem 1rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--color-electric-yellow);
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 80%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--color-electric-yellow);
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .menu-toggle span {
+            width: 30px;
+            height: 4px;
+            background: var(--color-electric-yellow);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        /* ============================================
+           SECTION UTILITIES
+           ============================================ */
+        section {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Section number badges - like jersey numbers */
+        .section-number {
+            display: inline-block;
+            background: var(--color-suns-orange);
+            color: var(--color-white);
+            font-family: var(--font-display);
+            font-size: 2rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50%;
+            box-shadow: var(--shadow-deep);
+            margin-bottom: 2rem;
+            border: 4px solid var(--color-suns-purple);
+        }
+        
+        /* ============================================
+           HERO SECTION - Championship banner vibes
+           ============================================ */
+        #hero {
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(29, 17, 96, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(0, 166, 166, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--color-cream) 0%, #fffef7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Decorative elements - basketball court lines */
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, var(--color-suns-purple) 0%, transparent 100%);
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-eyebrow {
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--color-suns-orange);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero-tagline {
+            font-family: var(--font-body);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 500;
+            color: var(--color-navy);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.5;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* 90s style buttons - like trading cards */
+        .btn {
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            padding: 1rem 2.5rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            position: relative;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-suns-orange) 0%, var(--color-hot-pink) 100%);
+            color: var(--color-white);
+            box-shadow: var(--shadow-deep);
+            border: 3px solid var(--color-suns-purple);
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+        }
+        
+        .btn-primary:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, var(--color-hot-pink) 0%, var(--color-suns-orange) 100%);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-suns-purple);
+            border: 4px solid var(--color-teal);
+            box-shadow: var(--shadow-deep);
+            clip-path: polygon(0% 0%, 95% 0%, 100% 100%, 5% 100%);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-teal);
+            color: var(--color-white);
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px var(--color-suns-purple);
+        }
+        
+        /* Scroll indicator - basketball bouncing */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        
+        /* ============================================
+           ABOUT SECTION - Trading card style
+           ============================================ */
+        #about {
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-cream) 100%);
+        }
+        
+        .about-card {
+            background: var(--color-white);
+            padding: 3rem;
+            border: 6px solid var(--color-suns-purple);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(0, 166, 166, 0.05) 20px,
+                rgba(0, 166, 166, 0.05) 40px
+            );
+            pointer-events: none;
+        }
+        
+        .about-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-content p {
+            font-size: 1.2rem;
+            color: var(--color-black);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p:first-of-type {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-suns-purple);
+        }
+        
+        /* Stats section - like player stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-expos-blue) 100%);
+            padding: 1.5rem;
+            text-align: center;
+            border: 4px solid var(--color-electric-yellow);
+            box-shadow: var(--shadow-deep);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px) rotate(-2deg);
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--color-electric-yellow);
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* ============================================
+           RESUME SECTION - Championship banners
+           ============================================ */
+        #resume {
+            background: 
+                linear-gradient(135deg, rgba(229, 96, 32, 0.05) 0%, transparent 100%),
+                var(--color-cream);
+        }
+        
+        .resume-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .job-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-left: 8px solid var(--color-suns-orange);
+            border-top: 3px solid var(--color-teal);
+            box-shadow: 6px 6px 0px rgba(29, 17, 96, 0.2);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 60px 60px 0;
+            border-color: transparent var(--color-electric-yellow) transparent transparent;
+        }
+        
+        .job-card:hover {
+            transform: translateX(8px);
+            box-shadow: 10px 10px 0px rgba(29, 17, 96, 0.3);
+        }
+        
+        .job-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-suns-purple);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .job-meta {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-teal);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .job-description {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .job-description li {
+            padding-left: 2rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .job-description li::before {
+            content: '🏀';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        /* Skills section - like trading card back */
+        .skills-section {
+            background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-navy) 100%);
+            padding: 3rem;
+            border: 6px solid var(--color-electric-yellow);
+            box-shadow: var(--shadow-card);
+            margin-top: 3rem;
+        }
+        
+        .skills-section h3 {
+            color: var(--color-electric-yellow);
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-tag {
+            background: var(--color-teal);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border: 3px solid var(--color-white);
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: var(--color-hot-pink);
+            transform: rotate(-3deg) scale(1.1);
+        }
+        
+        /* ============================================
+           MEDIA SECTION - Highlight reel
+           ============================================ */
+        #media {
+            background: linear-gradient(135deg, var(--color-white) 0%, #f5f5f0 100%);
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .media-card {
+            background: var(--color-white);
+            border: 5px solid var(--color-expos-blue);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .media-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 40px 40px 0;
+            border-color: transparent var(--color-suns-orange) transparent transparent;
+        }
+        
+        .media-card:hover {
+            transform: rotate(-2deg) translateY(-10px);
+            box-shadow: 12px 12px 0px var(--color-teal);
+            border-color: var(--color-hot-pink);
+        }
+        
+        .media-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-expos-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .media-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+        
+        @keyframes slide {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+        
+        .media-content {
+            padding: 1.5rem;
+            background: var(--color-white);
+        }
+        
+        .media-tag {
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            color: var(--color-suns-orange);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .media-card h4 {
+            color: var(--color-suns-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .media-card p {
+            color: var(--color-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* ============================================
+           NEWSLETTER SECTION - All-Star announcement
+           ============================================ */
+        #newsletter {
+            background: 
+                linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-navy) 100%);
+            color: var(--color-white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #newsletter::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 215, 0, 0.1) 50px, rgba(255, 215, 0, 0.1) 100px);
+            pointer-events: none;
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .newsletter-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        #newsletter h2 {
+            color: var(--color-electric-yellow);
+            text-shadow: 
+                4px 4px 0px var(--color-suns-orange),
+                8px 8px 0px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+        }
+        
+        #newsletter p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--color-white);
+        }
+        
+        .newsletter-logo {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--color-electric-yellow);
+            text-shadow: 
+                3px 3px 0px var(--color-hot-pink),
+                6px 6px 0px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .btn-light {
+            background: var(--color-white);
+            color: var(--color-suns-purple);
+            border: 4px solid var(--color-electric-yellow);
+            box-shadow: var(--shadow-deep);
+        }
+        
+        .btn-light:hover {
+            background: var(--color-electric-yellow);
+            color: var(--color-suns-purple);
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* ============================================
+           CONTACT SECTION - Locker room vibes
+           ============================================ */
+        #contact {
+            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white) 100%);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-info h4 {
+            color: var(--color-suns-purple);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .contact-link {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-suns-purple);
+            padding: 1rem 1.5rem;
+            background: var(--color-white);
+            border: 3px solid var(--color-teal);
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            background: var(--color-teal);
+            color: var(--color-white);
+            transform: translateX(8px);
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-link span:first-child {
+            font-size: 1.5rem;
+        }
+        
+        /* Form styling */
+        .contact-form {
+            background: var(--color-white);
+            padding: 2rem;
+            border: 5px solid var(--color-suns-purple);
+            box-shadow: var(--shadow-card);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            color: var(--color-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border: 3px solid var(--color-teal);
+            background: var(--color-cream);
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-hot-pink);
+            box-shadow: 0 0 0 3px rgba(255, 0, 110, 0.2);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        /* ============================================
+           FOOTER - Championship banner
+           ============================================ */
+        footer {
+            background: linear-gradient(135deg, var(--color-expos-blue) 0%, var(--color-navy) 100%);
+            color: var(--color-white);
+            padding: 2rem;
+            text-align: center;
+            border-top: 6px solid var(--color-electric-yellow);
+            box-shadow: 0 -4px 0 var(--color-suns-orange);
+        }
+        
+        footer p {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 968px) {
+            section {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-expos-blue) 100%);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">BB23</a>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#resume" class="nav-link">Career</a></li>
+                <li><a href="#media" class="nav-link">Work</a></li>
+                <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section id="hero">
+        <div class="section-container hero-content">
+            <span class="hero-eyebrow">Austin, TX • Sales Pro • Creative</span>
+            <h1>BRANDON<br>BARNES</h1>
+            <p class="hero-tagline">
+                Bringing the creative energy of a 90s basketball court to tech sales. Six years closing deals, building teams, and turning insights into action.
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">Let's Talk</a>
+                <a href="#resume" class="btn btn-secondary">See My Work</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">🏀</div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+         ============================================ -->
+    <section id="about">
+        <div class="section-container">
+            <span class="section-number">01</span>
+            <h2>About Me</h2>
+            
+            <div class="about-card">
+                <div class="about-content">
+                    <p>
+                        I'm a sales professional who believes the best solutions come from understanding people, not just hitting numbers. Over six years, I've driven new business growth, managed full sales cycles, and led teams in some of the most competitive tech environments.
+                    </p>
+                    <p>
+                        But here's the thing: I bring the same creative energy to sales that I developed spending 30-40 hours a week managing Texas A&M's basketball program. Improvisation, storytelling, and relationship-building aren't just buzzwords—they're my competitive advantage.
+                    </p>
+                    <p>
+                        Outside the office, I write Full Court Press, exploring business, culture, and the intersection of creativity and strategy. Whether I'm closing deals or crafting narratives, I'm all about bringing authenticity and energy to everything I do.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Stats section -->
+            <div class="stats-grid">
+                <div class="stat-card fade-in stagger-1">
+                    <span class="stat-number">6+</span>
+                    <span class="stat-label">Years in Tech Sales</span>
+                </div>
+                <div class="stat-card fade-in stagger-2">
+                    <span class="stat-number">$1.3M</span>
+                    <span class="stat-label">ARR Closed in 2022-23</span>
+                </div>
+                <div class="stat-card fade-in stagger-3">
+                    <span class="stat-number">100%+</span>
+                    <span class="stat-label">Quota Attainment</span>
+                </div>
+                <div class="stat-card fade-in stagger-4">
+                    <span class="stat-number">#1</span>
+                    <span class="stat-label">Top BDR Performance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         RESUME SECTION
+         ============================================ -->
+    <section id="resume">
+        <div class="section-container">
+            <span class="section-number">02</span>
+            <h2>Career Highlights</h2>
+            
+            <div class="resume-grid">
+                <!-- Current Role -->
+                <div class="job-card fade-in">
+                    <h3 class="job-title">Sr Mid-Market Account Executive</h3>
+                    <div class="job-meta">Agicap • Austin, TX • Aug 2025 - Present</div>
+                    <ul class="job-description">
+                        <li>Drove North American go-to-market launch for a European startup expanding into the U.S.</li>
+                        <li>Managed full sales cycle while partnering with marketing to build demand and scale pipeline growth.</li>
+                        <li>Trained BDRs, improved outbound strategy, and supported team growth and early leadership initiatives.</li>
+                    </ul>
+                </div>
+                
+                <!-- LogicMonitor (2024-2025) -->
+                <div class="job-card fade-in">
+                    <h3 class="job-title">Strategic Partner Manager</h3>
+                    <div class="job-meta">LogicMonitor • Austin, TX • Apr 2024 - Aug 2025</div>
+                    <ul class="job-description">
+                        <li>Achieved over 100% of sales plan without ramp period.</li>
+                        <li>Developed strategic initiatives to enhance customer engagement and retention.</li>
+                        <li>Led cross-functional teams to deliver integrated solutions that meet client needs.</li>
+                    </ul>
+                </div>
+                
+                <!-- Vanta -->
+                <div class="job-card fade-in">
+                    <h3 class="job-title">Account Executive</h3>
+                    <div class="job-meta">Vanta • Austin, TX • Feb 2022 - Mar 2024</div>
+                    <ul class="job-description">
+                        <li>Managed full sales cycle, leading product demonstrations and closing 10-12 net new logos monthly.</li>
+                        <li>Achieved recognition for delivering $1.3M ARR in 2022-23.</li>
+                        <li>Collaborated with cross-functional teams to align sales strategies with customer needs.</li>
+                    </ul>
+                </div>
+                
+                <!-- LogicMonitor (2019-2022) -->
+                <div class="job-card fade-in">
+                    <h3 class="job-title">Mid-Market AE → SMB AE → Sr BDR</h3>
+                    <div class="job-meta">LogicMonitor • Austin, TX • Oct 2019 - Feb 2022</div>
+                    <ul class="job-description">
+                        <li>Trained and onboarded four new hires, enhancing team capabilities and efficiency.</li>
+                        <li>Closed most new logos (19) on the team in Q1-Q3 2021, demonstrating effective sales strategies.</li>
+                        <li>Recognized as #1 BDR for generating $765k in closed won opportunities.</li>
+                    </ul>
+                </div>
+                
+                <!-- Texas A&M -->
+                <div class="job-card fade-in">
+                    <h3 class="job-title">Men's Basketball Manager</h3>
+                    <div class="job-meta">Texas A&M University • College Station, TX • Jun 2016 - Apr 2018</div>
+                    <ul class="job-description">
+                        <li>Organized and implemented successful men's basketball program operations.</li>
+                        <li>Coordinated day-to-day program operations while balancing full-time studies.</li>
+                        <li>Developed leadership and organizational skills in high-pressure environment.</li>
+                    </ul>
+                </div>
+                
+                <!-- Education -->
+                <div class="job-card fade-in">
+                    <h3 class="job-title">Education</h3>
+                    <div class="job-meta">Texas A&M University • College Station, TX • Graduated 2018</div>
+                    <ul class="job-description">
+                        <li>Bachelor's Degree in Sport Management</li>
+                        <li>Graduated in three years while balancing 30-40 hours/week of basketball responsibilities</li>
+                        <li>Demonstrated exceptional time management and dedication</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Skills Section -->
+            <div class="skills-section">
+                <h3>Core Skills & Strengths</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">Storytelling</div>
+                    <div class="skill-tag">Creative Problem Solving</div>
+                    <div class="skill-tag">Relationship-Driven Communication</div>
+                    <div class="skill-tag">Team Leadership</div>
+                    <div class="skill-tag">Improvisation</div>
+                    <div class="skill-tag">Full Sales Cycle Management</div>
+                    <div class="skill-tag">Strategic Account Management</div>
+                    <div class="skill-tag">Cross-Functional Collaboration</div>
+                    <div class="skill-tag">Pipeline Development</div>
+                    <div class="skill-tag">Customer Engagement</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         MEDIA SECTION
+         ============================================ -->
+    <section id="media">
+        <div class="section-container">
+            <span class="section-number">03</span>
+            <h2>Creative Work</h2>
+            
+            <div class="media-grid">
+                <div class="media-card" data-link="https://www.fullcourtpress.ai">
+                    <div class="media-image">📝</div>
+                    <div class="media-content">
+                        <div class="media-tag">Writing</div>
+                        <h4>Full Court Press Essays</h4>
+                        <p>Weekly explorations of business, culture, and creativity. Where sales strategy meets storytelling.</p>
+                    </div>
+                </div>
+                
+                <div class="media-card" data-link="#">
+                    <div class="media-image">🎙️</div>
+                    <div class="media-content">
+                        <div class="media-tag">Audio</div>
+                        <h4>Podcast Appearances</h4>
+                        <p>Conversations about sales, creativity, and bringing authentic energy to professional life.</p>
+                    </div>
+                </div>
+                
+                <div class="media-card" data-link="#">
+                    <div class="media-image">💡</div>
+                    <div class="media-content">
+                        <div class="media-tag">Projects</div>
+                        <h4>Creative Initiatives</h4>
+                        <p>Side projects exploring the intersection of business strategy and creative expression.</p>
+                    </div>
+                </div>
+                
+                <div class="media-card" data-link="#">
+                    <div class="media-image">🏀</div>
+                    <div class="media-content">
+                        <div class="media-tag">Sports</div>
+                        <h4>Basketball & Beyond</h4>
+                        <p>How lessons from managing D1 basketball translate to high-stakes sales environments.</p>
+                    </div>
+                </div>
+                
+                <div class="media-card" data-link="#">
+                    <div class="media-image">✍️</div>
+                    <div class="media-content">
+                        <div class="media-tag">Essays</div>
+                        <h4>Sales & Culture</h4>
+                        <p>Breaking down what makes great sales teams work—and what doesn't.</p>
+                    </div>
+                </div>
+                
+                <div class="media-card" data-link="#">
+                    <div class="media-image">📊</div>
+                    <div class="media-content">
+                        <div class="media-tag">Analysis</div>
+                        <h4>Industry Insights</h4>
+                        <p>Data-driven takes on SaaS trends, go-to-market strategy, and sales innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         NEWSLETTER SECTION
+         ============================================ -->
+    <section id="newsletter">
+        <div class="section-container">
+            <div class="newsletter-content">
+                <span class="section-number">04</span>
+                <span class="newsletter-logo">FULL COURT PRESS</span>
+                <h2>My Weekly Newsletter</h2>
+                <p>
+                    Where business meets culture, and sales strategy meets storytelling. Every week, I break down what's working (and what's not) in tech, sales, and creative work.
+                </p>
+                <a href="https://www.fullcourtpress.ai" target="_blank" rel="noopener noreferrer" class="btn btn-light">
+                    Subscribe Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section id="contact">
+        <div class="section-container">
+            <span class="section-number">05</span>
+            <h2>Let's Connect</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h4>Get in Touch</h4>
+                    <p style="margin-bottom: 2rem;">
+                        Whether you're looking to collaborate, have an opportunity to discuss, or just want to talk shop—hit me up.
+                    </p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:brandonbarnes0402@gmail.com" class="contact-link">
+                            <span>📧</span>
+                            <span>brandonbarnes0402@gmail.com</span>
+                        </a>
+                        <a href="https://linkedin.com/in/brandon-barnes-sales" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <span>💼</span>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://www.fullcourtpress.ai" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <span>✍️</span>
+                            <span>Full Court Press</span>
+                        </a>
+                        <a href="tel:512-925-5953" class="contact-link">
+                            <span>📱</span>
+                            <span>(512) 925-5953</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h4 style="margin-bottom: 1.5rem;">Send a Message</h4>
+                    <form action="mailto:brandonbarnes0402@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send It</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <p>&copy; 2026 Brandon Barnes. Built with 90s energy and modern vibes. 🏀</p>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinkItems = document.querySelectorAll('.nav-link');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('section');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinkItems.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Media card click handler
+        document.querySelectorAll('.media-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const link = card.dataset.link;
+                if (link && link !== '#') {
+                    window.open(link, '_blank');
+                }
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        console.log('🏀 Brandon Barnes portfolio loaded! Time to ball out! 🏀');
+    </script>
+</body>
+</html>
