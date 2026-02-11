@@ -300,6 +300,53 @@
         .workout-item.run { border-left-color: #f59e0b; }
         .workout-item.strength { border-left-color: #8b5cf6; }
 
+        .workout-item.skipped {
+            opacity: 0.5;
+            background: #f3f4f6;
+            position: relative;
+        }
+
+        .workout-item.skipped::after {
+            content: '⊘ SKIPPED';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .btn-skip-workout {
+            position: absolute;
+            top: 8px;
+            right: 55px;
+            background: #ef4444;
+            color: white;
+            padding: 4px 10px;
+            font-size: 11px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-skip-workout:hover {
+            background: #dc2626;
+        }
+
+        .btn-unskip {
+            background: #10b981;
+        }
+
+        .btn-unskip:hover {
+            background: #059669;
+        }
+
         .btn-edit {
             position: absolute;
             top: 8px;
@@ -973,6 +1020,7 @@
         let customWorkouts = JSON.parse(localStorage.getItem('customWorkouts')) || {};
         let workoutEdits = JSON.parse(localStorage.getItem('workoutEdits')) || {};
         let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+        let skippedWorkouts = JSON.parse(localStorage.getItem('skippedWorkouts')) || {};
 
         // Training Plan
         const trainingPlan = {
@@ -1083,12 +1131,17 @@
                                 displayWorkout.type === 'STRENGTH' ? '💪' : '🛌';
                     
                     const workoutClass = displayWorkout.type.toLowerCase();
+                    const workoutKey = `${dayKey}w${wIdx}`;
+                    const isSkipped = skippedWorkouts[workoutKey];
                     
                     workoutsHTML += `
-                        <div class="workout-item ${workoutClass}">
+                        <div class="workout-item ${workoutClass} ${isSkipped ? 'skipped' : ''}">
                             ${displayWorkout.type !== 'REST' ? `
                                 <button class="btn-edit" onclick="openEditModal('${dayKey}', ${wIdx}, ${JSON.stringify(workout).replace(/"/g, '&quot;')})">
                                     ✏️ Edit
+                                </button>
+                                <button class="btn-skip-workout ${isSkipped ? 'btn-unskip' : ''}" onclick="toggleSkipWorkout('${workoutKey}')">
+                                    ${isSkipped ? '↩️ Undo' : '⊘ Skip'}
                                 </button>
                             ` : ''}
                             <strong>${icon} ${displayWorkout.type}</strong> - ${displayWorkout.duration > 0 ? displayWorkout.duration + 'min' : ''}
@@ -1179,6 +1232,19 @@
                 
                 setTimeout(() => autoAnalyzeAndSuggest(), 1000);
             }
+        }
+
+        function toggleSkipWorkout(workoutKey) {
+            if (skippedWorkouts[workoutKey]) {
+                // Unskip
+                delete skippedWorkouts[workoutKey];
+            } else {
+                // Skip
+                skippedWorkouts[workoutKey] = true;
+            }
+            localStorage.setItem('skippedWorkouts', JSON.stringify(skippedWorkouts));
+            renderWorkouts();
+            updateStats();
         }
 
         function previousWeek() {
@@ -1345,23 +1411,32 @@
             const week = trainingPlan[currentWeek];
             if (!week) return {};
 
-            let completed = 0, total = 0, totalMinutes = 0;
+            let completed = 0, total = 0, totalMinutes = 0, skipped = 0;
             let swimDist = 0, bikeTime = 0, runDist = 0;
 
             week.days.forEach((day, idx) => {
                 const dayKey = `w${currentWeek}d${idx}`;
                 
-                day.workouts.forEach(workout => {
-                    if (workout.type !== 'REST') total++;
+                day.workouts.forEach((workout, wIdx) => {
+                    if (workout.type !== 'REST') {
+                        total++;
+                        const workoutKey = `${dayKey}w${wIdx}`;
+                        if (skippedWorkouts[workoutKey]) {
+                            skipped++;
+                        }
+                    }
                 });
 
                 if (completedWorkouts[dayKey]) {
                     completed++;
-                    day.workouts.forEach(w => {
-                        totalMinutes += w.duration || 0;
-                        if (w.type === 'SWIM' && w.distance) swimDist += w.distance;
-                        if (w.type === 'BIKE' && w.duration) bikeTime += w.duration;
-                        if (w.type === 'RUN' && w.distance) runDist += w.distance;
+                    day.workouts.forEach((w, wIdx) => {
+                        const workoutKey = `${dayKey}w${wIdx}`;
+                        if (!skippedWorkouts[workoutKey]) {
+                            totalMinutes += w.duration || 0;
+                            if (w.type === 'SWIM' && w.distance) swimDist += w.distance;
+                            if (w.type === 'BIKE' && w.duration) bikeTime += w.duration;
+                            if (w.type === 'RUN' && w.distance) runDist += w.distance;
+                        }
                     });
                 }
             });
@@ -1370,6 +1445,7 @@
                 currentWeek,
                 totalWorkouts: total,
                 completedWorkouts: completed,
+                skippedWorkouts: skipped,
                 completionRate: total > 0 ? ((completed / total) * 100).toFixed(0) + '%' : '0%',
                 totalTrainingMinutes: totalMinutes,
                 swimDistance: swimDist,
