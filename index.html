@@ -1,1362 +1,458 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Brandon Barnes - Sales pro bringing the creative energy of a 90s basketball court to tech sales. Austin-based, Full Court Press writer, and all-around fun person.">
-    <meta name="keywords" content="Brandon Barnes, sales, tech sales, account executive, Austin, Full Court Press">
-    <meta name="author" content="Brandon Barnes">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://brandonbarnes.me/">
-    <meta property="og:title" content="Brandon Barnes - Sales Pro & Creative">
-    <meta property="og:description" content="Bringing 90s energy to modern sales. Austin-based AE and writer.">
-    <meta property="og:image" content="https://brandonbarnes.me/og-image.jpg">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Brandon Barnes - Sales Pro & Creative">
-    
-    <title>Brandon Barnes - Sales Pro & Creative 🏀</title>
-    
-    <!-- Google Fonts - Bold 90s-inspired typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Racing+Sans+One&family=Bangers&display=swap" rel="stylesheet">
-    
-    <style>
-        /* ============================================
-           90s SPORTS LOGO VIBES - REFINED
-           All the personality, better execution
-           ============================================ */
-        :root {
-            /* Primary 90s Colors */
-            --color-suns-purple: #1d1160;
-            --color-suns-orange: #e56020;
-            --color-teal: #00a6a6;
-            --color-expos-blue: #003087;
-            --color-electric-yellow: #ffd700;
-            --color-hot-pink: #ff006e;
-            --color-navy: #002147;
-            
-            /* Supporting Colors */
-            --color-white: #ffffff;
-            --color-cream: #fffef7;
-            --color-black: #0d0d0d;
-            --color-gray: #666666;
-            
-            /* Typography */
-            --font-display: 'Bangers', cursive;
-            --font-heading: 'Racing Sans One', cursive;
-            --font-body: 'Rubik', sans-serif;
-            
-            /* Effects - slightly toned down */
-            --shadow-deep: 3px 3px 0px rgba(0, 0, 0, 0.25);
-            --shadow-card: 6px 6px 0px rgba(29, 17, 96, 0.3);
-        }
-        
-        /* ============================================
-           RESET & BASE
-           ============================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-        
-        body {
-            font-family: var(--font-body);
-            color: var(--color-black);
-            background: linear-gradient(135deg, var(--color-cream) 0%, #f0f0e8 100%);
-            line-height: 1.65;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Background pattern - subtle 90s geometric vibes */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0, 166, 166, 0.025) 35px, rgba(0, 166, 166, 0.025) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(229, 96, 32, 0.025) 35px, rgba(229, 96, 32, 0.025) 70px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        /* ============================================
-           TYPOGRAPHY - Improved readability
-           ============================================ */
-        h1, h2, h3 {
-            font-family: var(--font-display);
-            font-weight: 400;
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: 0.01em;
-        }
-        
-        h1 {
-            font-size: clamp(3rem, 10vw, 6.5rem);
-            color: var(--color-suns-purple);
-            text-shadow: 
-                3px 3px 0px var(--color-suns-orange),
-                5px 5px 0px rgba(0, 0, 0, 0.12);
-            margin-bottom: 1.25rem;
-        }
-        
-        h2 {
-            font-size: clamp(2.25rem, 7vw, 4.5rem);
-            color: var(--color-suns-purple);
-            text-shadow: 2px 2px 0px var(--color-teal);
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: var(--color-expos-blue);
-            margin-bottom: 0.75rem;
-        }
-        
-        h4 {
-            font-family: var(--font-heading);
-            font-size: clamp(1.2rem, 3vw, 1.75rem);
-            color: var(--color-navy);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-        
-        p {
-            font-size: clamp(1.0625rem, 2vw, 1.1875rem);
-            margin-bottom: 1.25rem;
-            line-height: 1.75;
-            max-width: 75ch;
-        }
-        
-        a {
-            color: var(--color-hot-pink);
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.2s ease;
-        }
-        
-        a:hover {
-            color: var(--color-suns-orange);
-        }
-        
-        /* ============================================
-           NAVIGATION - Cleaner, still bold
-           ============================================ */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-expos-blue) 100%);
-            z-index: 1000;
-            padding: 1.25rem 0;
-            box-shadow: 0 3px 0 var(--color-suns-orange),
-                        0 6px 15px rgba(0, 0, 0, 0.2);
-            border-bottom: 3px solid var(--color-electric-yellow);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--color-electric-yellow);
-            text-shadow: 
-                2px 2px 0px var(--color-suns-orange),
-                4px 4px 0px rgba(0, 0, 0, 0.25);
-            letter-spacing: 0.02em;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-logo:hover {
-            transform: scale(1.05);
-            color: var(--color-white);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            font-family: var(--font-heading);
-            font-size: clamp(0.9rem, 2vw, 1.05rem);
-            color: var(--color-white);
-            padding: 0.5rem 0.75rem;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: var(--color-electric-yellow);
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::before,
-        .nav-links a.active::before {
-            width: 80%;
-        }
-        
-        .nav-links a:hover {
-            color: var(--color-electric-yellow);
-        }
-        
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        .menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background: var(--color-electric-yellow);
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-        
-        /* ============================================
-           SECTIONS - Better spacing
-           ============================================ */
-        section {
-            min-height: 100vh;
-            padding: 7rem 2rem 4rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        /* Section number badges - refined */
-        .section-number {
-            display: inline-block;
-            background: var(--color-suns-orange);
-            color: var(--color-white);
-            font-family: var(--font-display);
-            font-size: 1.75rem;
-            padding: 0.5rem 1.25rem;
-            border-radius: 50%;
-            box-shadow: var(--shadow-deep);
-            margin-bottom: 1.75rem;
-            border: 3px solid var(--color-suns-purple);
-        }
-        
-        /* ============================================
-           HERO SECTION
-           ============================================ */
-        #hero {
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(29, 17, 96, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 60%, rgba(0, 166, 166, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, var(--color-cream) 0%, #fffef7 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-content {
-            text-align: center;
-            animation: slideInUp 0.8s ease-out;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero-eyebrow {
-            font-family: var(--font-heading);
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-suns-orange);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .hero-tagline {
-            font-family: var(--font-body);
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            font-weight: 500;
-            color: var(--color-navy);
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.6;
-        }
-        
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        /* 90s style buttons - refined */
-        .btn {
-            font-family: var(--font-heading);
-            font-size: clamp(1rem, 2vw, 1.1rem);
-            padding: 1rem 2.25rem;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 700;
-            position: relative;
-            transition: all 0.3s ease;
-            display: inline-block;
-            border-radius: 4px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-suns-orange) 0%, var(--color-hot-pink) 100%);
-            color: var(--color-white);
-            box-shadow: var(--shadow-deep);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
-        }
-        
-        .btn-secondary {
-            background: var(--color-white);
-            color: var(--color-suns-purple);
-            border: 3px solid var(--color-teal);
-            box-shadow: var(--shadow-deep);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--color-teal);
-            color: var(--color-white);
-            transform: translateY(-3px);
-        }
-        
-        /* Basketball scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2.5rem;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-18px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-8px);
-            }
-        }
-        
-        /* ============================================
-           ABOUT SECTION
-           ============================================ */
-        #about {
-            background: linear-gradient(135deg, #ffffff 0%, var(--color-cream) 100%);
-        }
-        
-        .about-card {
-            background: var(--color-white);
-            padding: 3rem;
-            border: 5px solid var(--color-suns-purple);
-            box-shadow: var(--shadow-card);
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        
-        .about-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 20px,
-                rgba(0, 166, 166, 0.04) 20px,
-                rgba(0, 166, 166, 0.04) 40px
-            );
-            pointer-events: none;
-        }
-        
-        .about-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .about-content p {
-            font-size: 1.1875rem;
-            color: var(--color-black);
-            margin-bottom: 1.5rem;
-            line-height: 1.75;
-        }
-        
-        .about-content p:first-of-type {
-            font-size: 1.375rem;
-            font-weight: 700;
-            color: var(--color-suns-purple);
-        }
-        
-        /* Stats section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-expos-blue) 100%);
-            padding: 1.75rem 1.5rem;
-            text-align: center;
-            border: 3px solid var(--color-electric-yellow);
-            box-shadow: var(--shadow-deep);
-            transition: all 0.3s ease;
-            border-radius: 6px;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
-        }
-        
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 2.75rem;
-            color: var(--color-electric-yellow);
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-family: var(--font-heading);
-            font-size: 0.9rem;
-            color: var(--color-white);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            line-height: 1.4;
-        }
-        
-        /* ============================================
-           RESUME SECTION
-           ============================================ */
-        #resume {
-            background: 
-                linear-gradient(135deg, rgba(229, 96, 32, 0.04) 0%, transparent 100%),
-                var(--color-cream);
-        }
-        
-        .resume-grid {
-            display: grid;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .job-card {
-            background: var(--color-white);
-            padding: 2rem;
-            border-left: 6px solid var(--color-suns-orange);
-            border-top: 2px solid var(--color-teal);
-            box-shadow: 4px 4px 0px rgba(29, 17, 96, 0.15);
-            position: relative;
-            transition: all 0.3s ease;
-            border-radius: 6px;
-        }
-        
-        .job-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 50px 50px 0;
-            border-color: transparent var(--color-electric-yellow) transparent transparent;
-            opacity: 0.9;
-        }
-        
-        .job-card:hover {
-            transform: translateX(6px);
-            box-shadow: 6px 6px 0px rgba(29, 17, 96, 0.2);
-        }
-        
-        .job-title {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--color-suns-purple);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-        
-        .job-meta {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            color: var(--color-teal);
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-        }
-        
-        .job-description {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .job-description li {
-            padding-left: 2rem;
-            margin-bottom: 0.875rem;
-            position: relative;
-            font-size: 1.0625rem;
-            line-height: 1.7;
-        }
-        
-        .job-description li::before {
-            content: '🏀';
-            position: absolute;
-            left: 0;
-            font-size: 1.1rem;
-        }
-        
-        /* Skills section */
-        .skills-section {
-            background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-navy) 100%);
-            padding: 2.5rem;
-            border: 4px solid var(--color-electric-yellow);
-            box-shadow: var(--shadow-card);
-            margin-top: 3rem;
-            border-radius: 8px;
-        }
-        
-        .skills-section h3 {
-            color: var(--color-electric-yellow);
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
-            margin-bottom: 1.75rem;
-        }
-        
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .skill-tag {
-            background: var(--color-teal);
-            color: var(--color-white);
-            font-family: var(--font-body);
-            font-size: 0.9375rem;
-            font-weight: 700;
-            padding: 0.65rem 1.25rem;
-            border: 2px solid var(--color-white);
-            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-tag:hover {
-            background: var(--color-hot-pink);
-            transform: translateY(-2px);
-        }
-        
-        /* ============================================
-           MEDIA SECTION
-           ============================================ */
-        #media {
-            background: linear-gradient(135deg, var(--color-white) 0%, #f5f5f0 100%);
-        }
-        
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .media-card {
-            background: var(--color-white);
-            border: 4px solid var(--color-expos-blue);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-        
-        .media-card::after {
-            content: '';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 35px 35px 0;
-            border-color: transparent var(--color-suns-orange) transparent transparent;
-        }
-        
-        .media-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 8px 8px 0px var(--color-teal);
-            border-color: var(--color-hot-pink);
-        }
-        
-        .media-image {
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-expos-blue) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .media-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.08) 10px,
-                rgba(255, 255, 255, 0.08) 20px
-            );
-            animation: slide 20s linear infinite;
-        }
-        
-        @keyframes slide {
-            from { transform: translate(0, 0); }
-            to { transform: translate(50px, 50px); }
-        }
-        
-        .media-content {
-            padding: 1.5rem;
-            background: var(--color-white);
-        }
-        
-        .media-tag {
-            font-family: var(--font-heading);
-            font-size: 0.8rem;
-            color: var(--color-suns-orange);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .media-card h4 {
-            color: var(--color-suns-purple);
-            margin-bottom: 0.5rem;
-        }
-        
-        .media-card p {
-            color: var(--color-gray);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-        
-        /* ============================================
-           NEWSLETTER SECTION
-           ============================================ */
-        #newsletter {
-            background: 
-                linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-navy) 100%);
-            color: var(--color-white);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #newsletter::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 215, 0, 0.08) 50px, rgba(255, 215, 0, 0.08) 100px);
-            pointer-events: none;
-            animation: rotate 30s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .newsletter-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        #newsletter h2 {
-            color: var(--color-electric-yellow);
-            text-shadow: 
-                3px 3px 0px var(--color-suns-orange),
-                5px 5px 0px rgba(0, 0, 0, 0.25);
-            margin-bottom: 1.5rem;
-        }
-        
-        #newsletter p {
-            font-size: 1.25rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            color: var(--color-white);
-        }
-        
-        .newsletter-logo {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            color: var(--color-electric-yellow);
-            text-shadow: 
-                2px 2px 0px var(--color-hot-pink),
-                4px 4px 0px rgba(0, 0, 0, 0.25);
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .btn-light {
-            background: var(--color-white);
-            color: var(--color-suns-purple);
-            border: 3px solid var(--color-electric-yellow);
-            box-shadow: var(--shadow-deep);
-        }
-        
-        .btn-light:hover {
-            background: var(--color-electric-yellow);
-            color: var(--color-suns-purple);
-            transform: translateY(-3px);
-            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* ============================================
-           CONTACT SECTION
-           ============================================ */
-        #contact {
-            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white) 100%);
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        
-        .contact-info h4 {
-            color: var(--color-suns-purple);
-            margin-bottom: 1.25rem;
-        }
-        
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .contact-link {
-            font-family: var(--font-body);
-            font-size: 1.0625rem;
-            font-weight: 700;
-            color: var(--color-suns-purple);
-            padding: 1rem 1.25rem;
-            background: var(--color-white);
-            border: 3px solid var(--color-teal);
-            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-        
-        .contact-link:hover {
-            background: var(--color-teal);
-            color: var(--color-white);
-            transform: translateX(6px);
-            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.25);
-        }
-        
-        .contact-link span:first-child {
-            font-size: 1.4rem;
-        }
-        
-        /* Form styling */
-        .contact-form {
-            background: var(--color-white);
-            padding: 2rem;
-            border: 4px solid var(--color-suns-purple);
-            box-shadow: var(--shadow-card);
-            border-radius: 6px;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            font-family: var(--font-heading);
-            font-size: 0.875rem;
-            color: var(--color-navy);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.875rem;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            border: 2px solid var(--color-teal);
-            background: var(--color-cream);
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-hot-pink);
-            box-shadow: 0 0 0 3px rgba(255, 0, 110, 0.15);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-        
-        /* ============================================
-           FOOTER
-           ============================================ */
-        footer {
-            background: linear-gradient(135deg, var(--color-expos-blue) 0%, var(--color-navy) 100%);
-            color: var(--color-white);
-            padding: 2rem;
-            text-align: center;
-            border-top: 4px solid var(--color-electric-yellow);
-            box-shadow: 0 -3px 0 var(--color-suns-orange);
-        }
-        
-        footer p {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            margin: 0;
-        }
-        
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
-        @media (max-width: 968px) {
-            section {
-                padding: 6rem 1.5rem 3rem;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-expos-blue) 100%);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-                transition: left 0.3s ease;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(7px, 7px);
-            }
-            
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(8px, -7px);
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-cta {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Brandon Barnes — GTM, partnerships, and content. Austin, TX." />
+  <title>Brandon Barnes</title>
+
+  <style>
+    :root{
+      --bg:#0b0b0c;
+      --panel:#0f1012;
+      --text:#f4f4f5;
+      --muted:#b6b7bd;
+      --faint:#7b7d86;
+      --rule:#24252b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --max: 1040px;
+      --pad: clamp(16px, 3vw, 28px);
+      --h1: clamp(36px, 5vw, 56px);
+      --h2: clamp(22px, 2.2vw, 28px);
+      --lh: 1.55;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      background: radial-gradient(1200px 700px at 50% -80px, rgba(255,255,255,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:var(--lh);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{color:var(--text); text-decoration:none}
+    a:hover{opacity:.92; text-decoration:underline; text-underline-offset:4px}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 var(--pad)}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,12,.62);
+      border-bottom:1px solid rgba(36,37,43,.7);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding: 14px var(--pad);
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .brand{
+      display:flex; align-items:baseline; gap:10px;
+      white-space:nowrap;
+    }
+    .brand .name{
+      font-size:18px; letter-spacing:.2px;
+      font-weight:600;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    .brand .tag{
+      font-size:14px;
+      color:var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    nav{
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-size:14px;
+    }
+    nav a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:10px;
+      text-decoration:none;
+    }
+    nav a:hover{background: rgba(255,255,255,.06); color:var(--text); text-decoration:none}
+    nav a.active{background: rgba(255,255,255,.08); color:var(--text)}
+
+    .hero{
+      padding: clamp(38px, 7vw, 90px) 0 32px;
+      text-align:center;
+    }
+    .hero h1{
+      margin:0 auto 10px;
+      max-width: 26ch;
+      font-size: var(--h1);
+      line-height: 1.06;
+      letter-spacing: -0.4px;
+      font-weight: 700;
+    }
+    .hero p{
+      margin: 0 auto 18px;
+      max-width: 70ch;
+      color: var(--muted);
+      font-size: 18px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    .cta-row{
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+      margin-top: 18px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      text-decoration:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.28);
+      transform: translateY(-1px);
+      text-decoration:none;
+    }
+    .btn.primary{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
+    }
+
+    .rule{
+      margin: 18px auto 0;
+      max-width: 860px;
+      border-top: 1px solid var(--rule);
+      opacity:.9;
+    }
+
+    .proof{
+      margin: 18px auto 0;
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+      max-width: 980px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 8px 10px;
+      border-radius: 999px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .dot{width:6px; height:6px; border-radius:50%; background: rgba(255,255,255,.55); display:inline-block}
+
+    section{padding: 44px 0;}
+    section .head{
+      margin-bottom: 14px;
+      display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+      flex-wrap:wrap;
+    }
+    h2{margin:0; font-size: var(--h2); letter-spacing: -0.2px; font-weight:700;}
+    .sub{
+      color: var(--muted);
+      font-size: 14px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    .grid{display:grid; grid-template-columns: 1fr; gap: 14px;}
+    @media (min-width: 860px){ .grid.two{grid-template-columns: 1fr 1fr} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size: 16px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-weight: 700;
+      letter-spacing: .1px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-size: 15px;
+    }
+
+    .list{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-size: 15px;
+    }
+    .list li{margin: 6px 0}
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-size: 13px;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      opacity:.95;
+    }
+
+    .footer{
+      padding: 30px 0 54px;
+      color: var(--faint);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-size: 13px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer .row{
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    .muted{color:var(--muted)}
+  </style>
 </head>
+
 <body>
-    <!-- NAVIGATION -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="nav-logo">BB23</a>
-            <button class="menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#resume" class="nav-link">Career</a></li>
-                <li><a href="#media" class="nav-link">Work</a></li>
-                <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="name">Brandon Barnes</div>
+        <div class="tag">Austin • GTM / Partnerships • Creator</div>
+      </div>
 
-    <!-- HERO -->
-    <section id="hero">
-        <div class="section-container hero-content">
-            <span class="hero-eyebrow">Austin, TX • Sales Pro • Creative</span>
-            <h1>BRANDON<br>BARNES</h1>
-            <p class="hero-tagline">
-                Bringing the creative energy of a 90s basketball court to tech sales. Six years closing deals, building teams, and turning insights into action.
-            </p>
-            <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">Let's Talk</a>
-                <a href="#resume" class="btn btn-secondary">See My Work</a>
-            </div>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#resume">Resume</a>
+        <a href="#side-projects">Side Projects</a>
+        <a href="#creative">Creative Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="kicker"><span class="dot"></span> Where revenue and storytelling collide</div>
+        <h1>GTM operator with a creator’s voice.</h1>
+        <p>I build pipeline, partnerships, and content—bringing sports energy and clear communication to growth teams.</p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email</a>
+          <a class="btn" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">FullCourtPress.ai</a>
+          <a class="btn" href="/resume.pdf" download>Download Resume (PDF)</a>
         </div>
-        <div class="scroll-indicator">🏀</div>
+
+        <div class="rule"></div>
+
+        <div class="proof" aria-label="Credibility highlights">
+          <div class="pill"><span class="dot"></span> Led North America GTM launch (Agicap)</div>
+          <div class="pill"><span class="dot"></span> Delivered $1.3M ARR (Vanta)</div>
+          <div class="pill"><span class="dot"></span> #1 BDR; $765k closed-won sourced (LogicMonitor)</div>
+        </div>
+      </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
-        <div class="section-container">
-            <span class="section-number">01</span>
-            <h2>About Me</h2>
-            
-            <div class="about-card">
-                <div class="about-content">
-                    <p>
-                        I'm a sales professional who believes the best solutions come from understanding people, not just hitting numbers. Over six years, I've driven new business growth, managed full sales cycles, and led teams in some of the most competitive tech environments.
-                    </p>
-                    <p>
-                        But here's the thing: I bring the same creative energy to sales that I developed spending 30-40 hours a week managing Texas A&M's basketball program. Improvisation, storytelling, and relationship-building aren't just buzzwords—they're my competitive advantage.
-                    </p>
-                    <p>
-                        Outside the office, I write Full Court Press, exploring business, culture, and the intersection of creativity and strategy. Whether I'm closing deals or crafting narratives, I'm all about bringing authenticity and energy to everything I do.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">6+</span>
-                    <span class="stat-label">Years in Tech Sales</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">$1.3M</span>
-                    <span class="stat-label">ARR Closed in 2022-23</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">100%+</span>
-                    <span class="stat-label">Quota Attainment</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">#1</span>
-                    <span class="stat-label">Top BDR Performance</span>
-                </div>
-            </div>
+      <div class="wrap">
+        <div class="head">
+          <h2>About</h2>
+          <div class="sub">The short version</div>
         </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>What I do</h3>
+            <p>Full-cycle GTM execution with strong communication. I turn messy inputs into clear plans, consistent output, and measurable results.</p>
+            <ul class="list">
+              <li>Full sales cycle execution and pipeline creation</li>
+              <li>Outbound strategy, enablement, and early leadership</li>
+              <li>Partner / cross-functional collaboration (marketing, product, CS)</li>
+              <li>Writing + improvisation to make ideas land</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>What I’m looking for</h3>
+            <p>Roles where I can combine revenue craft with content-led communication.</p>
+            <ul class="list">
+              <li><span class="mono">Roles:</span> Partnerships, Growth/Community, GTM Strategy, Creator Partnerships</li>
+              <li><span class="mono">Spaces:</span> Sports, creator economy, media-adjacent, modern B2B</li>
+              <li><span class="mono">Location:</span> Austin / hybrid / remote</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- RESUME -->
     <section id="resume">
-        <div class="section-container">
-            <span class="section-number">02</span>
-            <h2>Career Highlights</h2>
-            
-            <div class="resume-grid">
-                <div class="job-card">
-                    <h3 class="job-title">Sr Mid-Market Account Executive</h3>
-                    <div class="job-meta">Agicap • Austin, TX • Aug 2025 - Present</div>
-                    <ul class="job-description">
-                        <li>Drove North American go-to-market launch for a European startup expanding into the U.S.</li>
-                        <li>Managed full sales cycle while partnering with marketing to build demand and scale pipeline growth.</li>
-                        <li>Trained BDRs, improved outbound strategy, and supported team growth and early leadership initiatives.</li>
-                    </ul>
-                </div>
-                
-                <div class="job-card">
-                    <h3 class="job-title">Strategic Partner Manager</h3>
-                    <div class="job-meta">LogicMonitor • Austin, TX • Apr 2024 - Aug 2025</div>
-                    <ul class="job-description">
-                        <li>Achieved over 100% of sales plan without ramp period.</li>
-                        <li>Developed strategic initiatives to enhance customer engagement and retention.</li>
-                        <li>Led cross-functional teams to deliver integrated solutions that meet client needs.</li>
-                    </ul>
-                </div>
-                
-                <div class="job-card">
-                    <h3 class="job-title">Account Executive</h3>
-                    <div class="job-meta">Vanta • Austin, TX • Feb 2022 - Mar 2024</div>
-                    <ul class="job-description">
-                        <li>Managed full sales cycle, leading product demonstrations and closing 10-12 net new logos monthly.</li>
-                        <li>Achieved recognition for delivering $1.3M ARR in 2022-23.</li>
-                        <li>Collaborated with cross-functional teams to align sales strategies with customer needs.</li>
-                    </ul>
-                </div>
-                
-                <div class="job-card">
-                    <h3 class="job-title">Mid-Market AE → SMB AE → Sr BDR</h3>
-                    <div class="job-meta">LogicMonitor • Austin, TX • Oct 2019 - Feb 2022</div>
-                    <ul class="job-description">
-                        <li>Trained and onboarded four new hires, enhancing team capabilities and efficiency.</li>
-                        <li>Closed most new logos (19) on the team in Q1-Q3 2021, demonstrating effective sales strategies.</li>
-                        <li>Recognized as #1 BDR for generating $765k in closed won opportunities.</li>
-                    </ul>
-                </div>
-                
-                <div class="job-card">
-                    <h3 class="job-title">Men's Basketball Manager</h3>
-                    <div class="job-meta">Texas A&M University • College Station, TX • Jun 2016 - Apr 2018</div>
-                    <ul class="job-description">
-                        <li>Organized and implemented successful men's basketball program operations.</li>
-                        <li>Coordinated day-to-day program operations while balancing full-time studies.</li>
-                        <li>Developed leadership and organizational skills in high-pressure environment.</li>
-                    </ul>
-                </div>
-                
-                <div class="job-card">
-                    <h3 class="job-title">Education</h3>
-                    <div class="job-meta">Texas A&M University • College Station, TX • Graduated 2018</div>
-                    <ul class="job-description">
-                        <li>Bachelor's Degree in Sport Management</li>
-                        <li>Graduated in three years while balancing 30-40 hours/week of basketball responsibilities</li>
-                        <li>Demonstrated exceptional time management and dedication</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="skills-section">
-                <h3>Core Skills & Strengths</h3>
-                <div class="skills-grid">
-                    <div class="skill-tag">Storytelling</div>
-                    <div class="skill-tag">Creative Problem Solving</div>
-                    <div class="skill-tag">Relationship-Driven Communication</div>
-                    <div class="skill-tag">Team Leadership</div>
-                    <div class="skill-tag">Improvisation</div>
-                    <div class="skill-tag">Full Sales Cycle Management</div>
-                    <div class="skill-tag">Strategic Account Management</div>
-                    <div class="skill-tag">Cross-Functional Collaboration</div>
-                    <div class="skill-tag">Pipeline Development</div>
-                    <div class="skill-tag">Customer Engagement</div>
-                </div>
-            </div>
+      <div class="wrap">
+        <div class="head">
+          <h2>Resume</h2>
+          <div class="sub">PDF + quick snapshot</div>
         </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Download</h3>
+            <p>Resume PDF: <a class="mono" href="/resume.pdf" download>resume.pdf</a></p>
+            <div class="cta-row" style="justify-content:flex-start; margin-top:14px">
+              <a class="btn primary" href="/resume.pdf" download>Download Resume (PDF)</a>
+              <a class="btn" href="/resume.pdf" target="_blank" rel="noreferrer">Open in new tab</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Experience snapshot</h3>
+            <ul class="list">
+              <li><b>Agicap</b> — Sr Mid-Market AE (Aug 2025–Present): NA GTM launch; partnered with marketing; trained BDRs.</li>
+              <li><b>LogicMonitor</b> — Strategic Partner Manager (Apr 2024–Aug 2025): 100%+ plan; retention initiatives; cross-functional delivery.</li>
+              <li><b>Vanta</b> — Account Executive (Feb 2022–Mar 2024): full cycle; 10–12 new logos/month; $1.3M ARR recognized.</li>
+              <li><b>LogicMonitor</b> — SMB AE / MM AE / Sr BDR (Oct 2019–Feb 2022): #1 BDR; $765k sourced; top logo volume.</li>
+              <li><b>Texas A&amp;M</b> — Men’s Basketball Manager (Jun 2016–Apr 2018): day-to-day program operations leadership.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- MEDIA -->
-    <section id="media">
-        <div class="section-container">
-            <span class="section-number">03</span>
-            <h2>Creative Work</h2>
-            
-            <div class="media-grid">
-                <div class="media-card" data-link="https://www.fullcourtpress.ai">
-                    <div class="media-image">📝</div>
-                    <div class="media-content">
-                        <div class="media-tag">Writing</div>
-                        <h4>Full Court Press Essays</h4>
-                        <p>Weekly explorations of business, culture, and creativity. Where sales strategy meets storytelling.</p>
-                    </div>
-                </div>
-                
-                <div class="media-card" data-link="#">
-                    <div class="media-image">🎙️</div>
-                    <div class="media-content">
-                        <div class="media-tag">Audio</div>
-                        <h4>Podcast Appearances</h4>
-                        <p>Conversations about sales, creativity, and bringing authentic energy to professional life.</p>
-                    </div>
-                </div>
-                
-                <div class="media-card" data-link="#">
-                    <div class="media-image">💡</div>
-                    <div class="media-content">
-                        <div class="media-tag">Projects</div>
-                        <h4>Creative Initiatives</h4>
-                        <p>Side projects exploring the intersection of business strategy and creative expression.</p>
-                    </div>
-                </div>
-                
-                <div class="media-card" data-link="#">
-                    <div class="media-image">🏀</div>
-                    <div class="media-content">
-                        <div class="media-tag">Sports</div>
-                        <h4>Basketball & Beyond</h4>
-                        <p>How lessons from managing D1 basketball translate to high-stakes sales environments.</p>
-                    </div>
-                </div>
-                
-                <div class="media-card" data-link="#">
-                    <div class="media-image">✍️</div>
-                    <div class="media-content">
-                        <div class="media-tag">Essays</div>
-                        <h4>Sales & Culture</h4>
-                        <p>Breaking down what makes great sales teams work—and what doesn't.</p>
-                    </div>
-                </div>
-                
-                <div class="media-card" data-link="#">
-                    <div class="media-image">📊</div>
-                    <div class="media-content">
-                        <div class="media-tag">Analysis</div>
-                        <h4>Industry Insights</h4>
-                        <p>Data-driven takes on SaaS trends, go-to-market strategy, and sales innovation.</p>
-                    </div>
-                </div>
-            </div>
+    <section id="side-projects">
+      <div class="wrap">
+        <div class="head">
+          <h2>Side Projects</h2>
+          <div class="sub">What I’m building now</div>
         </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Full Court Press</h3>
+            <p>A weekly newsletter: sports stories, nostalgia, and lessons that travel into everyday life.</p>
+            <ul class="list">
+              <li><span class="mono">Goal:</span> build audience + voice + partnerships</li>
+              <li><span class="mono">Output:</span> weekly posts + simple distribution loop</li>
+              <li><a href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Visit FullCourtPress.ai</a></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>GTM playbook (living doc)</h3>
+            <p>Lightweight, repeatable frameworks: outbound sequences, discovery, positioning, and enablement.</p>
+            <ul class="list">
+              <li><span class="mono">Format:</span> 1-page plays + templates</li>
+              <li><span class="mono">Use:</span> internal enablement or public writing</li>
+              <li><span class="mono">Status:</span> publish-ready when you want</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:14px">
+          <div class="card">
+            <h3>Case studies (short)</h3>
+            <p>Replace these with links/screenshots as you gather them.</p>
+            <ul class="list">
+              <li><b>Agicap:</b> NA GTM launch + outbound enablement + BDR training.</li>
+              <li><b>Vanta:</b> high-volume full-cycle selling; consistent logo creation; ARR impact.</li>
+              <li><b>LogicMonitor:</b> strategic partner motion; retention + engagement initiatives.</li>
+              <li><b>Texas A&amp;M Basketball:</b> high-trust operations leadership under pressure.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- NEWSLETTER -->
-    <section id="newsletter">
-        <div class="section-container">
-            <div class="newsletter-content">
-                <span class="section-number">04</span>
-                <span class="newsletter-logo">FULL COURT PRESS</span>
-                <h2>My Weekly Newsletter</h2>
-                <p>
-                    Where business meets culture, and sales strategy meets storytelling. Every week, I break down what's working (and what's not) in tech, sales, and creative work.
-                </p>
-                <a href="https://www.fullcourtpress.ai" target="_blank" rel="noopener noreferrer" class="btn btn-light">
-                    Subscribe Now
-                </a>
-            </div>
+    <section id="creative">
+      <div class="wrap">
+        <div class="head">
+          <h2>Creative Projects</h2>
+          <div class="sub">Communication as an edge</div>
         </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Writing</h3>
+            <p>Essays + newsletter editions built around story, clarity, and momentum. Add your top 3 links here.</p>
+            <ul class="list">
+              <li><span class="mono">#1</span> — (link)</li>
+              <li><span class="mono">#2</span> — (link)</li>
+              <li><span class="mono">#3</span> — (link)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>On-camera / improv</h3>
+            <p>Fast thinking, presence, and delivery—useful for partnerships, hosting, and sales leadership. Add clips when you have them.</p>
+            <ul class="list">
+              <li>Short intro video (60–90 seconds) — (link)</li>
+              <li>Sports story breakdown — (link)</li>
+              <li>GTM lesson for creators/brands — (link)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
-        <div class="section-container">
-            <span class="section-number">05</span>
-            <h2>Let's Connect</h2>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h4>Get in Touch</h4>
-                    <p style="margin-bottom: 2rem;">
-                        Whether you're looking to collaborate, have an opportunity to discuss, or just want to talk shop—hit me up.
-                    </p>
-                    
-                    <div class="contact-links">
-                        <a href="mailto:brandonbarnes0402@gmail.com" class="contact-link">
-                            <span>📧</span>
-                            <span>brandonbarnes0402@gmail.com</span>
-                        </a>
-                        <a href="https://linkedin.com/in/brandon-barnes-sales" target="_blank" rel="noopener noreferrer" class="contact-link">
-                            <span>💼</span>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="https://www.fullcourtpress.ai" target="_blank" rel="noopener noreferrer" class="contact-link">
-                            <span>✍️</span>
-                            <span>Full Court Press</span>
-                        </a>
-                        <a href="tel:512-925-5953" class="contact-link">
-                            <span>📱</span>
-                            <span>(512) 925-5953</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h4 style="margin-bottom: 1.5rem;">Send a Message</h4>
-                    <form action="mailto:brandonbarnes0402@gmail.com" method="post" enctype="text/plain">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send It</button>
-                    </form>
-                </div>
-            </div>
+      <div class="wrap">
+        <div class="head">
+          <h2>Contact</h2>
+          <div class="sub">Make it easy to say yes</div>
         </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Reach me</h3>
+            <p>
+              Email: <a class="mono" href="mailto:brandonbarnes0402@gmail.com">brandonbarnes0402@gmail.com</a><br/>
+              Based in Austin, TX.
+            </p>
+            <div class="cta-row" style="justify-content:flex-start; margin-top:14px">
+              <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email</a>
+              <a class="btn" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Newsletter</a>
+              <a class="btn" href="/resume.pdf" download>Resume PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Brandon Barnes. Built with 90s energy and modern vibes. 🏀</p>
-    </footer>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="row">
+        <div>© <span id="year"></span> Brandon Barnes</div>
+        <div class="mono muted">Single HTML file</div>
+      </div>
+    </div>
+  </footer>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const navLinkItems = document.querySelectorAll('.nav-link');
-        
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-        
-        navLinkItems.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-        
-        // Active navigation highlighting
-        const sections = document.querySelectorAll('section');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (window.scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinkItems.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Media card click handler
-        document.querySelectorAll('.media-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const link = card.dataset.link;
-                if (link && link !== '#') {
-                    window.open(link, '_blank');
-                }
-            });
-        });
-        
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.offsetTop;
-                    const offsetPosition = elementPosition - headerOffset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        console.log('🏀 Brandon Barnes portfolio loaded! Time to ball out! 🏀');
-    </script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const navLinks = Array.from(document.querySelectorAll("nav a"));
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+    const setActive = () => {
+      const y = window.scrollY + 120;
+      let activeId = "#about";
+      for (const s of sections) if (s.offsetTop <= y) activeId = "#" + s.id;
+      navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === activeId));
+    };
+
+    window.addEventListener("scroll", setActive, { passive: true });
+    setActive();
+  </script>
 </body>
 </html>
