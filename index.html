@@ -26,9 +26,8 @@
     
     <style>
         /* ============================================
-           90s SPORTS LOGO VIBES
-           Inspired by: Suns purple/orange, Expos blue/red,
-           Twins navy, Rangers blue, Teal era everything
+           90s SPORTS LOGO VIBES - REFINED
+           All the personality, better execution
            ============================================ */
         :root {
             /* Primary 90s Colors */
@@ -51,10 +50,9 @@
             --font-heading: 'Racing Sans One', cursive;
             --font-body: 'Rubik', sans-serif;
             
-            /* Effects */
-            --shadow-glow: 0 0 20px rgba(255, 215, 0, 0.6);
-            --shadow-deep: 4px 4px 0px rgba(0, 0, 0, 0.3);
-            --shadow-card: 8px 8px 0px rgba(29, 17, 96, 0.4);
+            /* Effects - slightly toned down */
+            --shadow-deep: 3px 3px 0px rgba(0, 0, 0, 0.25);
+            --shadow-card: 6px 6px 0px rgba(29, 17, 96, 0.3);
         }
         
         /* ============================================
@@ -75,12 +73,12 @@
             font-family: var(--font-body);
             color: var(--color-black);
             background: linear-gradient(135deg, var(--color-cream) 0%, #f0f0e8 100%);
-            line-height: 1.6;
+            line-height: 1.65;
             overflow-x: hidden;
             position: relative;
         }
         
-        /* Background pattern - 90s geometric vibes */
+        /* Background pattern - subtle 90s geometric vibes */
         body::before {
             content: '';
             position: fixed;
@@ -89,36 +87,36 @@
             right: 0;
             bottom: 0;
             background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0, 166, 166, 0.03) 35px, rgba(0, 166, 166, 0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(229, 96, 32, 0.03) 35px, rgba(229, 96, 32, 0.03) 70px);
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0, 166, 166, 0.025) 35px, rgba(0, 166, 166, 0.025) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(229, 96, 32, 0.025) 35px, rgba(229, 96, 32, 0.025) 70px);
             pointer-events: none;
             z-index: 0;
         }
         
         /* ============================================
-           TYPOGRAPHY
+           TYPOGRAPHY - Improved readability
            ============================================ */
         h1, h2, h3 {
             font-family: var(--font-display);
             font-weight: 400;
-            line-height: 0.9;
+            line-height: 1;
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
         }
         
         h1 {
-            font-size: clamp(3rem, 12vw, 8rem);
+            font-size: clamp(3rem, 10vw, 6.5rem);
             color: var(--color-suns-purple);
             text-shadow: 
-                4px 4px 0px var(--color-suns-orange),
-                8px 8px 0px rgba(0, 0, 0, 0.2);
-            margin-bottom: 1rem;
+                3px 3px 0px var(--color-suns-orange),
+                5px 5px 0px rgba(0, 0, 0, 0.12);
+            margin-bottom: 1.25rem;
         }
         
         h2 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2.25rem, 7vw, 4.5rem);
             color: var(--color-suns-purple);
-            text-shadow: 3px 3px 0px var(--color-teal);
+            text-shadow: 2px 2px 0px var(--color-teal);
             margin-bottom: 1.5rem;
         }
         
@@ -130,17 +128,18 @@
         
         h4 {
             font-family: var(--font-heading);
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1.2rem, 3vw, 1.75rem);
             color: var(--color-navy);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
         }
         
         p {
-            font-size: clamp(1rem, 2vw, 1.15rem);
-            margin-bottom: 1rem;
-            line-height: 1.7;
+            font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+            max-width: 75ch;
         }
         
         a {
@@ -148,16 +147,14 @@
             text-decoration: none;
             font-weight: 700;
             transition: all 0.2s ease;
-            position: relative;
         }
         
         a:hover {
             color: var(--color-suns-orange);
-            transform: scale(1.05);
         }
         
         /* ============================================
-           NAVIGATION - Retro scoreboard style
+           NAVIGATION - Cleaner, still bold
            ============================================ */
         nav {
             position: fixed;
@@ -166,10 +163,10 @@
             right: 0;
             background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-expos-blue) 100%);
             z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 4px 0 var(--color-suns-orange),
-                        0 8px 20px rgba(0, 0, 0, 0.3);
-            border-bottom: 4px solid var(--color-electric-yellow);
+            padding: 1.25rem 0;
+            box-shadow: 0 3px 0 var(--color-suns-orange),
+                        0 6px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid var(--color-electric-yellow);
         }
         
         .nav-container {
@@ -183,17 +180,17 @@
         
         .nav-logo {
             font-family: var(--font-display);
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-size: clamp(1.5rem, 4vw, 2rem);
             color: var(--color-electric-yellow);
             text-shadow: 
-                3px 3px 0px var(--color-suns-orange),
-                6px 6px 0px rgba(0, 0, 0, 0.3);
-            letter-spacing: 0.05em;
+                2px 2px 0px var(--color-suns-orange),
+                4px 4px 0px rgba(0, 0, 0, 0.25);
+            letter-spacing: 0.02em;
             transition: all 0.3s ease;
         }
         
         .nav-logo:hover {
-            transform: rotate(-2deg) scale(1.05);
+            transform: scale(1.05);
             color: var(--color-white);
         }
         
@@ -205,12 +202,12 @@
         
         .nav-links a {
             font-family: var(--font-heading);
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
             color: var(--color-white);
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.75rem;
             position: relative;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             transition: all 0.3s ease;
         }
         
@@ -233,14 +230,13 @@
         
         .nav-links a:hover {
             color: var(--color-electric-yellow);
-            transform: translateY(-3px);
         }
         
         /* Mobile Menu */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             background: none;
             border: none;
             cursor: pointer;
@@ -248,19 +244,19 @@
         }
         
         .menu-toggle span {
-            width: 30px;
-            height: 4px;
+            width: 28px;
+            height: 3px;
             background: var(--color-electric-yellow);
             transition: all 0.3s ease;
             border-radius: 2px;
         }
         
         /* ============================================
-           SECTION UTILITIES
+           SECTIONS - Better spacing
            ============================================ */
         section {
             min-height: 100vh;
-            padding: 8rem 2rem 4rem;
+            padding: 7rem 2rem 4rem;
             position: relative;
             z-index: 1;
         }
@@ -270,59 +266,44 @@
             margin: 0 auto;
         }
         
-        /* Section number badges - like jersey numbers */
+        /* Section number badges - refined */
         .section-number {
             display: inline-block;
             background: var(--color-suns-orange);
             color: var(--color-white);
             font-family: var(--font-display);
-            font-size: 2rem;
-            padding: 0.5rem 1.5rem;
+            font-size: 1.75rem;
+            padding: 0.5rem 1.25rem;
             border-radius: 50%;
             box-shadow: var(--shadow-deep);
-            margin-bottom: 2rem;
-            border: 4px solid var(--color-suns-purple);
+            margin-bottom: 1.75rem;
+            border: 3px solid var(--color-suns-purple);
         }
         
         /* ============================================
-           HERO SECTION - Championship banner vibes
+           HERO SECTION
            ============================================ */
         #hero {
             background: 
-                radial-gradient(circle at 20% 30%, rgba(29, 17, 96, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 60%, rgba(0, 166, 166, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 30%, rgba(29, 17, 96, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(0, 166, 166, 0.08) 0%, transparent 50%),
                 linear-gradient(135deg, var(--color-cream) 0%, #fffef7 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Decorative elements - basketball court lines */
-        #hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(to top, var(--color-suns-purple) 0%, transparent 100%);
-            opacity: 0.05;
-            pointer-events: none;
         }
         
         .hero-content {
             text-align: center;
-            position: relative;
-            z-index: 2;
             animation: slideInUp 0.8s ease-out;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
         @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -332,9 +313,9 @@
         
         .hero-eyebrow {
             font-family: var(--font-heading);
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--color-suns-orange);
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             margin-bottom: 1rem;
             font-weight: 700;
@@ -342,12 +323,12 @@
         
         .hero-tagline {
             font-family: var(--font-body);
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
             font-weight: 500;
             color: var(--color-navy);
             max-width: 800px;
-            margin: 0 auto 3rem;
-            line-height: 1.5;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
         }
         
         .hero-cta {
@@ -357,57 +338,53 @@
             flex-wrap: wrap;
         }
         
-        /* 90s style buttons - like trading cards */
+        /* 90s style buttons - refined */
         .btn {
             font-family: var(--font-heading);
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            padding: 1rem 2.5rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            padding: 1rem 2.25rem;
             border: none;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             font-weight: 700;
             position: relative;
             transition: all 0.3s ease;
             display: inline-block;
+            border-radius: 4px;
         }
         
         .btn-primary {
             background: linear-gradient(135deg, var(--color-suns-orange) 0%, var(--color-hot-pink) 100%);
             color: var(--color-white);
             box-shadow: var(--shadow-deep);
-            border: 3px solid var(--color-suns-purple);
-            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
         }
         
         .btn-primary:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(135deg, var(--color-hot-pink) 0%, var(--color-suns-orange) 100%);
+            transform: translateY(-3px);
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
         }
         
         .btn-secondary {
-            background: transparent;
+            background: var(--color-white);
             color: var(--color-suns-purple);
-            border: 4px solid var(--color-teal);
+            border: 3px solid var(--color-teal);
             box-shadow: var(--shadow-deep);
-            clip-path: polygon(0% 0%, 95% 0%, 100% 100%, 5% 100%);
         }
         
         .btn-secondary:hover {
             background: var(--color-teal);
             color: var(--color-white);
-            transform: translate(-4px, -4px);
-            box-shadow: 8px 8px 0px var(--color-suns-purple);
+            transform: translateY(-3px);
         }
         
-        /* Scroll indicator - basketball bouncing */
+        /* Basketball scroll indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 3rem;
+            font-size: 2.5rem;
             animation: bounce 2s infinite;
         }
         
@@ -416,15 +393,15 @@
                 transform: translateX(-50%) translateY(0);
             }
             40% {
-                transform: translateX(-50%) translateY(-20px);
+                transform: translateX(-50%) translateY(-18px);
             }
             60% {
-                transform: translateX(-50%) translateY(-10px);
+                transform: translateX(-50%) translateY(-8px);
             }
         }
         
         /* ============================================
-           ABOUT SECTION - Trading card style
+           ABOUT SECTION
            ============================================ */
         #about {
             background: linear-gradient(135deg, #ffffff 0%, var(--color-cream) 100%);
@@ -433,10 +410,11 @@
         .about-card {
             background: var(--color-white);
             padding: 3rem;
-            border: 6px solid var(--color-suns-purple);
+            border: 5px solid var(--color-suns-purple);
             box-shadow: var(--shadow-card);
             position: relative;
             overflow: hidden;
+            border-radius: 8px;
         }
         
         .about-card::before {
@@ -450,8 +428,8 @@
                 45deg,
                 transparent,
                 transparent 20px,
-                rgba(0, 166, 166, 0.05) 20px,
-                rgba(0, 166, 166, 0.05) 40px
+                rgba(0, 166, 166, 0.04) 20px,
+                rgba(0, 166, 166, 0.04) 40px
             );
             pointer-events: none;
         }
@@ -462,18 +440,19 @@
         }
         
         .about-content p {
-            font-size: 1.2rem;
+            font-size: 1.1875rem;
             color: var(--color-black);
             margin-bottom: 1.5rem;
+            line-height: 1.75;
         }
         
         .about-content p:first-of-type {
-            font-size: 1.4rem;
+            font-size: 1.375rem;
             font-weight: 700;
             color: var(--color-suns-purple);
         }
         
-        /* Stats section - like player stats */
+        /* Stats section */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -483,23 +462,24 @@
         
         .stat-card {
             background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-expos-blue) 100%);
-            padding: 1.5rem;
+            padding: 1.75rem 1.5rem;
             text-align: center;
-            border: 4px solid var(--color-electric-yellow);
+            border: 3px solid var(--color-electric-yellow);
             box-shadow: var(--shadow-deep);
             transition: all 0.3s ease;
+            border-radius: 6px;
         }
         
         .stat-card:hover {
-            transform: translateY(-8px) rotate(-2deg);
-            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
         }
         
         .stat-number {
             font-family: var(--font-display);
-            font-size: 3rem;
+            font-size: 2.75rem;
             color: var(--color-electric-yellow);
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
             display: block;
             margin-bottom: 0.5rem;
         }
@@ -509,15 +489,16 @@
             font-size: 0.9rem;
             color: var(--color-white);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
+            line-height: 1.4;
         }
         
         /* ============================================
-           RESUME SECTION - Championship banners
+           RESUME SECTION
            ============================================ */
         #resume {
             background: 
-                linear-gradient(135deg, rgba(229, 96, 32, 0.05) 0%, transparent 100%),
+                linear-gradient(135deg, rgba(229, 96, 32, 0.04) 0%, transparent 100%),
                 var(--color-cream);
         }
         
@@ -530,11 +511,12 @@
         .job-card {
             background: var(--color-white);
             padding: 2rem;
-            border-left: 8px solid var(--color-suns-orange);
-            border-top: 3px solid var(--color-teal);
-            box-shadow: 6px 6px 0px rgba(29, 17, 96, 0.2);
+            border-left: 6px solid var(--color-suns-orange);
+            border-top: 2px solid var(--color-teal);
+            box-shadow: 4px 4px 0px rgba(29, 17, 96, 0.15);
             position: relative;
             transition: all 0.3s ease;
+            border-radius: 6px;
         }
         
         .job-card::before {
@@ -545,13 +527,14 @@
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 0 60px 60px 0;
+            border-width: 0 50px 50px 0;
             border-color: transparent var(--color-electric-yellow) transparent transparent;
+            opacity: 0.9;
         }
         
         .job-card:hover {
-            transform: translateX(8px);
-            box-shadow: 10px 10px 0px rgba(29, 17, 96, 0.3);
+            transform: translateX(6px);
+            box-shadow: 6px 6px 0px rgba(29, 17, 96, 0.2);
         }
         
         .job-title {
@@ -560,6 +543,7 @@
             color: var(--color-suns-purple);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
+            letter-spacing: 0.02em;
         }
         
         .job-meta {
@@ -567,7 +551,7 @@
             font-size: 1rem;
             color: var(--color-teal);
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
         
         .job-description {
@@ -577,32 +561,33 @@
         
         .job-description li {
             padding-left: 2rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.875rem;
             position: relative;
-            font-size: 1.05rem;
-            line-height: 1.6;
+            font-size: 1.0625rem;
+            line-height: 1.7;
         }
         
         .job-description li::before {
             content: '🏀';
             position: absolute;
             left: 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
-        /* Skills section - like trading card back */
+        /* Skills section */
         .skills-section {
             background: linear-gradient(135deg, var(--color-suns-purple) 0%, var(--color-navy) 100%);
-            padding: 3rem;
-            border: 6px solid var(--color-electric-yellow);
+            padding: 2.5rem;
+            border: 4px solid var(--color-electric-yellow);
             box-shadow: var(--shadow-card);
             margin-top: 3rem;
+            border-radius: 8px;
         }
         
         .skills-section h3 {
             color: var(--color-electric-yellow);
-            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
-            margin-bottom: 2rem;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
+            margin-bottom: 1.75rem;
         }
         
         .skills-grid {
@@ -615,22 +600,22 @@
             background: var(--color-teal);
             color: var(--color-white);
             font-family: var(--font-body);
-            font-size: 1rem;
+            font-size: 0.9375rem;
             font-weight: 700;
-            padding: 0.75rem 1.5rem;
-            border: 3px solid var(--color-white);
-            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
-            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            padding: 0.65rem 1.25rem;
+            border: 2px solid var(--color-white);
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
+            border-radius: 4px;
             transition: all 0.3s ease;
         }
         
         .skill-tag:hover {
             background: var(--color-hot-pink);
-            transform: rotate(-3deg) scale(1.1);
+            transform: translateY(-2px);
         }
         
         /* ============================================
-           MEDIA SECTION - Highlight reel
+           MEDIA SECTION
            ============================================ */
         #media {
             background: linear-gradient(135deg, var(--color-white) 0%, #f5f5f0 100%);
@@ -645,11 +630,12 @@
         
         .media-card {
             background: var(--color-white);
-            border: 5px solid var(--color-expos-blue);
+            border: 4px solid var(--color-expos-blue);
             overflow: hidden;
             transition: all 0.3s ease;
             position: relative;
             cursor: pointer;
+            border-radius: 6px;
         }
         
         .media-card::after {
@@ -660,13 +646,13 @@
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 0 40px 40px 0;
+            border-width: 0 35px 35px 0;
             border-color: transparent var(--color-suns-orange) transparent transparent;
         }
         
         .media-card:hover {
-            transform: rotate(-2deg) translateY(-10px);
-            box-shadow: 12px 12px 0px var(--color-teal);
+            transform: translateY(-8px);
+            box-shadow: 8px 8px 0px var(--color-teal);
             border-color: var(--color-hot-pink);
         }
         
@@ -677,7 +663,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 3.5rem;
             position: relative;
             overflow: hidden;
         }
@@ -693,8 +679,8 @@
                 45deg,
                 transparent,
                 transparent 10px,
-                rgba(255, 255, 255, 0.1) 10px,
-                rgba(255, 255, 255, 0.1) 20px
+                rgba(255, 255, 255, 0.08) 10px,
+                rgba(255, 255, 255, 0.08) 20px
             );
             animation: slide 20s linear infinite;
         }
@@ -713,7 +699,7 @@
             font-family: var(--font-heading);
             font-size: 0.8rem;
             color: var(--color-suns-orange);
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -726,11 +712,12 @@
         
         .media-card p {
             color: var(--color-gray);
-            font-size: 0.95rem;
+            font-size: 0.9375rem;
+            line-height: 1.6;
         }
         
         /* ============================================
-           NEWSLETTER SECTION - All-Star announcement
+           NEWSLETTER SECTION
            ============================================ */
         #newsletter {
             background: 
@@ -749,7 +736,7 @@
             width: 200%;
             height: 200%;
             background: 
-                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 215, 0, 0.1) 50px, rgba(255, 215, 0, 0.1) 100px);
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 215, 0, 0.08) 50px, rgba(255, 215, 0, 0.08) 100px);
             pointer-events: none;
             animation: rotate 30s linear infinite;
         }
@@ -769,25 +756,25 @@
         #newsletter h2 {
             color: var(--color-electric-yellow);
             text-shadow: 
-                4px 4px 0px var(--color-suns-orange),
-                8px 8px 0px rgba(0, 0, 0, 0.3);
+                3px 3px 0px var(--color-suns-orange),
+                5px 5px 0px rgba(0, 0, 0, 0.25);
             margin-bottom: 1.5rem;
         }
         
         #newsletter p {
-            font-size: 1.3rem;
-            line-height: 1.6;
+            font-size: 1.25rem;
+            line-height: 1.7;
             margin-bottom: 2rem;
             color: var(--color-white);
         }
         
         .newsletter-logo {
             font-family: var(--font-display);
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--color-electric-yellow);
             text-shadow: 
-                3px 3px 0px var(--color-hot-pink),
-                6px 6px 0px rgba(0, 0, 0, 0.3);
+                2px 2px 0px var(--color-hot-pink),
+                4px 4px 0px rgba(0, 0, 0, 0.25);
             margin-bottom: 1rem;
             display: block;
         }
@@ -795,19 +782,19 @@
         .btn-light {
             background: var(--color-white);
             color: var(--color-suns-purple);
-            border: 4px solid var(--color-electric-yellow);
+            border: 3px solid var(--color-electric-yellow);
             box-shadow: var(--shadow-deep);
         }
         
         .btn-light:hover {
             background: var(--color-electric-yellow);
             color: var(--color-suns-purple);
-            transform: translate(-4px, -4px);
-            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
         }
         
         /* ============================================
-           CONTACT SECTION - Locker room vibes
+           CONTACT SECTION
            ============================================ */
         #contact {
             background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white) 100%);
@@ -822,7 +809,7 @@
         
         .contact-info h4 {
             color: var(--color-suns-purple);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
         
         .contact-links {
@@ -833,36 +820,38 @@
         
         .contact-link {
             font-family: var(--font-body);
-            font-size: 1.1rem;
+            font-size: 1.0625rem;
             font-weight: 700;
             color: var(--color-suns-purple);
-            padding: 1rem 1.5rem;
+            padding: 1rem 1.25rem;
             background: var(--color-white);
             border: 3px solid var(--color-teal);
-            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
             gap: 1rem;
             transition: all 0.3s ease;
+            border-radius: 4px;
         }
         
         .contact-link:hover {
             background: var(--color-teal);
             color: var(--color-white);
-            transform: translateX(8px);
-            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+            transform: translateX(6px);
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.25);
         }
         
         .contact-link span:first-child {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
         
         /* Form styling */
         .contact-form {
             background: var(--color-white);
             padding: 2rem;
-            border: 5px solid var(--color-suns-purple);
+            border: 4px solid var(--color-suns-purple);
             box-shadow: var(--shadow-card);
+            border-radius: 6px;
         }
         
         .form-group {
@@ -871,10 +860,10 @@
         
         .form-group label {
             font-family: var(--font-heading);
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             color: var(--color-navy);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             display: block;
             margin-bottom: 0.5rem;
         }
@@ -882,36 +871,37 @@
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 0.875rem;
             font-family: var(--font-body);
             font-size: 1rem;
-            border: 3px solid var(--color-teal);
+            border: 2px solid var(--color-teal);
             background: var(--color-cream);
             transition: all 0.3s ease;
+            border-radius: 4px;
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--color-hot-pink);
-            box-shadow: 0 0 0 3px rgba(255, 0, 110, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 0, 110, 0.15);
         }
         
         .form-group textarea {
             resize: vertical;
-            min-height: 150px;
+            min-height: 140px;
         }
         
         /* ============================================
-           FOOTER - Championship banner
+           FOOTER
            ============================================ */
         footer {
             background: linear-gradient(135deg, var(--color-expos-blue) 0%, var(--color-navy) 100%);
             color: var(--color-white);
             padding: 2rem;
             text-align: center;
-            border-top: 6px solid var(--color-electric-yellow);
-            box-shadow: 0 -4px 0 var(--color-suns-orange);
+            border-top: 4px solid var(--color-electric-yellow);
+            box-shadow: 0 -3px 0 var(--color-suns-orange);
         }
         
         footer p {
@@ -921,7 +911,7 @@
         }
         
         /* ============================================
-           RESPONSIVE DESIGN
+           RESPONSIVE
            ============================================ */
         @media (max-width: 968px) {
             section {
@@ -950,7 +940,7 @@
             }
             
             .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(8px, 8px);
+                transform: rotate(45deg) translate(7px, 7px);
             }
             
             .menu-toggle.active span:nth-child(2) {
@@ -958,7 +948,7 @@
             }
             
             .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(8px, -8px);
+                transform: rotate(-45deg) translate(8px, -7px);
             }
             
             .contact-grid {
@@ -989,36 +979,10 @@
                 grid-template-columns: 1fr;
             }
         }
-        
-        /* ============================================
-           ANIMATIONS
-           ============================================ */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <!-- ============================================
-         NAVIGATION
-         ============================================ -->
+    <!-- NAVIGATION -->
     <nav id="navbar">
         <div class="nav-container">
             <a href="#hero" class="nav-logo">BB23</a>
@@ -1037,9 +1001,7 @@
         </div>
     </nav>
 
-    <!-- ============================================
-         HERO SECTION
-         ============================================ -->
+    <!-- HERO -->
     <section id="hero">
         <div class="section-container hero-content">
             <span class="hero-eyebrow">Austin, TX • Sales Pro • Creative</span>
@@ -1055,9 +1017,7 @@
         <div class="scroll-indicator">🏀</div>
     </section>
 
-    <!-- ============================================
-         ABOUT SECTION
-         ============================================ -->
+    <!-- ABOUT -->
     <section id="about">
         <div class="section-container">
             <span class="section-number">01</span>
@@ -1077,21 +1037,20 @@
                 </div>
             </div>
             
-            <!-- Stats section -->
             <div class="stats-grid">
-                <div class="stat-card fade-in stagger-1">
+                <div class="stat-card">
                     <span class="stat-number">6+</span>
                     <span class="stat-label">Years in Tech Sales</span>
                 </div>
-                <div class="stat-card fade-in stagger-2">
+                <div class="stat-card">
                     <span class="stat-number">$1.3M</span>
                     <span class="stat-label">ARR Closed in 2022-23</span>
                 </div>
-                <div class="stat-card fade-in stagger-3">
+                <div class="stat-card">
                     <span class="stat-number">100%+</span>
                     <span class="stat-label">Quota Attainment</span>
                 </div>
-                <div class="stat-card fade-in stagger-4">
+                <div class="stat-card">
                     <span class="stat-number">#1</span>
                     <span class="stat-label">Top BDR Performance</span>
                 </div>
@@ -1099,17 +1058,14 @@
         </div>
     </section>
 
-    <!-- ============================================
-         RESUME SECTION
-         ============================================ -->
+    <!-- RESUME -->
     <section id="resume">
         <div class="section-container">
             <span class="section-number">02</span>
             <h2>Career Highlights</h2>
             
             <div class="resume-grid">
-                <!-- Current Role -->
-                <div class="job-card fade-in">
+                <div class="job-card">
                     <h3 class="job-title">Sr Mid-Market Account Executive</h3>
                     <div class="job-meta">Agicap • Austin, TX • Aug 2025 - Present</div>
                     <ul class="job-description">
@@ -1119,8 +1075,7 @@
                     </ul>
                 </div>
                 
-                <!-- LogicMonitor (2024-2025) -->
-                <div class="job-card fade-in">
+                <div class="job-card">
                     <h3 class="job-title">Strategic Partner Manager</h3>
                     <div class="job-meta">LogicMonitor • Austin, TX • Apr 2024 - Aug 2025</div>
                     <ul class="job-description">
@@ -1130,8 +1085,7 @@
                     </ul>
                 </div>
                 
-                <!-- Vanta -->
-                <div class="job-card fade-in">
+                <div class="job-card">
                     <h3 class="job-title">Account Executive</h3>
                     <div class="job-meta">Vanta • Austin, TX • Feb 2022 - Mar 2024</div>
                     <ul class="job-description">
@@ -1141,8 +1095,7 @@
                     </ul>
                 </div>
                 
-                <!-- LogicMonitor (2019-2022) -->
-                <div class="job-card fade-in">
+                <div class="job-card">
                     <h3 class="job-title">Mid-Market AE → SMB AE → Sr BDR</h3>
                     <div class="job-meta">LogicMonitor • Austin, TX • Oct 2019 - Feb 2022</div>
                     <ul class="job-description">
@@ -1152,8 +1105,7 @@
                     </ul>
                 </div>
                 
-                <!-- Texas A&M -->
-                <div class="job-card fade-in">
+                <div class="job-card">
                     <h3 class="job-title">Men's Basketball Manager</h3>
                     <div class="job-meta">Texas A&M University • College Station, TX • Jun 2016 - Apr 2018</div>
                     <ul class="job-description">
@@ -1163,8 +1115,7 @@
                     </ul>
                 </div>
                 
-                <!-- Education -->
-                <div class="job-card fade-in">
+                <div class="job-card">
                     <h3 class="job-title">Education</h3>
                     <div class="job-meta">Texas A&M University • College Station, TX • Graduated 2018</div>
                     <ul class="job-description">
@@ -1175,7 +1126,6 @@
                 </div>
             </div>
             
-            <!-- Skills Section -->
             <div class="skills-section">
                 <h3>Core Skills & Strengths</h3>
                 <div class="skills-grid">
@@ -1194,9 +1144,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-         MEDIA SECTION
-         ============================================ -->
+    <!-- MEDIA -->
     <section id="media">
         <div class="section-container">
             <span class="section-number">03</span>
@@ -1260,9 +1208,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-         NEWSLETTER SECTION
-         ============================================ -->
+    <!-- NEWSLETTER -->
     <section id="newsletter">
         <div class="section-container">
             <div class="newsletter-content">
@@ -1279,9 +1225,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-         CONTACT SECTION
-         ============================================ -->
+    <!-- CONTACT -->
     <section id="contact">
         <div class="section-container">
             <span class="section-number">05</span>
@@ -1336,16 +1280,12 @@
         </div>
     </section>
 
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Brandon Barnes. Built with 90s energy and modern vibes. 🏀</p>
     </footer>
 
-    <!-- ============================================
-         JAVASCRIPT
-         ============================================ -->
+    <!-- JAVASCRIPT -->
     <script>
         // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
@@ -1385,25 +1325,6 @@
                     link.classList.add('active');
                 }
             });
-        });
-        
-        // Scroll reveal animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
         });
         
         // Media card click handler
