@@ -733,107 +733,87 @@
             color: white;
         }
 
-        /* PIN Modal */
-        .pin-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .pin-modal {
-            background: white;
-            padding: 40px;
-            border-radius: 24px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-        }
-
-        .pin-modal h2 {
-            font-size: 28px;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .pin-modal p {
-            color: #6b7280;
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-
-        .pin-input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 3px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 24px;
-            font-weight: 700;
-            text-align: center;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            font-family: monospace;
-        }
-
-        .pin-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
-
-        .pin-display {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: 6px;
-            margin-bottom: 16px;
-            font-family: monospace;
-        }
-
-        .pin-info {
-            background: #fef3c7;
-            border: 2px solid #f59e0b;
-            padding: 16px;
-            border-radius: 12px;
-            margin-top: 16px;
-            font-size: 14px;
-            color: #92400e;
-            line-height: 1.5;
-        }
-
-        .sync-indicator {
+        /* Cloud Sync Styles */
+        .cloud-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
+            gap: 6px;
+            padding: 6px 12px;
             background: rgba(16, 185, 129, 0.1);
             border-radius: 8px;
-            font-size: 13px;
+            font-size: 12px;
             color: #059669;
             font-weight: 600;
         }
 
-        .sync-indicator.syncing {
+        .cloud-badge.syncing {
             background: rgba(245, 158, 11, 0.1);
             color: #d97706;
         }
 
-        .sync-indicator.error {
+        .cloud-badge.offline {
+            background: rgba(107, 114, 128, 0.1);
+            color: #6b7280;
+        }
+
+        .cloud-badge.error {
             background: rgba(239, 68, 68, 0.1);
             color: #dc2626;
+        }
+
+        .pin-display-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-family: monospace;
+        }
+
+        .setup-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .setup-card h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .setup-card p {
+            color: #6b7280;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .pin-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .pin-input-field {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 3px;
+            font-family: monospace;
+        }
+
+        .pin-input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
     </style>
 </head>
@@ -846,16 +826,13 @@
                 <p style="color: #6b7280; margin-top: 8px;">Sprint (May 25) → Olympic (Aug 23, 2026)</p>
             </div>
             <div class="header-actions">
-                <div id="syncIndicator" class="sync-indicator">
-                    ☁️ Synced
+                <div id="cloudBadge" class="cloud-badge offline" style="display: none;">
+                    ☁️ <span id="cloudStatus">Offline</span>
                 </div>
                 <div class="ai-status">
                     <div class="ai-pulse"></div>
                     <span>Claude Active</span>
                 </div>
-                <button class="btn btn-sm" onclick="showPinModal()" style="background: #667eea; color: white;">
-                    🔑 My PIN
-                </button>
             </div>
         </div>
 
@@ -907,6 +884,39 @@
                     </div>
 
                     <div id="aiSuggestions"></div>
+
+                    <div id="cloudSyncSetup" class="setup-card" style="display: none;">
+                        <h3>☁️ Enable Cloud Sync</h3>
+                        <p>Sync your data across all devices! Enter a 4-digit PIN to get started.</p>
+                        <div class="pin-input-group">
+                            <input 
+                                type="text" 
+                                class="pin-input-field" 
+                                id="setupPinInput" 
+                                placeholder="1234"
+                                maxlength="4"
+                                pattern="[0-9]*"
+                                inputmode="numeric"
+                            >
+                            <button class="btn btn-primary" onclick="enableCloudSync()">
+                                Enable Sync
+                            </button>
+                        </div>
+                        <p style="font-size: 12px; color: #6b7280; margin-bottom: 0;">
+                            Already have a PIN? Enter it above. First time? Create a new one!
+                        </p>
+                    </div>
+
+                    <div id="cloudSyncActive" class="setup-card" style="display: none;">
+                        <h3>☁️ Cloud Sync Active</h3>
+                        <p>Your PIN: <span class="pin-display-badge" id="activePinDisplay">----</span></p>
+                        <p style="font-size: 13px; color: #6b7280;">
+                            All changes sync automatically. Use this PIN on other devices to access your data.
+                        </p>
+                        <button class="btn btn-sm" onclick="disableCloudSync()" style="background: #ef4444; color: white;">
+                            Disable Cloud Sync
+                        </button>
+                    </div>
 
                     <div class="workout-timeline" id="workoutTimeline"></div>
                 </div>
@@ -1118,52 +1128,30 @@
         </div>
     </div>
 
-    <!-- PIN Modal -->
-    <div id="pinOverlay" class="pin-overlay" style="display: none;">
-        <div class="pin-modal">
-            <div id="pinSetup">
-                <h2>🎉 Welcome to AI Triathlon Coach!</h2>
-                <p>First time here? Enter a 4-digit PIN to sync your data across all your devices.</p>
-                <input 
-                    type="text" 
-                    class="pin-input" 
-                    id="pinInput" 
-                    placeholder="Enter PIN"
-                    maxlength="4"
-                    pattern="[0-9]{4}"
-                >
-                <button class="btn btn-primary" style="width: 100%;" onclick="setupPin()">
-                    🚀 Get Started
-                </button>
-                <p style="margin-top: 16px; font-size: 13px;">
-                    Already have a PIN? Enter it above to load your data.
-                </p>
-            </div>
-
-            <div id="pinDisplay" style="display: none;">
-                <h2>🔑 Your PIN</h2>
-                <div class="pin-display" id="displayPin">----</div>
-                <p>Save this PIN! You'll need it to access your data on other devices.</p>
-                <div class="pin-info">
-                    ⚠️ <strong>Important:</strong> Save this PIN somewhere safe (notes app, screenshot, etc.). 
-                    You'll need it to sync across devices!
-                </div>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="closePinModal()">
-                    ✓ Got it!
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
         // ========== SUPABASE CONFIGURATION ==========
         const SUPABASE_URL = 'https://bergdorbkkxxwyifxele.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlcmdkb3Jia2t4eHd5aWZ4ZWxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NjY0MjUsImV4cCI6MjA4NjQ0MjQyNX0.1irk3-2o1LI0gETjgeM8qi9en-KoDkcEu0X3I3N_7oM';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlcmdkb3Jia2t4eHd5aWZ4ZWxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NjY0MjUsImV4cCI6MjA4NjQ0MjQyNX0.1irk3-2o1LI0gETjgeM8qi9en-KoDkcEu0X3I3N_7oM';
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        
-        let userPin = localStorage.getItem('userPin') || null;
+        let supabaseClient = null;
+        let cloudSyncEnabled = false;
+        let userPin = null;
         let syncTimeout = null;
+
+        // Initialize Supabase when available
+        function initSupabase() {
+            try {
+                if (window.supabase && !supabaseClient) {
+                    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    console.log('✅ Supabase initialized');
+                }
+            } catch (error) {
+                console.error('Supabase init error:', error);
+            }
+        }
+
+        // Try to init immediately
+        initSupabase();
 
         // ========== STATE ==========
         let currentWeek = 1;
@@ -1242,14 +1230,20 @@
 
         // ========== INITIALIZATION ==========
         async function init() {
-            // Check if user has a PIN
-            if (!userPin) {
-                showPinSetup();
-                return;
-            }
+            // Make sure Supabase is initialized
+            initSupabase();
 
-            // Load data from Supabase
-            await loadFromCloud();
+            // Check if user had cloud sync enabled before
+            const savedPin = localStorage.getItem('userPin');
+            if (savedPin && supabaseClient) {
+                userPin = savedPin;
+                cloudSyncEnabled = true;
+                await loadFromCloud();
+                updateCloudUI();
+            } else {
+                // Show cloud sync setup option
+                showCloudSyncOption();
+            }
 
             renderWorkouts();
             renderCalendar();
@@ -1260,12 +1254,107 @@
             setTimeout(() => autoAnalyzeAndSuggest(), 2000);
         }
 
-        // ========== CLOUD SYNC FUNCTIONS ==========
+        function showCloudSyncOption() {
+            const setupCard = document.getElementById('cloudSyncSetup');
+            if (setupCard) {
+                setupCard.style.display = 'block';
+            }
+        }
+
+        function updateCloudUI() {
+            const setupCard = document.getElementById('cloudSyncSetup');
+            const activeCard = document.getElementById('cloudSyncActive');
+            const cloudBadge = document.getElementById('cloudBadge');
+            const activePinDisplay = document.getElementById('activePinDisplay');
+
+            if (cloudSyncEnabled && userPin) {
+                if (setupCard) setupCard.style.display = 'none';
+                if (activeCard) activeCard.style.display = 'block';
+                if (activePinDisplay) activePinDisplay.textContent = userPin;
+                if (cloudBadge) cloudBadge.style.display = 'inline-flex';
+            } else {
+                if (setupCard) setupCard.style.display = 'block';
+                if (activeCard) activeCard.style.display = 'none';
+                if (cloudBadge) cloudBadge.style.display = 'none';
+            }
+        }
+
+        // ========== CLOUD SYNC MANAGEMENT ==========
+        async function enableCloudSync() {
+            const input = document.getElementById('setupPinInput');
+            const pin = input.value.trim();
+
+            if (!/^\d{4}$/.test(pin)) {
+                alert('Please enter a 4-digit PIN (numbers only)');
+                input.focus();
+                return;
+            }
+
+            userPin = pin;
+            cloudSyncEnabled = true;
+            localStorage.setItem('userPin', pin);
+
+            updateCloudStatus('syncing', 'Connecting...');
+
+            // Try to load existing data with this PIN
+            const loaded = await loadFromCloud();
+
+            if (loaded) {
+                alert(`✅ Synced! Loaded your existing data with PIN ${pin}`);
+                renderWorkouts();
+                renderCalendar();
+                updateStats();
+            } else {
+                // First time with this PIN - save current data
+                await saveToCloud();
+                alert(`✅ Cloud sync enabled! Your PIN is ${pin}\n\nSave this PIN - you'll need it to sync on other devices.`);
+            }
+
+            updateCloudUI();
+            input.value = '';
+        }
+
+        function disableCloudSync() {
+            if (!confirm('Disable cloud sync? Your data will only be saved locally on this device.')) {
+                return;
+            }
+
+            cloudSyncEnabled = false;
+            userPin = null;
+            localStorage.removeItem('userPin');
+            updateCloudUI();
+            updateCloudStatus('offline', 'Offline');
+        }
+
+        function updateCloudStatus(status, text) {
+            const badge = document.getElementById('cloudBadge');
+            const statusText = document.getElementById('cloudStatus');
+
+            if (!badge || !statusText) return;
+
+            badge.classList.remove('syncing', 'offline', 'error');
+            
+            if (status === 'synced') {
+                statusText.textContent = 'Synced';
+            } else if (status === 'syncing') {
+                statusText.textContent = text || 'Syncing...';
+                badge.classList.add('syncing');
+            } else if (status === 'offline') {
+                statusText.textContent = 'Offline';
+                badge.classList.add('offline');
+            } else if (status === 'error') {
+                statusText.textContent = 'Error';
+                badge.classList.add('error');
+            }
+        }
+
         async function loadFromCloud() {
+            if (!cloudSyncEnabled || !userPin || !supabaseClient) return false;
+
             try {
-                updateSyncStatus('syncing');
-                
-                const { data, error } = await supabase
+                updateCloudStatus('syncing', 'Loading...');
+
+                const { data, error } = await supabaseClient
                     .from('training_data')
                     .select('data')
                     .eq('pin', userPin)
@@ -1274,9 +1363,9 @@
                 if (error) {
                     if (error.code === 'PGRST116') {
                         // No data found - first time with this PIN
-                        console.log('No cloud data found, starting fresh');
-                        updateSyncStatus('synced');
-                        return;
+                        console.log('No cloud data found for this PIN');
+                        updateCloudStatus('synced', 'Synced');
+                        return false;
                     }
                     throw error;
                 }
@@ -1290,28 +1379,37 @@
                     skippedWorkouts = data.data.skippedWorkouts || {};
                     chatHistory = data.data.chatHistory || [];
                     
+                    // Also save to localStorage as backup
+                    saveToLocalStorage();
+                    
                     console.log('✅ Data loaded from cloud');
+                    updateCloudStatus('synced', 'Synced');
+                    return true;
                 }
 
-                updateSyncStatus('synced');
+                updateCloudStatus('synced', 'Synced');
+                return false;
             } catch (error) {
-                console.error('Load error:', error);
-                updateSyncStatus('error');
-                // Fall back to localStorage
-                loadFromLocalStorage();
+                console.error('Load from cloud error:', error);
+                updateCloudStatus('error', 'Error');
+                return false;
             }
         }
 
         async function saveToCloud() {
-            if (!userPin) return;
+            if (!cloudSyncEnabled || !userPin || !supabaseClient) {
+                // Just save to localStorage if cloud sync is disabled
+                saveToLocalStorage();
+                return;
+            }
 
             // Clear any pending sync
             if (syncTimeout) clearTimeout(syncTimeout);
 
-            // Debounce - wait 1 second after last change before syncing
+            // Debounce - wait 1 second after last change
             syncTimeout = setTimeout(async () => {
                 try {
-                    updateSyncStatus('syncing');
+                    updateCloudStatus('syncing', 'Saving...');
 
                     const dataToSave = {
                         completedWorkouts,
@@ -1319,19 +1417,19 @@
                         customWorkouts,
                         workoutEdits,
                         skippedWorkouts,
-                        chatHistory: chatHistory.slice(-20) // Only keep last 20 messages
+                        chatHistory: chatHistory.slice(-20)
                     };
 
-                    // Try to update existing record
-                    const { data: existing } = await supabase
+                    // Check if record exists
+                    const { data: existing } = await supabaseClient
                         .from('training_data')
                         .select('id')
                         .eq('pin', userPin)
-                        .single();
+                        .maybeSingle();
 
                     if (existing) {
                         // Update existing
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('training_data')
                             .update({ 
                                 data: dataToSave,
@@ -1342,7 +1440,7 @@
                         if (error) throw error;
                     } else {
                         // Insert new
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('training_data')
                             .insert({ 
                                 pin: userPin, 
@@ -1352,12 +1450,15 @@
                         if (error) throw error;
                     }
 
-                    updateSyncStatus('synced');
+                    // Also save to localStorage as backup
+                    saveToLocalStorage();
+
+                    updateCloudStatus('synced', 'Synced');
                     console.log('✅ Data synced to cloud');
                 } catch (error) {
-                    console.error('Save error:', error);
-                    updateSyncStatus('error');
-                    // Still save to localStorage as backup
+                    console.error('Save to cloud error:', error);
+                    updateCloudStatus('error', 'Error');
+                    // Still save locally
                     saveToLocalStorage();
                 }
             }, 1000);
@@ -1369,82 +1470,7 @@
             localStorage.setItem('customWorkouts', JSON.stringify(customWorkouts));
             localStorage.setItem('workoutEdits', JSON.stringify(workoutEdits));
             localStorage.setItem('skippedWorkouts', JSON.stringify(skippedWorkouts));
-            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-        }
-
-        function loadFromLocalStorage() {
-            completedWorkouts = JSON.parse(localStorage.getItem('completedWorkouts')) || {};
-            rpeData = JSON.parse(localStorage.getItem('rpeData')) || {};
-            customWorkouts = JSON.parse(localStorage.getItem('customWorkouts')) || {};
-            workoutEdits = JSON.parse(localStorage.getItem('workoutEdits')) || {};
-            skippedWorkouts = JSON.parse(localStorage.getItem('skippedWorkouts')) || {};
-            chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
-        }
-
-        function updateSyncStatus(status) {
-            const indicator = document.getElementById('syncIndicator');
-            if (!indicator) return;
-
-            indicator.classList.remove('syncing', 'error');
-            
-            if (status === 'synced') {
-                indicator.innerHTML = '☁️ Synced';
-                indicator.style.color = '#059669';
-            } else if (status === 'syncing') {
-                indicator.innerHTML = '↻ Syncing...';
-                indicator.classList.add('syncing');
-            } else if (status === 'error') {
-                indicator.innerHTML = '⚠️ Offline';
-                indicator.classList.add('error');
-            }
-        }
-
-        // ========== PIN MANAGEMENT ==========
-        function showPinSetup() {
-            document.getElementById('pinOverlay').style.display = 'flex';
-            document.getElementById('pinSetup').style.display = 'block';
-            document.getElementById('pinDisplay').style.display = 'none';
-            document.getElementById('pinInput').focus();
-        }
-
-        function showPinModal() {
-            document.getElementById('pinOverlay').style.display = 'flex';
-            document.getElementById('pinSetup').style.display = 'none';
-            document.getElementById('pinDisplay').style.display = 'block';
-            document.getElementById('displayPin').textContent = userPin || '----';
-        }
-
-        function closePinModal() {
-            document.getElementById('pinOverlay').style.display = 'none';
-        }
-
-        async function setupPin() {
-            const input = document.getElementById('pinInput');
-            const pin = input.value.trim();
-
-            if (!/^\d{4}$/.test(pin)) {
-                alert('Please enter a 4-digit PIN (numbers only)');
-                return;
-            }
-
-            userPin = pin;
-            localStorage.setItem('userPin', pin);
-
-            // Show the PIN to user
-            document.getElementById('pinSetup').style.display = 'none';
-            document.getElementById('pinDisplay').style.display = 'block';
-            document.getElementById('displayPin').textContent = pin;
-
-            // Try to load existing data with this PIN
-            await loadFromCloud();
-
-            // Refresh the UI
-            setTimeout(() => {
-                closePinModal();
-                renderWorkouts();
-                renderCalendar();
-                updateStats();
-            }, 3000);
+            localStorage.setItem('chatHistory', JSON.stringify(chatHistory.slice(-20)));
         }
 
         // ========== VIEW SWITCHING ==========
@@ -2060,7 +2086,7 @@ Format:
             messagesContainer.insertBefore(messageDiv, typingIndicator);
             
             chatHistory.push({ role: sender === 'ai' ? 'assistant' : 'user', content });
-            saveToCloud(); // Save chat history to cloud
+            saveToCloud();
             
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
