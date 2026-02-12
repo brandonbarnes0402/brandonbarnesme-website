@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite AI Triathlon Coach</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -731,6 +732,109 @@
             background: #667eea;
             color: white;
         }
+
+        /* PIN Modal */
+        .pin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pin-modal {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .pin-modal h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pin-modal p {
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .pin-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 3px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .pin-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .pin-display {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 6px;
+            margin-bottom: 16px;
+            font-family: monospace;
+        }
+
+        .pin-info {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+
+        .sync-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            font-size: 13px;
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .sync-indicator.syncing {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+        }
+
+        .sync-indicator.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
     </style>
 </head>
 <body>
@@ -742,10 +846,16 @@
                 <p style="color: #6b7280; margin-top: 8px;">Sprint (May 25) → Olympic (Aug 23, 2026)</p>
             </div>
             <div class="header-actions">
+                <div id="syncIndicator" class="sync-indicator">
+                    ☁️ Synced
+                </div>
                 <div class="ai-status">
                     <div class="ai-pulse"></div>
                     <span>Claude Active</span>
                 </div>
+                <button class="btn btn-sm" onclick="showPinModal()" style="background: #667eea; color: white;">
+                    🔑 My PIN
+                </button>
             </div>
         </div>
 
@@ -1008,7 +1118,53 @@
         </div>
     </div>
 
+    <!-- PIN Modal -->
+    <div id="pinOverlay" class="pin-overlay" style="display: none;">
+        <div class="pin-modal">
+            <div id="pinSetup">
+                <h2>🎉 Welcome to AI Triathlon Coach!</h2>
+                <p>First time here? Enter a 4-digit PIN to sync your data across all your devices.</p>
+                <input 
+                    type="text" 
+                    class="pin-input" 
+                    id="pinInput" 
+                    placeholder="Enter PIN"
+                    maxlength="4"
+                    pattern="[0-9]{4}"
+                >
+                <button class="btn btn-primary" style="width: 100%;" onclick="setupPin()">
+                    🚀 Get Started
+                </button>
+                <p style="margin-top: 16px; font-size: 13px;">
+                    Already have a PIN? Enter it above to load your data.
+                </p>
+            </div>
+
+            <div id="pinDisplay" style="display: none;">
+                <h2>🔑 Your PIN</h2>
+                <div class="pin-display" id="displayPin">----</div>
+                <p>Save this PIN! You'll need it to access your data on other devices.</p>
+                <div class="pin-info">
+                    ⚠️ <strong>Important:</strong> Save this PIN somewhere safe (notes app, screenshot, etc.). 
+                    You'll need it to sync across devices!
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="closePinModal()">
+                    ✓ Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // ========== SUPABASE CONFIGURATION ==========
+        const SUPABASE_URL = 'https://bergdorbkkxxwyifxele.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlcmdkb3Jia2t4eHd5aWZ4ZWxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NjY0MjUsImV4cCI6MjA4NjQ0MjQyNX0.1irk3-2o1LI0gETjgeM8qi9en-KoDkcEu0X3I3N_7oM';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        let userPin = localStorage.getItem('userPin') || null;
+        let syncTimeout = null;
+
         // ========== STATE ==========
         let currentWeek = 1;
         let currentView = 'training';
@@ -1085,7 +1241,16 @@
         };
 
         // ========== INITIALIZATION ==========
-        function init() {
+        async function init() {
+            // Check if user has a PIN
+            if (!userPin) {
+                showPinSetup();
+                return;
+            }
+
+            // Load data from Supabase
+            await loadFromCloud();
+
             renderWorkouts();
             renderCalendar();
             updateStats();
@@ -1093,6 +1258,193 @@
             loadChatHistory();
             
             setTimeout(() => autoAnalyzeAndSuggest(), 2000);
+        }
+
+        // ========== CLOUD SYNC FUNCTIONS ==========
+        async function loadFromCloud() {
+            try {
+                updateSyncStatus('syncing');
+                
+                const { data, error } = await supabase
+                    .from('training_data')
+                    .select('data')
+                    .eq('pin', userPin)
+                    .single();
+
+                if (error) {
+                    if (error.code === 'PGRST116') {
+                        // No data found - first time with this PIN
+                        console.log('No cloud data found, starting fresh');
+                        updateSyncStatus('synced');
+                        return;
+                    }
+                    throw error;
+                }
+
+                if (data && data.data) {
+                    // Load data from cloud
+                    completedWorkouts = data.data.completedWorkouts || {};
+                    rpeData = data.data.rpeData || {};
+                    customWorkouts = data.data.customWorkouts || {};
+                    workoutEdits = data.data.workoutEdits || {};
+                    skippedWorkouts = data.data.skippedWorkouts || {};
+                    chatHistory = data.data.chatHistory || [];
+                    
+                    console.log('✅ Data loaded from cloud');
+                }
+
+                updateSyncStatus('synced');
+            } catch (error) {
+                console.error('Load error:', error);
+                updateSyncStatus('error');
+                // Fall back to localStorage
+                loadFromLocalStorage();
+            }
+        }
+
+        async function saveToCloud() {
+            if (!userPin) return;
+
+            // Clear any pending sync
+            if (syncTimeout) clearTimeout(syncTimeout);
+
+            // Debounce - wait 1 second after last change before syncing
+            syncTimeout = setTimeout(async () => {
+                try {
+                    updateSyncStatus('syncing');
+
+                    const dataToSave = {
+                        completedWorkouts,
+                        rpeData,
+                        customWorkouts,
+                        workoutEdits,
+                        skippedWorkouts,
+                        chatHistory: chatHistory.slice(-20) // Only keep last 20 messages
+                    };
+
+                    // Try to update existing record
+                    const { data: existing } = await supabase
+                        .from('training_data')
+                        .select('id')
+                        .eq('pin', userPin)
+                        .single();
+
+                    if (existing) {
+                        // Update existing
+                        const { error } = await supabase
+                            .from('training_data')
+                            .update({ 
+                                data: dataToSave,
+                                updated_at: new Date().toISOString()
+                            })
+                            .eq('pin', userPin);
+
+                        if (error) throw error;
+                    } else {
+                        // Insert new
+                        const { error } = await supabase
+                            .from('training_data')
+                            .insert({ 
+                                pin: userPin, 
+                                data: dataToSave 
+                            });
+
+                        if (error) throw error;
+                    }
+
+                    updateSyncStatus('synced');
+                    console.log('✅ Data synced to cloud');
+                } catch (error) {
+                    console.error('Save error:', error);
+                    updateSyncStatus('error');
+                    // Still save to localStorage as backup
+                    saveToLocalStorage();
+                }
+            }, 1000);
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('completedWorkouts', JSON.stringify(completedWorkouts));
+            localStorage.setItem('rpeData', JSON.stringify(rpeData));
+            localStorage.setItem('customWorkouts', JSON.stringify(customWorkouts));
+            localStorage.setItem('workoutEdits', JSON.stringify(workoutEdits));
+            localStorage.setItem('skippedWorkouts', JSON.stringify(skippedWorkouts));
+            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+        }
+
+        function loadFromLocalStorage() {
+            completedWorkouts = JSON.parse(localStorage.getItem('completedWorkouts')) || {};
+            rpeData = JSON.parse(localStorage.getItem('rpeData')) || {};
+            customWorkouts = JSON.parse(localStorage.getItem('customWorkouts')) || {};
+            workoutEdits = JSON.parse(localStorage.getItem('workoutEdits')) || {};
+            skippedWorkouts = JSON.parse(localStorage.getItem('skippedWorkouts')) || {};
+            chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+        }
+
+        function updateSyncStatus(status) {
+            const indicator = document.getElementById('syncIndicator');
+            if (!indicator) return;
+
+            indicator.classList.remove('syncing', 'error');
+            
+            if (status === 'synced') {
+                indicator.innerHTML = '☁️ Synced';
+                indicator.style.color = '#059669';
+            } else if (status === 'syncing') {
+                indicator.innerHTML = '↻ Syncing...';
+                indicator.classList.add('syncing');
+            } else if (status === 'error') {
+                indicator.innerHTML = '⚠️ Offline';
+                indicator.classList.add('error');
+            }
+        }
+
+        // ========== PIN MANAGEMENT ==========
+        function showPinSetup() {
+            document.getElementById('pinOverlay').style.display = 'flex';
+            document.getElementById('pinSetup').style.display = 'block';
+            document.getElementById('pinDisplay').style.display = 'none';
+            document.getElementById('pinInput').focus();
+        }
+
+        function showPinModal() {
+            document.getElementById('pinOverlay').style.display = 'flex';
+            document.getElementById('pinSetup').style.display = 'none';
+            document.getElementById('pinDisplay').style.display = 'block';
+            document.getElementById('displayPin').textContent = userPin || '----';
+        }
+
+        function closePinModal() {
+            document.getElementById('pinOverlay').style.display = 'none';
+        }
+
+        async function setupPin() {
+            const input = document.getElementById('pinInput');
+            const pin = input.value.trim();
+
+            if (!/^\d{4}$/.test(pin)) {
+                alert('Please enter a 4-digit PIN (numbers only)');
+                return;
+            }
+
+            userPin = pin;
+            localStorage.setItem('userPin', pin);
+
+            // Show the PIN to user
+            document.getElementById('pinSetup').style.display = 'none';
+            document.getElementById('pinDisplay').style.display = 'block';
+            document.getElementById('displayPin').textContent = pin;
+
+            // Try to load existing data with this PIN
+            await loadFromCloud();
+
+            // Refresh the UI
+            setTimeout(() => {
+                closePinModal();
+                renderWorkouts();
+                renderCalendar();
+                updateStats();
+            }, 3000);
         }
 
         // ========== VIEW SWITCHING ==========
@@ -1214,7 +1566,7 @@
 
         function markComplete(dayKey) {
             completedWorkouts[dayKey] = !completedWorkouts[dayKey];
-            localStorage.setItem('completedWorkouts', JSON.stringify(completedWorkouts));
+            saveToCloud();
             renderWorkouts();
             renderCalendar();
             updateStats();
@@ -1225,7 +1577,7 @@
         function skipDay(dayKey) {
             if (confirm('Skip this day? This will mark it as intentionally skipped (not completed).')) {
                 completedWorkouts[dayKey] = 'skipped';
-                localStorage.setItem('completedWorkouts', JSON.stringify(completedWorkouts));
+                saveToCloud();
                 renderWorkouts();
                 renderCalendar();
                 updateStats();
@@ -1242,7 +1594,7 @@
                 // Skip
                 skippedWorkouts[workoutKey] = true;
             }
-            localStorage.setItem('skippedWorkouts', JSON.stringify(skippedWorkouts));
+            saveToCloud();
             renderWorkouts();
             updateStats();
         }
@@ -1297,7 +1649,7 @@
                 edited: true
             };
 
-            localStorage.setItem('workoutEdits', JSON.stringify(workoutEdits));
+            saveToCloud();
             closeEditModal();
             renderWorkouts();
             renderCalendar();
@@ -1336,7 +1688,7 @@
             }
             
             customWorkouts[currentDayKey].push(custom);
-            localStorage.setItem('customWorkouts', JSON.stringify(customWorkouts));
+            saveToCloud();
             
             closeCustomModal();
             renderWorkouts();
@@ -1708,7 +2060,7 @@ Format:
             messagesContainer.insertBefore(messageDiv, typingIndicator);
             
             chatHistory.push({ role: sender === 'ai' ? 'assistant' : 'user', content });
-            localStorage.setItem('chatHistory', JSON.stringify(chatHistory.slice(-20)));
+            saveToCloud(); // Save chat history to cloud
             
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
@@ -1749,7 +2101,7 @@ Format:
         function resetChat() {
             if (confirm('Clear chat history?')) {
                 chatHistory = [];
-                localStorage.setItem('chatHistory', JSON.stringify([]));
+                saveToCloud();
                 
                 const messagesContainer = document.getElementById('chatMessages');
                 const existingMessages = messagesContainer.querySelectorAll('.message:not(.typing-indicator)');
