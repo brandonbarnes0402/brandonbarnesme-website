@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandon Barnes — Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  :root {
+    --bg: #FFFFFF;
+    --accent: #800000;
+    --text: #2A2A2A;
+    --muted: #6B6B6B;
+    --divider: #E0DADA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    margin: 0 auto;
+    padding: 36px 44px 28px;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .tagline {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .contact a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-top: 18px; }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--divider);
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+
+  /* ── EXPERIENCE BLOCK ── */
+  .role {
+    margin-bottom: 14px;
+    padding-left: 12px;
+    border-left: 2px solid var(--divider);
+  }
+
+  .role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .role-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .role-date {
+    font-size: 11.5px;
+    color: var(--muted);
+    font-weight: 300;
+    white-space: nowrap;
+  }
+
+  .role-company {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 1px;
+  }
+
+  .role-bullets {
+    margin-top: 4px;
+    font-size: 12.5px;
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  .role-bullets li {
+    list-style: none;
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 2px;
+  }
+
+  .role-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .skill-group h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 3px;
+    font-weight: 600;
+  }
+
+  .skill-group p {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .edu-school {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .edu-detail {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-top: 1px;
+  }
+
+  /* ── FOOTER ── */
+  .footer-line {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid var(--divider);
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-line a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="name">BRANDON BARNES</div>
+    <div class="tagline">Sales · Sales Enablement · GTM Operations</div>
+    <div class="contact">
+      <span>Austin, TX</span>
+      <span>· 512-925-5953</span>
+      <span>· brandonbarnes0402@gmail.com</span>
+      <span>· <a href="https://linkedin.com/in/brandonbarnes0402">LinkedIn</a></span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-title">EXPERIENCE</div>
+
+    <div class="role">
+      <div class="role-header">
+        <span class="role-title">Senior Mid-Market Account Executive</span>
+        <span class="role-date">Aug 2025 – Present</span>
+      </div>
+      <div class="role-company">Agicap — Austin, TX</div>
+      <ul class="role-bullets">
+        <li>$500K pipeline in first full quarter; top-performing AE.</li>
+        <li>Ramped 5 BDRs on cold calling, email writing, and pre-call research.</li>
+        <li>Led Trellus rollout enablement (live training + report filtering) with RevOps.</li>
+        <li>Supported North American GTM launch for European startup entering the U.S.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-header">
+        <span class="role-title">Strategic Partner Manager</span>
+        <span class="role-date">Apr 2024 – Aug 2025</span>
+      </div>
+      <div class="role-company">LogicMonitor — Austin, TX</div>
+      <ul class="role-bullets">
+        <li>100%+ of plan with no ramp period; contributed $1.2M in ARR growth</li>
+        <li>Built partner initiatives to improve customer engagement and retention.</li>
+        <li>15% travel for customer onsites, events, business reviews</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-header">
+        <span class="role-title">Account Executive</span>
+        <span class="role-date">Feb 2022 – Mar 2024</span>
+      </div>
+      <div class="role-company">Vanta — Austin, TX</div>
+      <ul class="role-bullets">
+        <li>$1.3M ARR across 2022–2023; 10–12 net-new logos monthly.</li>
+        <li>Asked to present enablement session around pre-call research, personability at company SKO (~150 attendees).</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-header">
+        <span class="role-title">BDR -> Senior BDR -> SMB Account Executive -> Mid-Market Account Executive</span>
+        <span class="role-date">Oct 2019 – Feb 2022</span>
+      </div>
+      <div class="role-company">LogicMonitor — Austin, TX</div>
+      <ul class="role-bullets">
+        <li>#1 BDR: $765K closed-won from prospecting and AE partnership.</li>
+        <li>Most new logos on SMB AE team (19) across Q1–Q3 2021.</li>
+        <li>Authored MSP BDR Playbook for onboarding new hires</li>
+        <li>While ramping to MM AE, coached four new hires</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">SKILLS</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Enablement</h4>
+        <p>Onboarding &amp; ramp programs, cold call coaching, email frameworks, talk tracks, pre-call research, call review (Gong)</p>
+      </div>
+      <div class="skill-group">
+        <h4>GTM Ops</h4>
+        <p>Tooling adoption, intent workflows, pipeline inspection, reporting &amp; filtering, RevOps partnership</p>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <p>Salesforce, HubSpot, Gong, Clari, ZoomInfo, Trellus, G2 Intent</p>
+      </div>
+      <div class="skill-group">
+        <h4>The Extras</h4>
+        <p>Improv performer, smash burger extraordinaire, chocolate chip cookie expert, Scooby Doo impressionist </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">EDUCATION</div>
+    <div class="role" style="border-left-color: var(--accent);">
+      <div class="edu-row">
+        <span class="edu-school">Texas A&M University</span>
+        <span class="role-date">Graduated Aug 2018</span>
+      </div>
+      <div class="edu-detail">Sport Management — Graduated in 3 years while supporting 30–40 hrs/week of D1 basketball program responsibilities. Worked for Men's Basketball program as a manager.</div>
+    </div>
+  </section>
+
+  <div class="footer-line">
+    Read my writing → <a href="https://fullcourtpress.ai">Full Court Press</a>
+  </div>
+
+</div>
+</body>
+</html>
