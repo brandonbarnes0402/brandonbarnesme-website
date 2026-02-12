@@ -3,241 +3,251 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Brandon Barnes — GTM, partnerships, and content. Austin, TX." />
+  <meta name="description" content="Brandon Barnes — GTM operator focused on systems, clarity, and outcomes." />
   <title>Brandon Barnes</title>
 
   <style>
     :root{
       --bg:#0b0b0c;
-      --panel:#0f1012;
       --text:#f4f4f5;
       --muted:#b6b7bd;
       --faint:#7b7d86;
-      --rule:#24252b;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 16px;
+      --rule:#26272d;
+      --panel: rgba(255,255,255,.035);
+      --stroke: rgba(255,255,255,.10);
+      --stroke2: rgba(255,255,255,.16);
+
       --max: 1040px;
       --pad: clamp(16px, 3vw, 28px);
-      --h1: clamp(36px, 5vw, 56px);
-      --h2: clamp(22px, 2.2vw, 28px);
-      --lh: 1.55;
+
+      --h1: clamp(40px, 5.2vw, 64px);
+      --h2: clamp(22px, 2.1vw, 28px);
+      --lh: 1.6;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      background: radial-gradient(1200px 700px at 50% -80px, rgba(255,255,255,.08), transparent 60%),
-                  var(--bg);
-      color:var(--text);
-      line-height:var(--lh);
+      background: radial-gradient(1000px 600px at 40% -180px, rgba(255,255,255,.08), transparent 55%), var(--bg);
+      color: var(--text);
+      line-height: var(--lh);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    a{color:var(--text); text-decoration:none}
-    a:hover{opacity:.92; text-decoration:underline; text-underline-offset:4px}
+    .serif{ font-family: ui-serif, Georgia, "Times New Roman", Times, serif; }
+    .sans{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; }
 
-    .wrap{max-width:var(--max); margin:0 auto; padding: 0 var(--pad)}
+    a{ color: var(--text); text-decoration:none; }
+    a:hover{ text-decoration:underline; text-underline-offset:4px; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
     .topbar{
-      position:sticky; top:0; z-index:50;
+      position: sticky; top:0; z-index: 30;
+      background: rgba(11,11,12,.78);
       backdrop-filter: blur(10px);
-      background: rgba(11,11,12,.62);
-      border-bottom:1px solid rgba(36,37,43,.7);
+      border-bottom: 1px solid rgba(38,39,45,.75);
     }
     .topbar-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px;
-      padding: 14px var(--pad);
-      max-width:var(--max);
-      margin:0 auto;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px var(--pad);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 16px;
     }
+    .brand{ display:flex; flex-direction:column; gap:2px; white-space:nowrap; }
+    .brand .name{ font-weight:650; letter-spacing:.2px; font-size:14px; }
+    .brand .tag{ color: var(--muted); font-size:13px; }
 
-    .brand{
-      display:flex; align-items:baseline; gap:10px;
-      white-space:nowrap;
-    }
-    .brand .name{
-      font-size:18px; letter-spacing:.2px;
-      font-weight:600;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    }
-    .brand .tag{
-      font-size:14px;
-      color:var(--muted);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    }
-
-    nav{
-      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size:14px;
-    }
+    nav{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; font-size:13px; }
     nav a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:10px;
+      color: var(--muted);
+      padding: 6px 8px;
+      border-radius: 10px;
       text-decoration:none;
     }
-    nav a:hover{background: rgba(255,255,255,.06); color:var(--text); text-decoration:none}
-    nav a.active{background: rgba(255,255,255,.08); color:var(--text)}
+    nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); text-decoration:none; }
+    nav a.active{ color: var(--text); background: rgba(255,255,255,.06); }
 
-    .hero{
-      padding: clamp(38px, 7vw, 90px) 0 32px;
-      text-align:center;
+    .hero{ padding: clamp(44px, 7vw, 96px) 0 18px; }
+
+    .hero-layout{
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(24px, 4vw, 48px);
     }
-    .hero h1{
-      margin:0 auto 10px;
-      max-width: 26ch;
+    .hero-text{ flex: 1; min-width: 0; }
+
+    .hero-photo{
+      flex-shrink: 0;
+      width: clamp(140px, 18vw, 220px);
+      height: clamp(170px, 22vw, 270px);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 4px 24px rgba(0,0,0,.4),
+        0 0 0 1px rgba(255,255,255,.06);
+      position: relative;
+    }
+    .hero-photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+    .hero-photo::after{
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px){
+      .hero-layout{
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .hero-photo{
+        width: 110px;
+        height: 135px;
+        border-radius: 14px;
+      }
+      .hero-photo::after{ border-radius: 14px; }
+    }
+
+    .kicker{
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1{
+      margin: 0 0 14px;
       font-size: var(--h1);
-      line-height: 1.06;
-      letter-spacing: -0.4px;
-      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 750;
+      max-width: 30ch;
     }
-    .hero p{
-      margin: 0 auto 18px;
-      max-width: 70ch;
+    .lead{
+      margin: 0 0 18px;
       color: var(--muted);
       font-size: 18px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      max-width: 86ch;
     }
 
-    .cta-row{
-      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
-      margin-top: 18px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    .cta{
+      display:flex; gap: 10px; flex-wrap:wrap;
+      margin-top: 14px;
     }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding: 12px 16px;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid var(--stroke2);
       background: rgba(255,255,255,.06);
       color: var(--text);
       text-decoration:none;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-    .btn:hover{
-      background: rgba(255,255,255,.10);
-      border-color: rgba(255,255,255,.28);
-      transform: translateY(-1px);
-      text-decoration:none;
-    }
-    .btn.primary{
-      background: rgba(255,255,255,.14);
-      border-color: rgba(255,255,255,.28);
-    }
+    .btn:hover{ background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.26); transform: translateY(-1px); text-decoration:none; }
+    .btn.primary{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28); }
 
-    .rule{
-      margin: 18px auto 0;
-      max-width: 860px;
-      border-top: 1px solid var(--rule);
-      opacity:.9;
-    }
+    .rule{ border-top: 1px solid var(--rule); margin: 22px 0; }
 
-    .proof{
-      margin: 18px auto 0;
-      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
-      max-width: 980px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .pill{
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 8px 10px;
-      border-radius: 999px;
-      display:flex; align-items:center; gap:8px;
-    }
-    .dot{width:6px; height:6px; border-radius:50%; background: rgba(255,255,255,.55); display:inline-block}
-
-    section{padding: 44px 0;}
-    section .head{
+    section{ padding: 44px 0; }
+    .head{
+      display:flex; justify-content:space-between; align-items:baseline; gap: 12px; flex-wrap:wrap;
       margin-bottom: 14px;
-      display:flex; align-items:baseline; justify-content:space-between; gap:12px;
-      flex-wrap:wrap;
     }
-    h2{margin:0; font-size: var(--h2); letter-spacing: -0.2px; font-weight:700;}
-    .sub{
-      color: var(--muted);
-      font-size: 14px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    }
+    h2{ margin:0; font-size: var(--h2); letter-spacing:-0.01em; font-weight: 750; }
+    .sub{ color: var(--muted); font-size: 14px; }
 
-    .grid{display:grid; grid-template-columns: 1fr; gap: 14px;}
-    @media (min-width: 860px){ .grid.two{grid-template-columns: 1fr 1fr} }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 860px){
+      .grid.two{ grid-template-columns: 1fr 1fr; }
+    }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: var(--shadow);
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 16px;
     }
     .card h3{
       margin:0 0 8px;
-      font-size: 16px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-weight: 700;
-      letter-spacing: .1px;
-    }
-    .card p{
-      margin:0;
-      color: var(--muted);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       font-size: 15px;
+      font-weight: 750;
+      letter-spacing:.1px;
     }
+    .card p{ margin:0; color: var(--muted); font-size: 15px; }
+    .bullets{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+    .bullets li{ margin: 6px 0; }
 
-    .list{
-      margin: 10px 0 0;
-      padding-left: 18px;
+    .wins{
+      display:flex; flex-direction:column; gap: 10px;
       color: var(--muted);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       font-size: 15px;
+      max-width: 980px;
     }
-    .list li{margin: 6px 0}
+    .wins b{ color: var(--text); font-weight: 750; }
 
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      color: var(--muted);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: 13px;
-      letter-spacing: .2px;
-      text-transform: uppercase;
-      opacity:.95;
+    .fav{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
     }
+    .fav img{
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+    @media (min-width: 860px){
+      .fav img{ width: 140px; height: 140px; }
+    }
+    .fav .text{ flex: 1; }
+    .meta{ color: var(--faint); font-size: 12px; letter-spacing:.10em; text-transform: uppercase; margin-bottom: 10px; }
 
     .footer{
-      padding: 30px 0 54px;
-      color: var(--faint);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: 13px;
       border-top: 1px solid var(--rule);
+      padding: 28px 0 48px;
+      color: var(--faint);
+      font-size: 13px;
     }
-    .footer .row{
-      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      align-items:center;
-    }
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    .muted{color:var(--muted)}
+    .footer .row{ display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; }
   </style>
 </head>
 
 <body>
-  <header class="topbar">
+  <header class="topbar sans">
     <div class="topbar-inner">
       <div class="brand">
         <div class="name">Brandon Barnes</div>
-        <div class="tag">Austin • GTM / Partnerships • Creator</div>
+        <div class="tag">Austin, TX • GTM / Partnerships Experience</div>
       </div>
-
       <nav aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#resume">Resume</a>
-        <a href="#side-projects">Side Projects</a>
-        <a href="#creative">Creative Projects</a>
+        <a href="#creative">Creative</a>
+        <a href="#favorites">Favorites</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -246,22 +256,33 @@
   <main>
     <section class="hero" id="top">
       <div class="wrap">
-        <div class="kicker"><span class="dot"></span> Where revenue and storytelling collide</div>
-        <h1>GTM operator with a creator’s voice.</h1>
-        <p>I build pipeline, partnerships, and content—bringing sports energy and clear communication to growth teams.</p>
+        <div class="hero-layout">
+          <div class="hero-text">
+            <h1 class="serif">Brandon Barnes</h1>
+            <p class="lead sans">
+              
+            </p>
 
-        <div class="cta-row">
-          <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email</a>
-          <a class="btn" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">FullCourtPress.ai</a>
-          <a class="btn" href="/resume.pdf" download>Download Resume (PDF)</a>
+            <div class="cta sans">
+              <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email</a>
+              <a class="btn" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Newsletter</a>
+              <a class="btn" href="resume.pdf" download>Resume</a>
+            </div>
+          </div>
+
+          <div class="hero-photo">
+            <img src="BL.jpg" alt="Brandon Barnes" />
+          </div>
         </div>
 
         <div class="rule"></div>
 
-        <div class="proof" aria-label="Credibility highlights">
-          <div class="pill"><span class="dot"></span> Led North America GTM launch (Agicap)</div>
-          <div class="pill"><span class="dot"></span> Delivered $1.3M ARR (Vanta)</div>
-          <div class="pill"><span class="dot"></span> #1 BDR; $765k closed-won sourced (LogicMonitor)</div>
+        <div class="wins sans" aria-label="Selected wins">
+          <div><b>Experience / Quick Hitters</b></div>  
+          <div><b>Agicap:</b> North America GTM launch, closing new logos, and outbound enablement support</div>
+          <div><b>LogicMonitor:</b> $1.2M in ARR growth delivered from partner accounts</div>
+          <div><b>Vanta:</b> $1.3M ARR recognized; consistent new-logo creation</div>
+          <div><b>LogicMonitor:</b> #1 BDR; $765k closed-won sourced and helped #1 AE</div>
         </div>
       </div>
     </section>
@@ -269,29 +290,18 @@
     <section id="about">
       <div class="wrap">
         <div class="head">
-          <h2>About</h2>
-          <div class="sub">The short version</div>
+          <h2 class="serif">About</h2>
         </div>
 
         <div class="grid two">
           <div class="card">
-            <h3>What I do</h3>
-            <p>Full-cycle GTM execution with strong communication. I turn messy inputs into clear plans, consistent output, and measurable results.</p>
-            <ul class="list">
-              <li>Full sales cycle execution and pipeline creation</li>
-              <li>Outbound strategy, enablement, and early leadership</li>
-              <li>Partner / cross-functional collaboration (marketing, product, CS)</li>
-              <li>Writing + improvisation to make ideas land</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>What I’m looking for</h3>
-            <p>Roles where I can combine revenue craft with content-led communication.</p>
-            <ul class="list">
-              <li><span class="mono">Roles:</span> Partnerships, Growth/Community, GTM Strategy, Creator Partnerships</li>
-              <li><span class="mono">Spaces:</span> Sports, creator economy, media-adjacent, modern B2B</li>
-              <li><span class="mono">Location:</span> Austin / hybrid / remote</li>
+            <h3 class="sans">What I Do Currently</h3>
+            <p class="sans">GTM execution + team enablement focused on growing the North American market for Agicap.</p>
+            <ul class="bullets sans">
+              <li>Coaching and enablement for BDR team</li>
+              <li>Messaging + talk tracks + playbooks</li>
+              <li>Cross-functional collaboration (marketing, product, CS)</li>
+              <li>Closing new customers and ensuring ongoing success</li>
             </ul>
           </div>
         </div>
@@ -301,72 +311,24 @@
     <section id="resume">
       <div class="wrap">
         <div class="head">
-          <h2>Resume</h2>
-          <div class="sub">PDF + quick snapshot</div>
-        </div>
-
-        <div class="grid">
-          <div class="card">
-            <h3>Download</h3>
-            <p>Resume PDF: <a class="mono" href="/resume.pdf" download>resume.pdf</a></p>
-            <div class="cta-row" style="justify-content:flex-start; margin-top:14px">
-              <a class="btn primary" href="/resume.pdf" download>Download Resume (PDF)</a>
-              <a class="btn" href="/resume.pdf" target="_blank" rel="noreferrer">Open in new tab</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Experience snapshot</h3>
-            <ul class="list">
-              <li><b>Agicap</b> — Sr Mid-Market AE (Aug 2025–Present): NA GTM launch; partnered with marketing; trained BDRs.</li>
-              <li><b>LogicMonitor</b> — Strategic Partner Manager (Apr 2024–Aug 2025): 100%+ plan; retention initiatives; cross-functional delivery.</li>
-              <li><b>Vanta</b> — Account Executive (Feb 2022–Mar 2024): full cycle; 10–12 new logos/month; $1.3M ARR recognized.</li>
-              <li><b>LogicMonitor</b> — SMB AE / MM AE / Sr BDR (Oct 2019–Feb 2022): #1 BDR; $765k sourced; top logo volume.</li>
-              <li><b>Texas A&amp;M</b> — Men’s Basketball Manager (Jun 2016–Apr 2018): day-to-day program operations leadership.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="side-projects">
-      <div class="wrap">
-        <div class="head">
-          <h2>Side Projects</h2>
-          <div class="sub">What I’m building now</div>
+          <h2 class="serif">Resume</h2>
         </div>
 
         <div class="grid two">
           <div class="card">
-            <h3>Full Court Press</h3>
-            <p>A weekly newsletter: sports stories, nostalgia, and lessons that travel into everyday life.</p>
-            <ul class="list">
-              <li><span class="mono">Goal:</span> build audience + voice + partnerships</li>
-              <li><span class="mono">Output:</span> weekly posts + simple distribution loop</li>
-              <li><a href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Visit FullCourtPress.ai</a></li>
-            </ul>
+            <div class="cta sans" style="margin-top:12px;">
+              <a class="btn primary" href="resume.pdf" download>Download Resume</a>
+            </div>
           </div>
 
           <div class="card">
-            <h3>GTM playbook (living doc)</h3>
-            <p>Lightweight, repeatable frameworks: outbound sequences, discovery, positioning, and enablement.</p>
-            <ul class="list">
-              <li><span class="mono">Format:</span> 1-page plays + templates</li>
-              <li><span class="mono">Use:</span> internal enablement or public writing</li>
-              <li><span class="mono">Status:</span> publish-ready when you want</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="grid" style="margin-top:14px">
-          <div class="card">
-            <h3>Case studies (short)</h3>
-            <p>Replace these with links/screenshots as you gather them.</p>
-            <ul class="list">
-              <li><b>Agicap:</b> NA GTM launch + outbound enablement + BDR training.</li>
-              <li><b>Vanta:</b> high-volume full-cycle selling; consistent logo creation; ARR impact.</li>
-              <li><b>LogicMonitor:</b> strategic partner motion; retention + engagement initiatives.</li>
-              <li><b>Texas A&amp;M Basketball:</b> high-trust operations leadership under pressure.</li>
+            <h3 class="sans">Snapshot</h3>
+            <ul class="bullets sans">
+              <li><b>Agicap</b> — Sr Mid-Market AE (Aug 2025–Present)</li>
+              <li><b>LogicMonitor</b> — Strategic Partner Manager (Apr 2024–Aug 2025)</li>
+              <li><b>Vanta</b> — Account Executive (Feb 2022–Mar 2024)</li>
+              <li><b>LogicMonitor</b> — AE / Sr BDR (Oct 2019–Feb 2022)</li>
+              <li><b>Texas A&amp;M</b> — Men's Basketball Manager (Jun 2016–Apr 2018)</li>
             </ul>
           </div>
         </div>
@@ -376,64 +338,102 @@
     <section id="creative">
       <div class="wrap">
         <div class="head">
-          <h2>Creative Projects</h2>
-          <div class="sub">Communication as an edge</div>
+          <h2 class="serif">Creative</h2>
+          <div class="sub sans"></div>
         </div>
 
         <div class="grid two">
           <div class="card">
-            <h3>Writing</h3>
-            <p>Essays + newsletter editions built around story, clarity, and momentum. Add your top 3 links here.</p>
-            <ul class="list">
-              <li><span class="mono">#1</span> — (link)</li>
-              <li><span class="mono">#2</span> — (link)</li>
-              <li><span class="mono">#3</span> — (link)</li>
+            <h3 class="sans">Full Court Press</h3>
+            <p class="sans">Weekly newsletter using sports to remind us of all that once was good, and what could be again</p>
+            <ul class="bullets sans">
+              <li>Goal: audience + voice + partnerships + cathartic release</li>
+              <li>Output: consistent publishing + distribution loop</li>
             </ul>
+            <div class="cta sans" style="margin-top:12px;">
+              <a class="btn primary" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Read</a>
+            </div>
           </div>
 
           <div class="card">
-            <h3>On-camera / improv</h3>
-            <p>Fast thinking, presence, and delivery—useful for partnerships, hosting, and sales leadership. Add clips when you have them.</p>
-            <ul class="list">
-              <li>Short intro video (60–90 seconds) — (link)</li>
-              <li>Sports story breakdown — (link)</li>
-              <li>GTM lesson for creators/brands — (link)</li>
+            <h3 class="sans">Performing / On-Camera</h3>
+            <ul class="bullets sans">
+              <li>Main Forms: improv, stand up, social content</li>
             </ul>
+            <div class="cta sans" style="margin-top:12px;">
+              <a class="btn primary" href="https://youtu.be/3Ed2ivoD-G0" target="_blank" rel="noreferrer">Watch</a>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="favorites">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">Favorites</h2>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="fav">
+              <img src="https://www.allaboutmovies.net.au/media/k2/items/cache/3eb6e1991731f6c04e9f6986f72fd47b_XL.jpg" alt="Fletch movie poster" loading="lazy" />
+              <div class="text">
+                <div class="meta sans">Favorite Movie</div>
+                <h3 class="sans">Fletch</h3>
+                <p class="sans">Quoting this all the way through every single time I watch. If you don't believe me, ask Frida.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="fav">
+              <img src="https://live-production.wcms.abc-cdn.net.au/8de1601195be6750073759b4d0f5f4c7?cropH=562&cropW=1000&height=485&impolicy=wcms_crop_resize&width=862&xPos=0&yPos=0" alt="Maggie Rogers" loading="lazy" />
+              <div class="text">
+                <div class="meta sans">Favorite Artist</div>
+                <h3 class="sans">Maggie Rogers</h3>
+                <p class="sans">Icon. We had a brief conversation while she recorded her PBS Austin City Limits performance. (she responded and that's all that matters) </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="fav">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQQ0x4vd5305b9_lmhabg5VgczQdb_WCYWXA&s" alt="Josh Smith" loading="lazy" />
+              <div class="text">
+                <div class="meta sans">Favorite Hawks Player of All Time</div>
+                <h3 class="sans">Josh Smith</h3>
+                <p class="sans">The player who taught me what it means to fly high and learn from my weaknesses.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="sans muted" style="margin-top:12px;"></p>
       </div>
     </section>
 
     <section id="contact">
       <div class="wrap">
         <div class="head">
-          <h2>Contact</h2>
-          <div class="sub">Make it easy to say yes</div>
+          <h2 class="serif">Contact</h2>
         </div>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Reach me</h3>
-            <p>
-              Email: <a class="mono" href="mailto:brandonbarnes0402@gmail.com">brandonbarnes0402@gmail.com</a><br/>
-              Based in Austin, TX.
-            </p>
-            <div class="cta-row" style="justify-content:flex-start; margin-top:14px">
-              <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email</a>
-              <a class="btn" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Newsletter</a>
-              <a class="btn" href="/resume.pdf" download>Resume PDF</a>
-            </div>
+        <div class="card">
+          <p class="sans muted" style="margin:0 0 12px;"></p>
+          <div class="cta sans" style="justify-content:flex-start; margin-top:0;">
+            <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email me!</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer sans">
     <div class="wrap">
       <div class="row">
         <div>© <span id="year"></span> Brandon Barnes</div>
-        <div class="mono muted">Single HTML file</div>
+        <div class="mono" style="color:var(--faint);">Psalm 23</div>
       </div>
     </div>
   </footer>
@@ -445,13 +445,12 @@
     const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
 
     const setActive = () => {
-      const y = window.scrollY + 120;
+      const y = window.scrollY + 140;
       let activeId = "#about";
       for (const s of sections) if (s.offsetTop <= y) activeId = "#" + s.id;
       navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === activeId));
     };
-
-    window.addEventListener("scroll", setActive, { passive: true });
+    window.addEventListener("scroll", setActive, { passive:true });
     setActive();
   </script>
 </body>
