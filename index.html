@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Brandon Barnes" />
   <title>Brandon Barnes</title>
-
+  <!-- FIX: moved <link> out of the <style> block where it was embedded (invalid HTML) -->
+  <link rel="icon" href="BL.jpg" type="image/x-icon" />
   <style>
     :root{
       --bg:#0b0b0c;
@@ -16,15 +17,14 @@
       --panel: rgba(255,255,255,.035);
       --stroke: rgba(255,255,255,.10);
       --stroke2: rgba(255,255,255,.16);
-
       --max: 1040px;
       --pad: clamp(16px, 3vw, 28px);
-
       --h1: clamp(40px, 5.2vw, 64px);
       --h2: clamp(22px, 2.1vw, 28px);
       --lh: 1.6;
+      /* FIX: single source of truth for topbar height used in scroll-margin */
+      --topbar-h: 68px;
     }
-
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
@@ -35,20 +35,19 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
     .serif{ font-family: ui-serif, Georgia, "Times New Roman", Times, serif; }
     .sans{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
     .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; }
-
     a{ color: var(--text); text-decoration:none; }
     a:hover{ text-decoration:underline; text-underline-offset:4px; }
-
     .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
 
+    /* ─── TOPBAR ─────────────────────────────────────────────────── */
     .topbar{
       position: sticky; top:0; z-index: 30;
-      background: rgba(11,11,12,.78);
-      backdrop-filter: blur(10px);
+      background: rgba(11,11,12,.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(38,39,45,.75);
     }
     .topbar-inner{
@@ -59,30 +58,115 @@
       justify-content:space-between;
       align-items:center;
       gap: 16px;
+      min-height: var(--topbar-h);
     }
     .brand{ display:flex; flex-direction:column; gap:2px; white-space:nowrap; }
     .brand .name{ font-weight:650; letter-spacing:.2px; font-size:14px; }
     .brand .tag{ color: var(--muted); font-size:13px; }
 
-    nav{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; font-size:13px; }
+    /* ─── DESKTOP NAV ────────────────────────────────────────────── */
+    nav{
+      display:flex; gap:8px; flex-wrap:wrap;
+      justify-content:flex-end; font-size:13px;
+    }
     nav a{
       color: var(--muted);
-      padding: 6px 8px;
+      padding: 8px 10px;
       border-radius: 10px;
       text-decoration:none;
+      /* FIX: minimum touch target height */
+      min-height: 36px;
+      display:inline-flex; align-items:center;
+      transition: background .12s ease, color .12s ease;
     }
     nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); text-decoration:none; }
     nav a.active{ color: var(--text); background: rgba(255,255,255,.06); }
 
-    .hero{ padding: clamp(44px, 7vw, 96px) 0 18px; }
+    /* ─── HAMBURGER ──────────────────────────────────────────────── */
+    .nav-toggle{
+      display: none;
+      background: none;
+      border: 1px solid var(--stroke2);
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-toggle span{
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--muted);
+      border-radius: 2px;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    /* Animated X when open */
+    .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
 
+    /* ─── MOBILE NAV (≤ 600px) ──────────────────────────────────── */
+    @media (max-width: 600px){
+      .brand .tag{
+        /* keep it on one line; truncate if needed */
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .nav-toggle{ display: flex; }
+      nav{
+        /* hidden off-screen by default */
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(11,11,12,.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(38,39,45,.9);
+        padding: 10px var(--pad) 16px;
+        font-size: 15px;
+        /* animate open/close */
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .18s ease, opacity .18s ease;
+      }
+      nav.open{
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      nav a{
+        padding: 11px 12px;
+        border-radius: 10px;
+        min-height: 44px; /* proper mobile touch target */
+      }
+    }
+
+    /* ─── SCROLL-MARGIN: FIX for titles hidden under sticky bar ─── */
+    /* Without this, clicking a nav link scrolls the section heading
+       behind the topbar. scroll-margin-top reserves that space. */
+    section[id],
+    .hero[id]{
+      scroll-margin-top: calc(var(--topbar-h) + 8px);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero{ padding: clamp(44px, 7vw, 96px) 0 18px; }
     .hero-layout{
       display: flex;
       align-items: flex-start;
       gap: clamp(24px, 4vw, 48px);
     }
     .hero-text{ flex: 1; min-width: 0; }
-
     .hero-photo{
       flex-shrink: 0;
       width: clamp(140px, 18vw, 220px);
@@ -110,7 +194,6 @@
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
       pointer-events: none;
     }
-
     @media (max-width: 600px){
       .hero-layout{
         flex-direction: column-reverse;
@@ -123,8 +206,11 @@
         border-radius: 14px;
       }
       .hero-photo::after{ border-radius: 14px; }
+      /* FIX: prevent h1 from overflowing on narrow screens */
+      h1{ font-size: clamp(32px, 8vw, 48px); }
     }
 
+    /* ─── TYPOGRAPHY ─────────────────────────────────────────────── */
     .kicker{
       color: var(--muted);
       font-size: 12px;
@@ -147,33 +233,46 @@
       max-width: 86ch;
     }
 
+    /* ─── BUTTONS ────────────────────────────────────────────────── */
     .cta{
       display:flex; gap: 10px; flex-wrap:wrap;
       margin-top: 14px;
     }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      padding: 10px 14px;
+      padding: 10px 16px;
       border-radius: 999px;
       border: 1px solid var(--stroke2);
       background: rgba(255,255,255,.06);
       color: var(--text);
       text-decoration:none;
+      font-size: 14px;
+      /* FIX: ensure proper touch target on mobile */
+      min-height: 40px;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
     .btn:hover{ background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.26); transform: translateY(-1px); text-decoration:none; }
     .btn.primary{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28); }
 
+    /* ─── LAYOUT PRIMITIVES ──────────────────────────────────────── */
     .rule{ border-top: 1px solid var(--rule); margin: 22px 0; }
-
     section{ padding: 44px 0; }
     .head{
-      display:flex; justify-content:space-between; align-items:baseline; gap: 12px; flex-wrap:wrap;
-      margin-bottom: 14px;
+      display:flex; justify-content:space-between; align-items:baseline;
+      gap: 12px; flex-wrap:wrap;
+      margin-bottom: 18px;
     }
-    h2{ margin:0; font-size: var(--h2); letter-spacing:-0.01em; font-weight: 750; }
+    h2{
+      margin:0;
+      font-size: var(--h2);
+      letter-spacing:-0.01em;
+      font-weight: 750;
+      /* FIX: slight visual separator so heading stands clear after scroll */
+      padding-bottom: 2px;
+      border-bottom: 2px solid rgba(255,255,255,.08);
+      padding-bottom: 8px;
+    }
     .sub{ color: var(--muted); font-size: 14px; }
-
     .grid{
       display:grid;
       grid-template-columns: 1fr;
@@ -182,12 +281,13 @@
     @media (min-width: 860px){
       .grid.two{ grid-template-columns: 1fr 1fr; }
     }
-<link rel="icon" href="BL.jpg" type="image/x-icon" />
+
+    /* ─── CARDS ──────────────────────────────────────────────────── */
     .card{
       border: 1px solid var(--stroke);
       background: var(--panel);
       border-radius: 16px;
-      padding: 16px;
+      padding: clamp(14px, 2.5vw, 20px); /* FIX: responsive padding */
     }
     .card h3{
       margin:0 0 8px;
@@ -199,6 +299,7 @@
     .bullets{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
     .bullets li{ margin: 6px 0; }
 
+    /* ─── WINS BLOCK ─────────────────────────────────────────────── */
     .wins{
       display:flex; flex-direction:column; gap: 10px;
       color: var(--muted);
@@ -206,7 +307,12 @@
       max-width: 980px;
     }
     .wins b{ color: var(--text); font-weight: 750; }
+    /* FIX: wins text can run long on narrow screens */
+    @media (max-width: 600px){
+      .wins{ font-size: 14px; }
+    }
 
+    /* ─── FAVORITES ──────────────────────────────────────────────── */
     .fav{
       display:flex;
       gap: 14px;
@@ -219,23 +325,33 @@
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
+      /* FIX: prevent image from shrinking on small screens */
+      flex-shrink: 0;
     }
     @media (min-width: 860px){
       .fav img{ width: 140px; height: 140px; }
     }
-    .fav .text{ flex: 1; }
+    /* FIX: on very small screens, stack favorites vertically */
+    @media (max-width: 480px){
+      .fav{ flex-direction: column; gap: 10px; }
+      .fav img{ width: 100%; height: 200px; border-radius: 12px; }
+    }
+    .fav .text{ flex: 1; min-width: 0; } /* FIX: min-width prevents text overflow */
     .meta{ color: var(--faint); font-size: 12px; letter-spacing:.10em; text-transform: uppercase; margin-bottom: 10px; }
 
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
     .footer{
       border-top: 1px solid var(--rule);
       padding: 28px 0 48px;
       color: var(--faint);
       font-size: 13px;
     }
-    .footer .row{ display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; }
+    .footer .row{
+      display:flex; justify-content:space-between;
+      gap:12px; flex-wrap:wrap; align-items:center;
+    }
   </style>
 </head>
-
 <body>
   <header class="topbar sans">
     <div class="topbar-inner">
@@ -243,6 +359,12 @@
         <div class="name">Brandon Barnes</div>
         <div class="tag">Austin, TX • GTM / Partnerships Experience</div>
       </div>
+      <!-- FIX: hamburger button for mobile -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#resume">Resume</a>
@@ -252,7 +374,6 @@
       </nav>
     </div>
   </header>
-
   <main>
     <section class="hero" id="top">
       <div class="wrap">
@@ -260,26 +381,22 @@
           <div class="hero-text">
             <h1 class="serif">Brandon Barnes</h1>
             <p class="lead sans">
-              
-            </p>
 
+            </p>
             <div class="cta sans">
               <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email</a>
               <a class="btn" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Newsletter</a>
-               <a class="btn" href="https://www.linkedin.com/in/brandonbarnes1" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="btn" href="https://www.linkedin.com/in/brandonbarnes1" target="_blank" rel="noreferrer">LinkedIn</a>
               <a class="btn" href="BrandonBarnesResume.pdf" download>Resume</a>
             </div>
           </div>
-
           <div class="hero-photo">
             <img src="BL.jpg" alt="Brandon Barnes" />
           </div>
         </div>
-
         <div class="rule"></div>
-
         <div class="wins sans" aria-label="Selected wins">
-          <div><b>Experience / Quick Hitters</b></div>  
+          <div><b>Experience / Quick Hitters</b></div>
           <div><b>Agicap:</b> North America GTM launch, closing new logos, and outbound enablement support</div>
           <div><b>LogicMonitor:</b> $1.2M in ARR growth delivered from partner accounts</div>
           <div><b>Vanta:</b> $1.3M ARR recognized; consistent new-logo creation</div>
@@ -287,13 +404,11 @@
         </div>
       </div>
     </section>
-
     <section id="about">
       <div class="wrap">
         <div class="head">
           <h2 class="serif">About</h2>
         </div>
-
         <div class="grid two">
           <div class="card">
             <h3 class="sans">What I Do Currently</h3>
@@ -308,20 +423,17 @@
         </div>
       </div>
     </section>
-
     <section id="resume">
       <div class="wrap">
         <div class="head">
           <h2 class="serif">Resume</h2>
         </div>
-
         <div class="grid two">
           <div class="card">
             <div class="cta sans" style="margin-top:12px;">
               <a class="btn primary" href="BrandonBarnesResume.pdf" download>Download Resume</a>
             </div>
           </div>
-
           <div class="card">
             <h3 class="sans">Snapshot</h3>
             <ul class="bullets sans">
@@ -335,14 +447,12 @@
         </div>
       </div>
     </section>
-
     <section id="creative">
       <div class="wrap">
         <div class="head">
           <h2 class="serif">Creative</h2>
           <div class="sub sans"></div>
         </div>
-
         <div class="grid two">
           <div class="card">
             <h3 class="sans">Full Court Press</h3>
@@ -355,7 +465,6 @@
               <a class="btn primary" href="https://fullcourtpress.ai/" target="_blank" rel="noreferrer">Read</a>
             </div>
           </div>
-
           <div class="card">
             <h3 class="sans">Performing / On-Camera</h3>
             <ul class="bullets sans">
@@ -368,13 +477,11 @@
         </div>
       </div>
     </section>
-
     <section id="favorites">
       <div class="wrap">
         <div class="head">
           <h2 class="serif">Favorites</h2>
         </div>
-
         <div class="grid">
           <div class="card">
             <div class="fav">
@@ -386,7 +493,6 @@
               </div>
             </div>
           </div>
-
           <div class="card">
             <div class="fav">
               <img src="https://live-production.wcms.abc-cdn.net.au/8de1601195be6750073759b4d0f5f4c7?cropH=562&cropW=1000&height=485&impolicy=wcms_crop_resize&width=862&xPos=0&yPos=0" alt="Maggie Rogers" loading="lazy" />
@@ -397,7 +503,6 @@
               </div>
             </div>
           </div>
-
           <div class="card">
             <div class="fav">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQQ0x4vd5305b9_lmhabg5VgczQdb_WCYWXA&s" alt="Josh Smith" loading="lazy" />
@@ -409,29 +514,24 @@
             </div>
           </div>
         </div>
-
         <p class="sans muted" style="margin-top:12px;"></p>
       </div>
     </section>
-
     <section id="contact">
       <div class="wrap">
         <div class="head">
           <h2 class="serif">Contact</h2>
         </div>
-
         <div class="card">
           <p class="sans muted" style="margin:0 0 12px;"></p>
           <div class="cta sans" style="justify-content:flex-start; margin-top:0;">
             <a class="btn primary" href="mailto:brandonbarnes0402@gmail.com">Email me!</a>
-             <a class="btn primary" href="https://www.linkedin.com/in/brandonbarnes1">Add me on LinkedIn!</a>
-            
+            <a class="btn primary" href="https://www.linkedin.com/in/brandonbarnes1">Add me on LinkedIn!</a>
           </div>
         </div>
       </div>
     </section>
   </main>
-
   <footer class="footer sans">
     <div class="wrap">
       <div class="row">
@@ -440,21 +540,44 @@
       </div>
     </div>
   </footer>
-
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // ── Active nav highlight ──────────────────────────────────────
     const navLinks = Array.from(document.querySelectorAll("nav a"));
-    const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
-
+    const sections = navLinks
+      .map(a => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
     const setActive = () => {
       const y = window.scrollY + 140;
       let activeId = "#about";
       for (const s of sections) if (s.offsetTop <= y) activeId = "#" + s.id;
       navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === activeId));
     };
-    window.addEventListener("scroll", setActive, { passive:true });
+    window.addEventListener("scroll", setActive, { passive: true });
     setActive();
+
+    // ── Hamburger toggle ─────────────────────────────────────────
+    const toggle = document.querySelector(".nav-toggle");
+    const nav    = document.querySelector("nav");
+    toggle.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open);
+    });
+    // Close menu when a nav link is tapped on mobile
+    navLinks.forEach(a => {
+      a.addEventListener("click", () => {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+    // Close menu on outside click
+    document.addEventListener("click", e => {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
   </script>
 </body>
 </html>
