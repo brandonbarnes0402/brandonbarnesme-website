@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Morning Sports Recap" />
+  <title>Morning Recap</title>
+  <link rel="icon" href="BL.jpg" type="image/x-icon" />
+  <style>
+    :root{
+      --bg:#0b0b0c;
+      --text:#f4f4f5;
+      --muted:#b6b7bd;
+      --faint:#7b7d86;
+      --rule:#26272d;
+      --panel: rgba(255,255,255,.035);
+      --stroke: rgba(255,255,255,.10);
+      --stroke2: rgba(255,255,255,.16);
+      --green: #22c55e;
+      --red: #ef4444;
+      --amber: #f59e0b;
+      --blue: #3b82f6;
+      --max: 1040px;
+      --pad: clamp(16px, 3vw, 28px);
+      --lh: 1.6;
+      --topbar-h: 60px;
+    }
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      background: radial-gradient(1000px 600px at 40% -180px, rgba(255,255,255,.08), transparent 55%), var(--bg);
+      color: var(--text);
+      line-height: var(--lh);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    .serif{ font-family: ui-serif, Georgia, "Times New Roman", Times, serif; }
+    a{ color: var(--text); text-decoration:none; }
+    a:hover{ text-decoration:underline; text-underline-offset:4px; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+    /* ── TOPBAR ──────────────────────────────────────────────────── */
+    .topbar{
+      position: sticky; top:0; z-index: 30;
+      background: rgba(11,11,12,.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(38,39,45,.75);
+    }
+    .topbar-inner{
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 var(--pad);
+      display:flex; justify-content:space-between; align-items:center;
+      gap: 12px; min-height: var(--topbar-h);
+    }
+    .topbar .brand{ font-weight:650; font-size:14px; letter-spacing:.2px; }
+    .topbar .datestamp{ color: var(--faint); font-size:13px; }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero{ padding: clamp(36px, 5vw, 72px) 0 8px; }
+    .kicker{
+      color: var(--muted); font-size:11px;
+      letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px;
+    }
+    h1.serif{
+      margin:0 0 10px;
+      font-size: clamp(32px, 4.8vw, 56px);
+      line-height:1.04; letter-spacing:-.02em; font-weight:750;
+    }
+    .lead{
+      margin:0 0 6px; color:var(--muted); font-size:17px; max-width:72ch;
+    }
+    .rule{ border-top:1px solid var(--rule); margin:20px 0; }
+
+    /* ── SECTION HEADS ───────────────────────────────────────────── */
+    section{ padding: 36px 0 0; }
+    .head{
+      display:flex; justify-content:space-between; align-items:baseline;
+      gap:12px; flex-wrap:wrap; margin-bottom:16px;
+    }
+    h2.serif{
+      margin:0; font-size: clamp(20px, 2vw, 26px);
+      letter-spacing:-.01em; font-weight:750;
+      border-bottom:2px solid rgba(255,255,255,.08);
+      padding-bottom:8px;
+    }
+    .sub{ color:var(--muted); font-size:13px; }
+
+    /* ── CARDS ───────────────────────────────────────────────────── */
+    .card{
+      border:1px solid var(--stroke);
+      background:var(--panel);
+      border-radius:16px;
+      padding: clamp(14px, 2.5vw, 20px);
+    }
+    .card h3{ margin:0 0 6px; font-size:15px; font-weight:750; letter-spacing:.1px; }
+    .card p{ margin:0; color:var(--muted); font-size:15px; }
+
+    /* ── GRID ────────────────────────────────────────────────────── */
+    .grid{ display:grid; grid-template-columns:1fr; gap:12px; }
+    @media(min-width:680px){ .grid.two{ grid-template-columns:1fr 1fr; } }
+    @media(min-width:860px){ .grid.three{ grid-template-columns:1fr 1fr 1fr; } }
+
+    /* ── SCORE CARDS ─────────────────────────────────────────────── */
+    .score-card{
+      border:1px solid var(--stroke);
+      background:var(--panel);
+      border-radius:14px;
+      padding:14px 16px;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .score-card .sport-tag{
+      font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--faint); margin-bottom:2px;
+    }
+    .score-row{
+      display:flex; justify-content:space-between; align-items:center; gap:8px;
+    }
+    .score-row .team{ font-size:14px; font-weight:600; }
+    .score-row .pts{
+      font-size:16px; font-weight:750; font-variant-numeric:tabular-nums;
+      min-width:36px; text-align:right;
+    }
+    .score-row.winner .team,
+    .score-row.winner .pts{ color:var(--text); }
+    .score-row.loser .team,
+    .score-row.loser .pts{ color:var(--faint); }
+    .score-divider{ border-top:1px solid var(--rule); margin:4px 0; }
+    .score-note{ font-size:12px; color:var(--faint); margin-top:2px; }
+
+    /* ── BREAKING NEWS ───────────────────────────────────────────── */
+    .news-item{
+      border:1px solid var(--stroke);
+      background:var(--panel);
+      border-radius:14px;
+      padding:14px 16px;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .news-item.top-source{
+      border-color:rgba(245,158,11,.28);
+      background: rgba(245,158,11,.04);
+    }
+    .news-meta{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .source-badge{
+      font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      padding:2px 7px; border-radius:999px;
+      background:rgba(245,158,11,.15); color:var(--amber);
+      border:1px solid rgba(245,158,11,.25);
+    }
+    .source-badge.tier2{
+      background:rgba(59,130,246,.12); color:var(--blue);
+      border-color:rgba(59,130,246,.2);
+    }
+    .news-sport{
+      font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint);
+    }
+    .news-headline{ font-size:15px; font-weight:650; line-height:1.35; }
+    .news-body{ font-size:14px; color:var(--muted); line-height:1.5; }
+
+    /* ── STREAKS ─────────────────────────────────────────────────── */
+    .streak-list{ display:flex; flex-direction:column; gap:10px; }
+    .streak-item{
+      display:flex; align-items:center; gap:12px;
+      border:1px solid var(--stroke);
+      background:var(--panel);
+      border-radius:12px;
+      padding:12px 14px;
+    }
+    .streak-badge{
+      font-size:11px; font-weight:750; letter-spacing:.06em;
+      padding:3px 9px; border-radius:999px; white-space:nowrap;
+    }
+    .streak-badge.hot{
+      background:rgba(34,197,94,.14); color:var(--green);
+      border:1px solid rgba(34,197,94,.25);
+    }
+    .streak-badge.cold{
+      background:rgba(239,68,68,.12); color:var(--red);
+      border:1px solid rgba(239,68,68,.2);
+    }
+    .streak-team{ font-size:14px; font-weight:650; }
+    .streak-detail{ font-size:13px; color:var(--muted); margin-left:auto; text-align:right; }
+
+    /* ── STAT LINES ──────────────────────────────────────────────── */
+    .stat-card{
+      border:1px solid var(--stroke);
+      background:var(--panel);
+      border-radius:14px;
+      padding:14px 16px;
+    }
+    .stat-player{ font-size:15px; font-weight:750; margin-bottom:4px; }
+    .stat-line{
+      font-size:22px; font-weight:750; letter-spacing:-.02em;
+      color:var(--text); margin:2px 0 4px;
+    }
+    .stat-context{ font-size:13px; color:var(--muted); }
+    .stat-sport{ font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-bottom:6px; }
+
+    /* ── INJURIES ────────────────────────────────────────────────── */
+    .injury-list{ display:flex; flex-direction:column; gap:8px; }
+    .injury-item{
+      display:flex; align-items:flex-start; gap:10px;
+      border:1px solid var(--stroke);
+      background:var(--panel);
+      border-radius:12px;
+      padding:11px 14px;
+    }
+    .injury-status{
+      font-size:10px; font-weight:700; padding:2px 7px;
+      border-radius:999px; white-space:nowrap; margin-top:2px;
+      letter-spacing:.06em; text-transform:uppercase;
+    }
+    .injury-status.out{
+      background:rgba(239,68,68,.12); color:var(--red);
+      border:1px solid rgba(239,68,68,.2);
+    }
+    .injury-status.day{
+      background:rgba(245,158,11,.12); color:var(--amber);
+      border:1px solid rgba(245,158,11,.2);
+    }
+    .injury-status.gtd{
+      background:rgba(245,158,11,.08); color:var(--amber);
+      border:1px solid rgba(245,158,11,.15);
+    }
+    .injury-info{ flex:1; min-width:0; }
+    .injury-player{ font-size:14px; font-weight:650; }
+    .injury-detail{ font-size:13px; color:var(--muted); }
+
+    /* ── TONIGHT / WATCH ─────────────────────────────────────────── */
+    .watch-card{
+      border:1px solid rgba(59,130,246,.2);
+      background: rgba(59,130,246,.04);
+      border-radius:16px;
+      padding: clamp(16px, 3vw, 24px);
+    }
+    .watch-card h3{ font-size:15px; font-weight:750; margin:0 0 8px; }
+    .watch-card p{ font-size:15px; color:var(--muted); margin:0; }
+    .watch-card .game-line{
+      font-size:16px; font-weight:650; color:var(--text);
+      margin:10px 0 4px;
+    }
+    .watch-card .time{ font-size:13px; color:var(--faint); }
+
+    /* ── THE TAKE ────────────────────────────────────────────────── */
+    .take-card{
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.025);
+      border-radius:16px;
+      padding: clamp(18px, 3vw, 28px);
+    }
+    .take-card blockquote{
+      margin:0 0 10px;
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height:1.5;
+      font-style:italic;
+      color:var(--text);
+    }
+    .take-card .attribution{ font-size:13px; color:var(--faint); }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    .footer{
+      border-top:1px solid var(--rule);
+      padding:24px 0 40px;
+      color:var(--faint); font-size:12px;
+      margin-top:56px;
+    }
+    .footer .row{
+      display:flex; justify-content:space-between;
+      gap:12px; flex-wrap:wrap; align-items:center;
+    }
+
+    /* ── MISC ────────────────────────────────────────────────────── */
+    .spacer{ height:20px; }
+    .empty-state{
+      color:var(--faint); font-size:14px; font-style:italic;
+      padding:20px 0;
+    }
+    @media(max-width:600px){
+      .streak-detail{ display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOPBAR ──────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Morning Recap</div>
+      <!-- AGENT: replace with today's date, e.g. "Monday, March 31, 2026" -->
+      <div class="datestamp" id="recap-date"><!-- DATE --></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── HERO ──────────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">Sports Morning Briefing</div>
+        <!-- AGENT: replace h1 with the single biggest storyline of the morning (5–8 words) -->
+        <h1 class="serif" id="hero-headline"><!-- HEADLINE --></h1>
+        <!-- AGENT: 1–2 sentence tease of the top story -->
+        <p class="lead" id="hero-lead"><!-- LEAD --></p>
+        <div class="rule"></div>
+      </div>
+    </section>
+
+    <!-- ── BREAKING NEWS ──────────────────────────────────────────── -->
+    <section id="breaking">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">Breaking News</h2>
+          <!-- AGENT: replace with count of items, e.g. "8 items" -->
+          <div class="sub" id="breaking-count"><!-- COUNT --></div>
+        </div>
+
+        <!-- AGENT: populate .news-items div with .news-item elements.
+             For Passan, Schefter, or Charania items use class="news-item top-source".
+             For others use class="news-item".
+             Use class="source-badge" for tier-1 reporters, class="source-badge tier2" for others.
+             EXAMPLE STRUCTURE:
+             <div class="news-item top-source">
+               <div class="news-meta">
+                 <span class="source-badge">Passan</span>
+                 <span class="news-sport">MLB</span>
+               </div>
+               <div class="news-headline">Headline text here</div>
+               <div class="news-body">One or two sentence context. Why it matters.</div>
+             </div>
+        -->
+        <div class="grid" id="news-items">
+          <!-- AGENT: insert news items here -->
+          <div class="empty-state">No breaking news at this time.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LAST NIGHT'S SCORES ────────────────────────────────────── -->
+    <section id="scores">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">Last Night's Scores</h2>
+          <!-- AGENT: e.g. "NBA · MLB · NHL" -->
+          <div class="sub" id="scores-sports"><!-- SPORTS IN PLAY --></div>
+        </div>
+
+        <!-- AGENT: populate with .score-card elements.
+             EXAMPLE STRUCTURE:
+             <div class="score-card">
+               <div class="sport-tag">NBA · Final</div>
+               <div class="score-row winner">
+                 <span class="team">Boston Celtics</span>
+                 <span class="pts">118</span>
+               </div>
+               <div class="score-divider"></div>
+               <div class="score-row loser">
+                 <span class="team">Miami Heat</span>
+                 <span class="pts">104</span>
+               </div>
+               <div class="score-note">OT — Tatum 34 pts, 9 reb</div>
+             </div>
+        -->
+        <div class="grid three" id="scores-grid">
+          <!-- AGENT: insert score cards here -->
+          <div class="empty-state">No games played last night.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── NOTABLE STAT LINES ─────────────────────────────────────── -->
+    <section id="stats">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">Notable Performances</h2>
+          <div class="sub">Milestones · Records · Stat lines worth talking about</div>
+        </div>
+
+        <!-- AGENT: populate with .stat-card elements for any player with a milestone or
+             exceptional performance. Include record context where applicable.
+             EXAMPLE STRUCTURE:
+             <div class="stat-card">
+               <div class="stat-sport">NBA</div>
+               <div class="stat-player">Shai Gilgeous-Alexander</div>
+               <div class="stat-line">42 PTS · 8 AST · 5 REB</div>
+               <div class="stat-context">5th straight 40-pt game. OKC moves to 52-18.</div>
+             </div>
+        -->
+        <div class="grid two" id="stats-grid">
+          <!-- AGENT: insert stat cards here -->
+          <div class="empty-state">No standout performances to report.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WIN/LOSS STREAKS ───────────────────────────────────────── -->
+    <section id="streaks">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">Streaks &amp; Trends</h2>
+          <div class="sub">Win/loss streaks of 4+ games · Playoff picture movement</div>
+        </div>
+
+        <!-- AGENT: populate .streak-list with .streak-item elements.
+             Use class="streak-badge hot" for win streaks, class="streak-badge cold" for losing streaks.
+             EXAMPLE STRUCTURE:
+             <div class="streak-item">
+               <span class="streak-badge hot">W6</span>
+               <span class="streak-team">Cleveland Cavaliers</span>
+               <span class="streak-detail">57-18 · 1st in East · 3 GB ahead of Boston</span>
+             </div>
+        -->
+        <div class="streak-list" id="streaks-list">
+          <!-- AGENT: insert streak items here -->
+          <div class="empty-state">No notable streaks at this time.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INJURIES ───────────────────────────────────────────────── -->
+    <section id="injuries">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">Injury Report</h2>
+          <div class="sub">Key players · Status updates from last 24 hrs</div>
+        </div>
+
+        <!-- AGENT: populate with .injury-item elements.
+             Use class="injury-status out" for OUT, "day" for Day-to-Day, "gtd" for GTD.
+             EXAMPLE STRUCTURE:
+             <div class="injury-item">
+               <span class="injury-status out">Out</span>
+               <div class="injury-info">
+                 <div class="injury-player">Joel Embiid · C · PHI</div>
+                 <div class="injury-detail">Left knee — out indefinitely. Sixers announce surgery timeline.</div>
+               </div>
+             </div>
+        -->
+        <div class="injury-list" id="injuries-list">
+          <!-- AGENT: insert injury items here -->
+          <div class="empty-state">No significant injury updates.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TONIGHT: GAMES TO WATCH ────────────────────────────────── -->
+    <section id="tonight">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">Tonight's Slate</h2>
+          <div class="sub">Must-watch games · Key storylines</div>
+        </div>
+
+        <!-- AGENT: populate with 2–3 .watch-card elements for the most compelling
+             games tonight. Include the central narrative tension of each game.
+             EXAMPLE STRUCTURE:
+             <div class="watch-card">
+               <h3>Thunder vs. Nuggets · 9:30 PM ET · TNT</h3>
+               <div class="game-line">OKC (-3.5) · O/U 225</div>
+               <p>Jokic returns from a one-game absence against the hottest team in the West.
+               OKC has won 8 of their last 10 head-to-heads. This is a potential Finals preview.</p>
+             </div>
+        -->
+        <div class="grid two" id="tonight-grid">
+          <!-- AGENT: insert watch cards here -->
+          <div class="empty-state">No games scheduled tonight.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THE TAKE ────────────────────────────────────────────────── -->
+    <section id="take">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="serif">The Take</h2>
+          <div class="sub">One opinionated read on the biggest story</div>
+        </div>
+        <!-- AGENT: write a sharp, 2–4 sentence opinionated take on the single most
+             interesting story of the morning. Be direct. Take a stance.
+             Replace the blockquote and attribution.
+        -->
+        <div class="take-card">
+          <blockquote id="take-quote"><!-- TAKE --></blockquote>
+          <div class="attribution" id="take-attr"><!-- context / attribution --></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="row">
+        <div>Morning Recap · Brandon Barnes</div>
+        <!-- AGENT: replace with generation timestamp, e.g. "Generated Mon Mar 31, 2026 at 6:52 AM CT" -->
+        <div id="generated-at" style="font-family:ui-monospace,monospace;"><!-- GENERATED --></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fallback: if agent didn't populate the date, use today
+    const d = document.getElementById("recap-date");
+    if (d && d.textContent.trim() === "" || d.innerHTML.includes("<!--")) {
+      d.textContent = new Date().toLocaleDateString("en-US", {
+        weekday:"long", year:"numeric", month:"long", day:"numeric"
+      });
+    }
+  </script>
+</body>
+</html>
