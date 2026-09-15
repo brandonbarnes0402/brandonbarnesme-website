@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brandon Barnes for Smooth Media</title>
+<meta name="description" content="A two-minute pre-read on Brandon Barnes for the Assistant to the CEO role at Smooth Media.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Link preview card (iMessage, Gmail, Slack). Replace og-lockscreen.png with a 1200x630 screenshot of the lock screen. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brandon Barnes for Smooth Media">
+<meta property="og:description" content="Two minutes, before you decide. A pre-read for the Assistant to the CEO seat.">
+<meta property="og:image" content="og-lockscreen.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brandon Barnes for Smooth Media">
+<meta name="twitter:description" content="Two minutes, before you decide.">
+<meta name="twitter:image" content="og-lockscreen.png">
+
+<style>
+  :root {
+    --bg: #000;
+    --surface: #111113;
+    --group: #1d1d20;
+    --sep: #34343a;
+    --text: #ffffff;
+    --muted: #9d9da3;
+    --accent: #d50a0a;
+    --accent-dark: #9e0000;
+    --gold: #ffb400;
+    --cond: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    --glass: rgba(44, 44, 48, .58);
+    --glass-edge: rgba(255, 255, 255, .08);
+    --ph: #3a3a40;
+    --ph-text: #c9c7c0;
+    --sans: "Barlow", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    --top: calc(env(safe-area-inset-top) + 18px);
+    --bottom: calc(env(safe-area-inset-bottom) + 10px);
+    --home-top: calc(env(safe-area-inset-top) + 54px);
+    /* Vertical position of the face in the lock wallpaper. The 104px clock owns the top ~22% of the frame,
+       the gradient clears 30% to 40%. Keep the eyes inside that band. Adjust this value, not the image. */
+    --face-y: 30%;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+  button { font: inherit; color: inherit; }
+  a { color: var(--text); }
+  :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+  .glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(26px) saturate(170%);
+    backdrop-filter: blur(26px) saturate(170%);
+    border: 0.5px solid var(--glass-edge);
+  }
+
+  /* ---------- Placeholders ---------- */
+  .ph {
+    display: grid;
+    place-items: center;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 10px, transparent 10px 20px),
+      var(--ph);
+    color: var(--ph-text);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-align: center;
+  }
+
+  /* ---------- Stage & device ---------- */
+  .stage { height: 100%; }
+  .phone { height: 100%; }
+  .rail { display: none; }
+  .device {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .island, .statusbar, .hw { display: none; }
+
+  /* ---------- App icon colors ---------- */
+  .c-brief  { --c1: #ff2a2a; --c2: #b00000; }
+  .c-cal    { --c1: #2b2b30; --c2: #0c0c0e; }
+  .c-res    { --c1: #ffffff; --c2: #d9d9dc; color: #000 !important; }
+  .c-check  { --c2: #d50a0a; }
+  .c-notes  { --c1: #ffc21a; --c2: #e39a00; color: #000 !important; }
+  .c-news   { --c1: #2b2b30; --c2: #0c0c0e; }
+  .c-mail   { --c1: #ff2a2a; --c2: #b00000; }
+  .c-pers   { --c1: #ffffff; --c2: #d9d9dc; color: #000 !important; }
+  .icon {
+    display: grid; place-items: center;
+    background: linear-gradient(180deg, var(--c1), var(--c2));
+    color: #fff;
+  }
+  .c-news.icon, .c-cal.icon { box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); }
+  .icon { border-radius: 6px !important; }
+
+  /* ---------- Lock screen ---------- */
+  .lock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: var(--top) 14px var(--bottom);
+    transition: transform 420ms cubic-bezier(.2,.8,.2,1), opacity 420ms;
+    z-index: 2;
+  }
+  .lock.away { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+  .wall {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: #3a433f;
+  }
+  .wall img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% var(--face-y);
+  }
+  .wall::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.1) 30%, rgba(0,0,0,0) 40%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.8) 100%);
+  }
+  .clock { text-align: center; color: #fff; }
+  .clock .date { font-weight: 600; font-size: 19px; letter-spacing: -.01em; opacity: .92; }
+  .clock .time {
+    font-weight: 700;
+    font-size: 104px;
+    line-height: .92;
+    letter-spacing: -.035em;
+    margin-top: 2px;
+  }
+  .lock-widget {
+    margin: 12px auto 0;
+    display: inline-grid;
+    grid-template-columns: 6px 1fr;
+    gap: 0 12px;
+    padding: 0 16px 0 0;
+    border-radius: 3px;
+    background: rgba(0,0,0,.72);
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    border: 0;
+    text-align: left;
+    overflow: hidden;
+  }
+  .lock-widget::before { content: ""; grid-row: 1 / 3; background: var(--accent); }
+  .lock-widget b { font-family: var(--cond); font-weight: 800; font-size: 22px; letter-spacing: .02em; text-transform: uppercase; line-height: 1; padding-top: 7px; }
+  .lock-widget span { font-family: var(--cond); font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); padding-bottom: 7px; line-height: 1.1; }
+
+  .stack { margin-top: auto; display: grid; gap: 8px; }
+  .note {
+    border-left: 4px solid var(--accent) !important;
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 11px;
+    align-items: start;
+    width: 100%;
+    text-align: left;
+    border-radius: 6px;
+    padding: 12px 14px 13px;
+    cursor: pointer;
+    opacity: 0;
+    translate: 0 14px;               /* entrance uses `translate`, so `transform` stays free for :active */
+    animation: land 460ms cubic-bezier(.2,.8,.2,1) forwards;
+    transition: transform 120ms;
+    position: relative;
+    z-index: 1;
+  }
+  .stack .note:nth-child(1) { animation-delay: 250ms; }
+  .stack .note:nth-child(2) { animation-delay: 400ms; }
+  .stack .note:nth-child(3) { animation-delay: 550ms; }
+  .stack .note:nth-child(4) { animation-delay: 700ms; }
+  @keyframes land { to { opacity: 1; translate: none; } }
+  .note:active { transform: scale(.98); }
+  .note .icon { width: 38px; height: 38px; border-radius: 9px; margin-top: 2px; }
+  .note .icon svg { width: 22px; height: 22px; }
+  .nhead { display: flex; justify-content: space-between; gap: 8px; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+  .ttl { display: block; font-family: var(--cond); font-weight: 800; font-size: 19px; text-transform: uppercase; letter-spacing: .01em; line-height: 1.05; margin-top: 3px; }
+  .msg { display: block; font-size: 15px; line-height: 1.25; }
+  .stack-edge {
+    height: 11px;
+    margin: -8px 12px 0;
+    border-radius: 0 0 6px 6px;
+    background: rgba(44,44,48,.4);
+    opacity: 0;
+    animation: land 460ms 850ms forwards;
+  }
+
+  .lockfoot {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    align-items: end;
+    margin-top: 16px;
+    padding: 0 26px;
+  }
+  .round {
+    width: 50px; height: 50px; border-radius: 50%;
+    display: grid; place-items: center;
+  }
+  .round svg { width: 22px; height: 22px; }
+  .swipe {
+    background: none;
+    border: 0;
+    padding: 6px 0 0;
+    color: rgba(255,255,255,.8);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+  }
+  .swipe::after {
+    content: ""; width: 138px; height: 5px; border-radius: 3px; background: #fff;
+  }
+
+  /* ---------- Home screen ---------- */
+  .home {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: var(--home-top) 20px var(--bottom);
+    background:
+      linear-gradient(112deg, transparent 0 52%, var(--accent) 52% 60%, var(--accent-dark) 60% 63%, transparent 63%),
+      radial-gradient(90% 50% at 15% 10%, #2a2a2f, transparent 70%),
+      #050506;
+    z-index: 1;
+  }
+  .widgets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .w-wide {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 6px;
+    background: rgba(0,0,0,.78);
+    border-top: 3px solid var(--accent);
+  }
+  .w-wide img { width: 84px; height: 84px; border-radius: 4px; object-fit: cover; object-position: 50% 20%; flex: none; }
+  .w-wide h1 { margin: 0; font-family: var(--cond); font-weight: 800; font-style: italic; font-size: 38px; line-height: .9; letter-spacing: -.01em; text-transform: uppercase; }
+  .w-wide .tag { display: block; margin-top: 5px; font-size: 14px; font-weight: 500; }
+  .w-wide .role { display: inline-block; margin-top: 8px; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 3px 8px 2px; }
+  .w-small {
+    min-height: 130px;
+    border-radius: 6px;
+    background: rgba(0,0,0,.78);
+    border-top: 3px solid var(--accent);
+    padding: 14px 16px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid var(--glass-edge);
+  }
+  .w-app {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--cond); font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold);
+  }
+  .w-app .icon { width: 18px; height: 18px; border-radius: 5px; }
+  .w-app .icon svg { width: 12px; height: 12px; }
+  .w-big { margin-top: auto; font-family: var(--cond); font-weight: 800; font-style: italic; font-size: 30px; line-height: .95; text-transform: uppercase; }
+
+  .grid {
+    list-style: none;
+    margin: 30px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 8px;
+  }
+  .appbtn {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+    font-family: var(--cond);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  }
+  .appbtn .icon {
+    width: 62px; height: 62px;
+    border-radius: 6px;
+    transition: transform 150ms;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  .appbtn:active .icon { transform: scale(.92); }
+  .appbtn .icon svg { width: 32px; height: 32px; }
+  .dock {
+    margin-top: 10px;
+    border-radius: 6px;
+    padding: 12px 18px 10px;
+    background: rgba(0,0,0,.78);
+    border-top: 3px solid var(--accent);
+    display: flex;
+    justify-content: space-around;
+  }
+  .dock .appbtn { width: auto; }
+  .dock .appbtn span:last-child { font-size: 11px; }
+  .ticker {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    height: 34px;
+    background: #fff;
+    color: #000;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+  .ticker .tl { display: grid; place-items: center; padding: 0 12px; background: var(--accent); color: #fff; font-family: var(--cond); font-weight: 800; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; }
+  .ticker .tw { position: relative; overflow: hidden; display: flex; align-items: center; }
+  .ticker .tt { position: absolute; white-space: nowrap; font-family: var(--cond); font-weight: 700; font-size: 16px; letter-spacing: .04em; text-transform: uppercase; animation: tick 28s linear infinite; padding-left: 100%; }
+  .ticker .tt i { font-style: normal; color: var(--accent); margin: 0 14px; }
+  @keyframes tick { to { transform: translateX(-100%); } }
+  .relock {  /* visually silent; reachable by keyboard only. Touch users swipe down from the top. */
+    position: absolute; left: 50%; top: var(--home-top); transform: translate(-50%, -100%);
+    background: none; border: 0; cursor: pointer;
+    padding: 4px 10px; color: rgba(255,255,255,.7); font-size: 12px;
+    opacity: 0; pointer-events: none;
+  }
+  .relock:focus-visible { opacity: 1; pointer-events: auto; }
+
+  /* ---------- Sheets ---------- */
+  .scrim {
+    position: absolute; inset: 0; z-index: 5;
+    background: rgba(0,0,0,.45);
+    opacity: 0; pointer-events: none;
+    transition: opacity 250ms;
+  }
+  .scrim.on { opacity: 1; pointer-events: auto; }
+  .sheet {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    top: calc(env(safe-area-inset-top) + 10px);
+    z-index: 6;
+    background: var(--surface);
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(104%);
+    transition: transform 380ms cubic-bezier(.2,.8,.2,1);
+    visibility: hidden;
+  }
+  .sheet.open { transform: none; visibility: visible; }
+  .sheet-head {
+    position: relative;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px 12px;
+    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    border-bottom: 3px solid #fff;
+  }
+  .sheet-head h2 { margin: 0; font-family: var(--cond); font-size: 34px; font-weight: 800; font-style: italic; letter-spacing: .01em; line-height: 1; text-transform: uppercase; }
+  .close {
+    background: #fff; border: 0; cursor: pointer;
+    color: #000;
+    font-family: var(--cond); font-size: 15px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    padding: 6px 12px 5px;
+    border-radius: 2px;
+  }
+  .sheet-body {
+    overflow-y: auto;
+    padding: 8px 16px calc(env(safe-area-inset-bottom) + 32px);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .glabel {
+    margin: 22px 0 8px;
+    padding: 4px 0 4px 10px;
+    border-left: 4px solid var(--accent);
+    font-family: var(--cond); font-size: 16px; font-weight: 800;
+    color: #fff;
+    text-transform: uppercase; letter-spacing: .1em;
+  }
+  .group {
+    list-style: none;
+    margin: 0; padding: 0;
+    background: var(--group);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .group > * { position: relative; padding: 11px 16px; margin: 0; }
+  .group > * + *::before {
+    content: ""; position: absolute; top: 0; left: 16px; right: 0;
+    border-top: 0.5px solid var(--sep);
+  }
+  .group + .group { margin-top: 10px; }
+
+  /* Brief */
+  .doc-title { margin: 6px 0 0; font-family: var(--cond); font-size: 30px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; }
+  .doc-sub { margin: 6px 0 0; color: var(--muted); }
+  .kv dt { font-family: var(--cond); font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+  .kv dd { margin: 2px 0 0; }
+  .kv .hot dt { color: #fff; }
+  .kv .hot dt::before {
+    content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); margin-right: 6px; vertical-align: 1px;
+  }
+  .checks li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; }
+  .checks .box {
+    width: 22px; height: 22px; margin-top: 1px; border-radius: 50%;
+    background: var(--c2, #148a5c); display: grid; place-items: center;
+  }
+  .checks .said { display: block; color: var(--gold); font-family: var(--cond); font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; }
+  .checks .did { display: block; margin-top: 2px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 14px; background: var(--sep); border-radius: 3px; overflow: hidden; }
+  .stats div { background: #000; padding: 10px 6px 8px; text-align: center; }
+  .stats b { display: block; font-family: var(--cond); font-weight: 800; font-style: italic; font-size: 26px; line-height: 1; color: #fff; }
+  .stats span { display: block; margin-top: 3px; font-family: var(--cond); font-weight: 700; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+
+  /* Résumé */
+  .contact-card { text-align: center; padding-top: 4px; }
+  .contact-card img { width: 92px; height: 92px; border-radius: 50%; display: block; margin: 0 auto 10px; object-fit: cover; object-position: 50% 20%; }
+  .contact-card h3 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
+  .contact-card p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+  .role-head b { display: block; font-weight: 600; }
+  .role-head span { display: block; color: var(--muted); font-size: 14px; }
+  .bullet { display: grid; grid-template-columns: 12px 1fr; gap: 6px; font-size: 15px; }
+  .bullet::before { content: none; }
+  .bullet i { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); margin-top: 8px; }
+  .bullet.num i { background: var(--accent); }
+
+  /* Calendar sheet */
+  .cal-row { display: grid; grid-template-columns: 74px 1fr; gap: 12px; }
+  .cal-row .when { color: var(--gold); font-family: var(--cond); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; padding-top: 2px; }
+  .cal-row .what b { display: block; font-weight: 600; }
+  .cal-row .what span { display: block; color: var(--muted); font-size: 14px; }
+
+  /* Notes sheet */
+  .note-title { margin: 6px 0 0; font-family: var(--cond); font-size: 30px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; }
+  .note-meta { margin: 2px 4px 14px; color: var(--muted); font-size: 14px; }
+  .week b { display: block; font-family: var(--cond); font-weight: 800; font-size: 18px; text-transform: uppercase; letter-spacing: .03em; }
+  .week b em { font-style: normal; color: var(--accent); margin-right: 8px; }
+  .week p { margin: 2px 0 0; color: rgba(255,255,255,.86); font-size: 15px; }
+
+  /* Newsletter sheet */
+  .fcp-logo { display: block; width: 100%; height: auto; border-radius: 12px; margin-top: 4px; }
+  .posts a { display: block; text-decoration: none; }
+  .posts b { display: block; font-family: var(--cond); font-weight: 800; font-size: 18px; text-transform: uppercase; }
+  .posts span { display: block; color: var(--muted); font-size: 14px; }
+  .posts .pm { font-size: 12px; margin-top: 2px; }
+  .issue { height: 260px; border-radius: 12px; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
+  .readbtn {
+    display: block; text-align: center; margin: 10px 0 0;
+    background: var(--accent); color: #fff; text-decoration: none;
+    font-family: var(--cond); font-weight: 800; font-size: 19px; letter-spacing: .08em; text-transform: uppercase; padding: 13px 16px; border-radius: 3px;
+  }
+
+  /* Photos sheet */
+  .photos { display: grid; gap: 10px; }
+  .photos figure { margin: 0; position: relative; border-radius: 3px; overflow: hidden; border-left: 4px solid var(--accent); }
+  .photos .ph { aspect-ratio: 4 / 3; }
+  .photos figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 28px 14px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,.75), transparent);
+    font-size: 14px; font-weight: 500; line-height: 1.3;
+  }
+  .teams { list-style: none; margin: 0; padding: 0; }
+  .teams li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center; }
+  .teams .code { font-weight: 800; font-size: 18px; letter-spacing: .02em; color: #fff; display: grid; place-items: center; width: 44px; height: 30px; border-radius: 6px; }
+  .teams .tname { display: block; font-weight: 600; font-size: 15px; }
+  .teams .tdet { display: block; font-size: 13px; color: var(--muted); }
+
+  /* ---------- Desktop: full iPhone + rail ---------- */
+  @media (min-width: 900px) {
+    body {
+      background:
+        radial-gradient(60% 60% at 30% 40%, #1a1a1f 0%, #050506 70%);
+    }
+    .stage {
+      min-height: 100%;
+      display: grid;
+      grid-template-columns: 416px 300px;
+      justify-content: center;
+      align-items: center;
+      gap: 64px;
+      padding: 16px 24px;
+    }
+    .rail {
+      display: block;
+      color: var(--text);
+      max-width: 300px;
+    }
+    .rail h2 { margin: 0; font-family: var(--cond); font-size: 44px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; padding-left: 14px; border-left: 6px solid var(--accent); }
+    .rail p { margin: 12px 0 0; color: var(--muted); font-size: 16px; line-height: 1.45; }
+    .rail a.cta {
+      display: inline-block; margin-top: 22px;
+      background: var(--accent); color: #fff; text-decoration: none;
+      font-family: var(--cond); font-weight: 800; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; padding: 11px 18px 9px; border-radius: 3px;
+    }
+    .rail .alt { display: block; margin-top: 14px; font-size: 14px; }
+    .rail .alt a { color: var(--muted); }
+    .phone {
+      position: relative;
+      width: 416px;
+      height: min(870px, calc(100vh - 32px));
+      padding: 13px;
+      border-radius: 68px;
+      background: linear-gradient(145deg, #a8a39b 0%, #6d6a65 22%, #4a4845 50%, #77736d 78%, #b3aea6 100%);
+      box-shadow:
+        0 40px 90px rgba(0,0,0,.7),
+        inset 0 0 0 1px rgba(255,255,255,.25),
+        inset 0 0 0 4px #1b1b1d;
+    }
+    .phone::before {
+      content: ""; position: absolute; inset: 4px;
+      border-radius: 64px; background: #000; z-index: 0;
+    }
+    .device {
+      z-index: 1;
+      height: 100%;
+      border-radius: 55px;
+      --top: 62px;
+      --home-top: 62px;
+      --bottom: 12px;
+    }
+    .hw {
+      display: block; position: absolute; width: 4px;
+      background: linear-gradient(90deg, #5b5854, #a09b93);
+      border-radius: 2px;
+    }
+    .hw.action  { left: -3px; top: 120px; height: 32px; }
+    .hw.vol-up  { left: -3px; top: 178px; height: 58px; }
+    .hw.vol-dn  { left: -3px; top: 248px; height: 58px; }
+    .hw.power   { right: -3px; top: 200px; height: 90px; background: linear-gradient(270deg, #5b5854, #a09b93); }
+
+    .island {
+      display: block;
+      position: absolute; top: 11px; left: 50%;
+      width: 124px; height: 36px; margin-left: -62px;
+      border-radius: 20px; background: #000;
+      z-index: 30;
+    }
+    .statusbar {
+      display: flex; justify-content: space-between; align-items: center;
+      position: absolute; top: 0; left: 0; right: 0; height: 54px;
+      padding: 4px 34px 0 46px;
+      font-weight: 600; font-size: 17px; letter-spacing: -.01em;
+      z-index: 29; pointer-events: none;
+    }
+    .statusbar .glyphs { display: flex; gap: 6px; align-items: center; }
+    .sheet { top: 58px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-brief" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 12h5 M10 15h5 M10 18h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M4 6h16v14H4z M4 10h16 M8 3v5 M16 3v5 M8 14h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-res" viewBox="0 0 24 24"><path d="M6 3h12v18H6z M12 9.2a2.2 2.2 0 1 0 0-.01 M8.8 13.2c.7-1.3 1.8-1.9 3.2-1.9s2.5.6 3.2 1.9 M9 16h6 M9 18.5h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-notes" viewBox="0 0 24 24"><path d="M5 4h14v16H5z M8 9l1.5 1.5L12 8 M14 9h2 M8 14l1.5 1.5L12 13 M14 14h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-news" viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z M17 9h3v8a2 2 0 0 1-2 2 M7 9h7 M7 12h7 M7 15h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-photos" viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 16l5-5 4 4 3-3 6 6 M16 9.5a1.5 1.5 0 1 0 0-.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3z M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-pers" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M3 12h18 M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9 M12 3C9.5 5.5 8.5 8.5 8.5 12s1 6.5 3.5 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-torch" viewBox="0 0 24 24"><path d="M8 3h8v4l-2 3v10a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V10L8 7z M8 7h8 M12 13v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z M12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="phone">
+    <span class="hw action" aria-hidden="true"></span>
+    <span class="hw vol-up" aria-hidden="true"></span>
+    <span class="hw vol-dn" aria-hidden="true"></span>
+    <span class="hw power" aria-hidden="true"></span>
+
+    <main class="device" id="device" aria-label="Josh's phone, Monday morning">
+      <div class="island" aria-hidden="true"></div>
+      <div class="statusbar" aria-hidden="true">
+        <span>7:30</span>
+        <span class="glyphs">
+          <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="#fff"/><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="#fff"/><rect x="10" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#fff"/></svg>
+          <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 11.5l2.3-2.6a3.3 3.3 0 0 0-4.6 0z" fill="#fff"/><path d="M3.4 6.8a6.6 6.6 0 0 1 9.2 0l1.5-1.7a8.9 8.9 0 0 0-12.2 0z" fill="#fff"/><path d="M1.1 4.2a10 10 0 0 1 13.8 0L16 3A11.6 11.6 0 0 0 0 3z" fill="#fff"/></svg>
+          <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="rgba(255,255,255,.45)"/><rect x="2" y="2" width="17" height="9" rx="2" fill="#fff"/><path d="M25 4.5v4c.8-.3 1.5-1 1.5-2s-.7-1.7-1.5-2z" fill="rgba(255,255,255,.45)"/></svg>
+        </span>
+      </div>
+
+      <!-- LOCK SCREEN -->
+      <section class="lock" id="lock" aria-label="Lock screen">
+        <div class="wall" aria-hidden="true"><img src="headshot.jpg" alt="" fetchpriority="high" onerror="this.onerror=null;this.src='headshot-1200.webp'"></div>
+        <div class="clock">
+          <div class="date" id="livedate">Monday, September 21</div>
+          <div class="time">7:30</div>
+          <div class="lock-widget glass">
+            <b>Brandon Barnes</b>
+            <span>Assistant to the CEO &bull; Smooth Media</span>
+          </div>
+        </div>
+
+        <div class="stack">
+          <button class="note glass" data-open="brief">
+            <span class="icon c-brief"><svg aria-hidden="true"><use href="#i-brief"/></svg></span>
+            <span>
+              <span class="nhead"><span>Brief</span><span>now</span></span>
+              <span class="ttl">Pre-read: Brandon Barnes</span>
+              <span class="msg">Background and bio</span>
+            </span>
+          </button>
+          <button class="note glass" data-open="calendar">
+            <span class="icon c-cal"><svg aria-hidden="true"><use href="#i-cal"/></svg></span>
+            <span>
+              <span class="nhead"><span>Calendar</span><span>all day</span></span>
+              <span class="ttl">Austin to Manhattan</span>
+              <span class="msg">This guy's open to relocating</span>
+            </span>
+          </button>
+          <button class="note glass" data-open="personality">
+            <span class="icon c-pers"><svg aria-hidden="true"><use href="#i-pers"/></svg></span>
+            <span>
+              <span class="nhead"><span>Personality</span><span>now</span></span>
+              <span class="ttl">What makes him tick?</span>
+              <span class="msg">The "personal" résumé.</span>
+            </span>
+          </button>
+          <button class="note glass" data-open="notes">
+            <span class="icon c-notes"><svg aria-hidden="true"><use href="#i-notes"/></svg></span>
+            <span>
+              <span class="nhead"><span>Notes</span><span>now</span></span>
+              <span class="ttl">First 30 days</span>
+              <span class="msg">Ramping goals.</span>
+            </span>
+          </button>
+          <div class="stack-edge" aria-hidden="true"></div>
+        </div>
+
+        <div class="lockfoot">
+          <span class="round glass" aria-hidden="true"><svg><use href="#i-torch"/></svg></span>
+          <button class="swipe" id="openhome">Swipe up to open</button>
+          <span class="round glass" aria-hidden="true"><svg><use href="#i-cam"/></svg></span>
+        </div>
+      </section>
+
+      <!-- HOME SCREEN -->
+      <section class="home" id="home" aria-label="Home screen" inert>
+        <button class="relock" id="relock">Back to lock screen</button>
+        <div class="widgets">
+          <div class="w-wide glass">
+            <img src="headshot.jpg" alt="Headshot of Brandon Barnes" onerror="this.onerror=null;this.src='headshot-400.webp'">
+            <div>
+              <h1>Brandon Barnes</h1>
+              <span class="role">Assistant to the CEO &bull; Smooth Media</span>
+            </div>
+          </div>
+          <button class="w-small glass" data-open="calendar">
+            <span class="w-app"><span class="icon c-cal"><svg aria-hidden="true"><use href="#i-cal"/></svg></span>Calendar</span>
+            <span class="w-big">Ready to get started!</span>
+          </button>
+          <button class="w-small glass" data-open="brief">
+            <span class="w-app"><span class="icon c-brief"><svg aria-hidden="true"><use href="#i-brief"/></svg></span>Brief</span>
+            <span class="w-big">Why Brandon?</span>
+          </button>
+        </div>
+
+        <ul class="grid">
+          <li><button class="appbtn" data-open="notes"><span class="icon c-notes"><svg aria-hidden="true"><use href="#i-notes"/></svg></span><span>Notes</span></button></li>
+          <li><button class="appbtn" data-open="newsletter"><span class="icon c-news"><svg aria-hidden="true"><use href="#i-news"/></svg></span><span>Newsletter</span></button></li>
+          <li><button class="appbtn" data-open="personality"><span class="icon c-pers"><svg aria-hidden="true"><use href="#i-pers"/></svg></span><span>Personality</span></button></li>
+        </ul>
+
+        <div class="ticker" aria-label="Bottom line">
+          <span class="tl">Bottom Line</span>
+          <span class="tw"><span class="tt">Barnes ready to relocate Austin to Manhattan<i>&bull;</i> 7 yrs building revenue teams, now moving  <i>&bull;</i> Color commentator for high school football <i>&bull;</i> Improv performer <i>&bull;</i> Worked as a manager for Texas A&M Men's Basketball <i>&bull;</i> Writes Full Court Press <i>&bull;</i> Tap Brief for the scouting report on Barnes <i>&bull;</i></span></span>
+        </div>
+        <nav class="dock glass" aria-label="Dock">
+          <button class="appbtn" data-open="brief"><span class="icon c-brief"><svg aria-hidden="true"><use href="#i-brief"/></svg></span><span>Brief</span></button>
+          <a class="appbtn" href="Brandon-Barnes-Resume.pdf" target="_blank" rel="noopener"><span class="icon c-res"><svg aria-hidden="true"><use href="#i-res"/></svg></span><span>Résumé</span></a>
+          <a class="appbtn" id="maillink" href="mailto:brandonbarnes0402@gmail.com"><span class="icon c-mail"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><span>Mail</span></a>
+        </nav>
+      </section>
+
+      <div class="scrim" id="scrim"></div>
+
+      <!-- SHEET: BRIEF -->
+      <div class="sheet" id="sheet-brief" role="dialog" aria-modal="true" aria-labelledby="t-brief">
+        <div class="sheet-head"><h2 id="t-brief">Brief</h2><button class="close">Done</button></div>
+        <div class="sheet-body">
+          <h3 class="doc-title">Scouting report: Brandon Barnes</h3>
+          <p class="doc-sub">The brief I'd send you before our first call, Josh.</p>
+          <div class="stats" aria-label="By the numbers">
+            <div><b>7</b><span>Years in sales roles</span></div>
+            <div><b>6</b><span>Promotions</span></div>
+            <div><b>6</b><span>Times seeing Maggie Rogers in concert</span></div>
+          </div>
+          <dl class="group kv" style="margin-top:16px">
+            <div><dt>Who</dt><dd>Team Lead at a European fintech expanding into the US. Managing ops, enablement, four BDRs, and the US outbound system I built from zero.</dd></div>
+            <div><dt>Why this role at Smooth?</dt><dd>I've always been curious about the creator economy and see my experience in sales + sports being a natural transition. No questioning the grit.</dd></div>
+            <div class="hot"><dt>The obvious question</dt><dd>I'm in Austin today and moving to New York for this seat, as soon as you'd have me. My sister's already in Manhattan, so there's family there.</dd></div>
+            <!-- DRAFT: flight-risk answer. Set the number of years you're actually willing to put in writing. -->
+            <div class="hot"><dt>The other obvious question</dt><dd>Why does a team lead want this chair, and will he stay in it? I see this as a purposeful transition to a new industry and a tremendous learning experience. Excited about the potential to grow in this role!</dd></div>
+          </dl>
+          <h4 class="glabel">Your list, checked</h4>
+          <ul class="group checks c-check">
+            <li><span class="box"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg></span><span><span class="said">Own the admin, travel, and personal logistics</span><span class="did">Experience working for Texas A&M Basketball, managing itineraries and coordinating schedules. That pressure made me ready for anything...</span></span></li>
+            <li><span class="box"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg></span><span><span class="said">Turn my trainings into SOPs and onboarding that work without me in the room</span><span class="did">Wrote the MSP BDR Playbook that onboarded new hires, and ran their ramp sessions. Rebuilt the same thing at my current company: a week-by-week onboarding calendar and ramp curriculum that new SDRs run without me.</span></span></li>
+            <li><span class="box"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg></span><span><span class="said">Keep my key accounts moving</span><span class="did">Ran customer onsites and business reviews across a partner ecosystem at LogicMonitor. Can keep the train moving.</span></span></li>
+            <li><span class="box"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg></span><span><span class="said">Research the creators we want to sign, brief me before I talk to them</span><span class="did">Picked to teach pre-call research at Vanta's SKO, to about 150 people.</span></span></li>
+            <li><span class="box"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg></span><span><span class="said">You write clearly</span><span class="did"><a href="https://fullcourtpress.ai">Full Court Press</a> is the long sample. Feel free to review some older posts. I use AI to help build things (like this site), but not to write.</span></span></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- SHEET: CALENDAR -->
+      <!-- DRAFT: relocation timeline. Confirm the notice period and the housing line. -->
+      <div class="sheet" id="sheet-calendar" role="dialog" aria-modal="true" aria-labelledby="t-cal">
+        <div class="sheet-head"><h2 id="t-cal">Calendar</h2><button class="close">Done</button></div>
+        <div class="sheet-body">
+          <h3 class="doc-title">Schedule: Austin to Manhattan</h3>
+          <p class="doc-sub">The move, already planned.</p>
+          <ul class="group" style="margin-top:16px">
+            <li class="cal-row"><span class="when">Now</span><span class="what"><b>Available for calls any day this week</b><span>512-925-5953</span></span></li>
+            <li class="cal-row"><span class="when">Travel</span><span class="what"><b>Open to it!</b><span>15% travel last role. More is fine.</span></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SHEET: NOTES -->
+      <!-- DRAFT: 30-day plan. This is the strongest hook on the lock screen, so make it yours. -->
+      <div class="sheet" id="sheet-notes" role="dialog" aria-modal="true" aria-labelledby="t-notes">
+        <div class="sheet-head"><h2 id="t-notes">Notes</h2><button class="close">Done</button></div>
+        <div class="sheet-body">
+          <h3 class="note-title">Game plan: first 30 days</h3>
+          <p class="note-meta">Four quarters and a postgame. What I'd do before you asked.</p>
+          <ul class="group">
+            <li class="week"><b><em>1st</em>Learn the machine</b><p>Sit in on everything. Map your calendar, inbox, recurring commitments, key accounts, and the creator pipeline. Write down every decision that currently waits on you and shouldn't.</p></li>
+            <li class="week"><b><em>2nd</em>Take the calendar and the inbox</b><p>Own scheduling end to end. Triage rules for email, a daily brief at 7:30, a travel standard so you never think about logistics again.</p></li>
+            <li class="week"><b><em>3rd</em>Turn your trainings into SOPs</b><p>Record, transcribe, and write up the things you keep explaining. First version of the onboarding doc.</p></li>
+            <li class="week"><b><em>4th</em>Pre-reads and key accounts</b><p>A one-page brief before every meeting that matters. Check-in cadence on your top accounts, run by me, reported to you weekly or biweekly.</p></li>
+            <li class="week"><b><em>Final</em>Report back</b><p>One page: what I found, what I fixed, what I'd change about this list. Then we decide what the next 90 days look like.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SHEET: NEWSLETTER -->
+      <div class="sheet" id="sheet-newsletter" role="dialog" aria-modal="true" aria-labelledby="t-news">
+        <div class="sheet-head"><h2 id="t-news">Newsletter</h2><button class="close">Done</button></div>
+        <div class="sheet-body">
+          <img class="fcp-logo" src="https://media.beehiiv.com/cdn-cgi/image/format=auto,fit=scale-down,onerror=redirect/uploads/asset/file/6d7cfc38-4dc5-498a-ab18-65762110c1e9/Full_Court_Press_logo_L11__2_.jpg?t=1768947247" alt="Full Court Press" width="800" height="450">
+          <h3 class="doc-title">Full Court Press</h3>
+          <p class="doc-sub">Where sports and life collide. A newsletter using sports to remind us of all that once was good, and what could be again. Never written by AI, always from the heart.</p>
+          <h4 class="glabel">Recent issues</h4>
+          <ul class="group posts">
+            <li><a href="https://fullcourtpress.ai/p/not-so-mighty-ducks"><b>The (Not So) Mighty Ducks</b><span>ft. Vandegrift, Chance, and pigs</span><span class="pm"></span></a></li>
+            <li><a href="https://fullcourtpress.ai/p/call-me-maybe"><b>Call Me, Maybe</b><span>ft. Jerry Jones, your newsletter feedback, and the ticking clock</span><span class="pm"></span></a></li>
+            <li><a href="https://fullcourtpress.ai/p/the-life-of-pablo-sanchez"><b>The Life of Pablo (Sanchez)</b><span>ft. getting outside, nostalgia, and adults who play</span><span class="pm"></span></a></li>
+          </ul>
+          <a class="readbtn" href="https://fullcourtpress.ai">Read the newsletter</a>
+        </div>
+      </div>
+
+            <!-- SHEET: PERSONALITY (sponsored post: the hot takes) -->
+      <style>
+        #sheet-personality .ad { margin-top: 8px; background: var(--group); border-radius: 3px; border-top: 3px solid var(--accent); padding: 12px 16px 16px; }
+        #sheet-personality .ad-meta { display: flex; justify-content: space-between; align-items: center; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+        #sheet-personality .ad-meta .sp { color: var(--muted); }
+        #sheet-personality .ad-head { margin: 10px 0 0; font-family: var(--cond); font-weight: 800; font-style: italic; font-size: 40px; line-height: .9; text-transform: uppercase; letter-spacing: -.01em; }
+        #sheet-personality .ad-head em { font-style: inherit; color: var(--accent); }
+        #sheet-personality .ad-sub { margin: 8px 0 0; color: var(--muted); font-size: 15px; line-height: 1.35; }
+        #sheet-personality .takes { list-style: none; margin: 14px 0 0; padding: 0; border-top: 0.5px solid var(--sep); }
+        #sheet-personality .takes li { display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: start; padding: 10px 0; border-bottom: 0.5px solid var(--sep); }
+        #sheet-personality .takes .n { font-family: var(--cond); font-weight: 800; font-style: italic; font-size: 24px; line-height: 1; color: var(--accent); }
+        #sheet-personality .takes b { display: block; font-weight: 600; font-size: 15px; line-height: 1.3; }
+        #sheet-personality .takes small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+        #sheet-personality .takes .tag { font-family: var(--cond); font-weight: 700; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--sep); border-radius: 2px; padding: 3px 6px 2px; white-space: nowrap; margin-top: 2px; }
+        #sheet-personality .takes .tag.hot { color: #fff; background: var(--accent); border-color: var(--accent); }
+        #sheet-personality .ad .readbtn { margin-top: 14px; }
+        #sheet-personality .fine { margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.4; }
+      </style>
+
+      <div class="sheet" id="sheet-personality" role="dialog" aria-modal="true" aria-labelledby="t-pers">
+        <div class="sheet-head"><h2 id="t-pers">Personality</h2><button class="close">Done</button></div>
+        <div class="sheet-body">
+
+          <section class="ad" aria-label="Sponsored: Brandon's hot takes">
+            <div class="ad-meta"><span>Full Court Press</span><span class="sp">Sponsored</span></div>
+            <h3 class="ad-head">Hot takes.<br><em></em></h3>
+            <p class="ad-sub">A peek into Brandon's mind</p>
+
+            <ol class="takes">
+              <li><span class="n">1</span><span><b>Smash burgers are the superior burger.</b><small>Thin, crispy edges >>></small></span><span class="tag hot">Fact</span></li>
+              <li><span class="n">2</span><span><b>The most famous Aggies in the world are Dude Perfect and Ryan Trahan.</b><small>Not Johnny Football... Not Von Miller...</small></span><span class="tag">Relevant</span></li>
+              <li><span class="n">3</span><span><b>The Hawks win the 2015 Finals if the NYPD doesn't break Thabo Sefolosha's leg.</b><small>60 wins. Four All-Stars. Their best perimeter defender out for the playoffs. Yes, I'm still mad.</small></span><span class="tag hot">Scalding Hot</span></li>
+              <li><span class="n">4</span><span><b>Bacon, egg, and cheese breakfast taco beats the bacon, egg, and cheese bagel.</b><small>Both elite. The taco is just a better vehicle. Austin's parting gift to Manhattan.</small></span><span class="tag">Honesty!</span></li>
+              <li><span class="n">5</span><span><b>Best slice I've ever eaten: L'Industrie, Brooklyn.</b><small>Proof I've already done my New York research. Recommendations welcome, though. I've got a lot of ground to cover.</small></span><span class="tag">Accepting rebuttals</span></li>
+            </ol>
+          </section>
+
+          <h4 class="glabel">Declared conflicts of interest</h4>
+          <ul class="group teams">
+            <li><span class="code" style="background:#500000">TAMU</span><span><span class="tname">Texas A&amp;M Aggies</span><span class="tdet">Full-blown addict</span></span></li>
+            <li><span class="code" style="background:#c8102e">LIV</span><span><span class="tname">Liverpool</span><span class="tdet">YNWA</span></span></li>
+          </ul>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Desktop rail: a non-metaphor exit for anyone on a laptop -->
+  <aside class="rail" aria-label="About this page">
+    <h2>Josh, this is your phone Monday morning.</h2>
+    <p>Everything you'd want to know about Brandon before the first call is already on it. Tap through, or skip the bit and reach out directly.</p>
+    <a class="cta" id="raillink" href="#">Email Brandon</a>
+    <span class="alt"><a href="https://fullcourtpress.ai">Read Full Court Press</a></span>
+  </aside>
+</div>
+
+<script>
+(() => {
+  // ---- Contact ----
+  const CONTACT = 'brandonbarnes0402@gmail.com';
+  const SUBJECT = 'Brandon Barnes, Assistant to the CEO';
+  const mailto = `mailto:${CONTACT}?subject=${encodeURIComponent(SUBJECT)}`;
+  ['maillink', 'raillink'].forEach(id => { const a = document.getElementById(id); if (a) a.href = mailto; });
+
+  // ---- Live date on the lock screen (time stays 7:30) ----
+  const d = new Date();
+  document.getElementById('livedate').textContent =
+    d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+  // ---- Pointer-aware unlock label ----
+  const openhome = document.getElementById('openhome');
+  if (matchMedia('(pointer: fine)').matches) openhome.textContent = 'Click to open';
+
+  const lock = document.getElementById('lock');
+  const home = document.getElementById('home');
+  const scrim = document.getElementById('scrim');
+  let openSheet = null, opener = null;
+
+  function showHome() {
+    lock.classList.add('away');
+    lock.inert = true;
+    home.inert = false;
+    home.querySelector('.w-small').focus({ preventScroll: true });
+  }
+  function showLock() {
+    lock.classList.remove('away');
+    lock.inert = false;
+    home.inert = true;
+    openhome.focus({ preventScroll: true });
+  }
+  openhome.addEventListener('click', showHome);
+  lock.addEventListener('click', e => { if (!e.target.closest('.note')) showHome(); });
+  document.getElementById('relock').addEventListener('click', showLock);
+
+  // Swipe up on lock to unlock; swipe down from the top of home to relock
+  let y0 = null;
+  lock.addEventListener('touchstart', e => { y0 = e.touches[0].clientY; }, { passive: true });
+  lock.addEventListener('touchend', e => {
+    if (y0 !== null && y0 - e.changedTouches[0].clientY > 60 && !e.target.closest('.note')) showHome();
+    y0 = null;
+  });
+  let hy0 = null;
+  home.addEventListener('touchstart', e => {
+    const top = home.getBoundingClientRect().top;
+    hy0 = (e.touches[0].clientY - top < 80) ? e.touches[0].clientY : null;
+  }, { passive: true });
+  home.addEventListener('touchend', e => {
+    if (hy0 !== null && e.changedTouches[0].clientY - hy0 > 60 && !openSheet) showLock();
+    hy0 = null;
+  });
+
+  function open(id, btn) {
+    const sheet = document.getElementById('sheet-' + id);
+    if (!sheet) return;
+    opener = btn;
+    openSheet = sheet;
+    scrim.classList.add('on');
+    sheet.classList.add('open');
+    const body = sheet.querySelector('.sheet-body'); if (body) body.scrollTop = 0;
+    [lock, home].forEach(s => s.setAttribute('aria-hidden', 'true'));
+    sheet.querySelector('.close').focus({ preventScroll: true });
+  }
+  function close() {
+    if (!openSheet) return;
+    openSheet.classList.remove('open');
+    scrim.classList.remove('on');
+    [lock, home].forEach(s => s.removeAttribute('aria-hidden'));
+    openSheet = null;
+    if (opener) opener.focus({ preventScroll: true });
+  }
+
+  document.querySelectorAll('[data-open]').forEach(b =>
+    b.addEventListener('click', e => { e.stopPropagation(); open(b.dataset.open, b); }));
+  document.querySelectorAll('.close').forEach(b => b.addEventListener('click', close));
+  scrim.addEventListener('click', close);
+
+  document.addEventListener('keydown', e => {
+    if (!openSheet) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Tab') {
+      const f = [...openSheet.querySelectorAll('button, a[href]')];
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
+</body>
+</html>
